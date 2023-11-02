@@ -1,3 +1,3 @@
-import PoolTable from "./PoolTable";
+import Pool from "./Pool";
 
-export { PoolTable };
+export { Pool };

@@ -1,7 +1,7 @@
-import { PoolTable } from "../../modules";
+import { Pool } from "../../modules";
 
 export default () => (
-  <div>
-    <PoolTable />
+  <div className="p-12">
+    <Pool />
   </div>
 );

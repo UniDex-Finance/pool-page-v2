@@ -17,7 +17,7 @@ import {
   TokenPrice,
   TokenPrices,
 } from "./core";
-import { PoolRow } from "./pool";
+import { PoolRow, PoolDataName } from "./pool";
 
 export type {
   Address,
@@ -38,4 +38,5 @@ export type {
   TokenPrice,
   TokenPrices,
   PoolRow,
+  PoolDataName,
 };
