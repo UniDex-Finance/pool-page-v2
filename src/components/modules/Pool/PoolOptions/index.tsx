@@ -1,10 +1,9 @@
 // import { useState } from "react";
 // import { ChainId } from "../../../../types";
-import { Filter } from "../../../widgets";
 
-interface Props {
+type Props = {
   className?: string;
-}
+};
 
 export default ({ className }: Props) => {
   /*
@@ -18,7 +17,7 @@ export default ({ className }: Props) => {
 
   return (
     <div className={`flex justify-between ${className}`}>
-      <Filter title="Chain Filter" onSelect={() => {}} />
+      <button>Chain Filter</button>
       <button>APR Date Range RANGE v</button>
       <div>
         <span className="mr-4">TVL: $1,234,567</span>

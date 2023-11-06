@@ -17,6 +17,7 @@ import {
   TokenPrice,
   TokenPrices,
 } from "./core";
+import { TokenData, TokenSymbol, TokenDataByChain } from "./token";
 import { PoolRow, PoolDataName } from "./pool";
 
 export type {
@@ -37,6 +38,9 @@ export type {
   MoltenData,
   TokenPrice,
   TokenPrices,
+  TokenData,
+  TokenSymbol,
+  TokenDataByChain,
   PoolRow,
   PoolDataName,
 };

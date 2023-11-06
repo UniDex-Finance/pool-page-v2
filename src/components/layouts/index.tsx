@@ -1,3 +1,4 @@
 import MainLayout from "./MainLayout";
+import ModalLayout from "./ModalLayout";
 
-export { MainLayout };
+export { MainLayout, ModalLayout };

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Contract } from "ethers";
+import { formatUnits } from "ethers/lib/utils";
+import { useEthers } from "@usedapp/core";
 import {
   useReactTable,
   getCoreRowModel,
@@ -7,6 +10,7 @@ import {
 import { Button, Card } from "@material-tailwind/react";
 import { PoolDataService } from "../../../../services";
 import { PoolRow } from "../../../../types";
+import { ABIS, CHAINDATA } from "../../../../constants";
 import columns from "./columns";
 
 // DEV
@@ -33,14 +37,17 @@ const EMPTY_ROW: PoolRow = {
 };
 
 export default () => {
+  const { library } = useEthers();
   const [poolRows, setPoolRows] = useState<PoolRow[]>([]);
 
   const onClick = async () => {
     let poolRowsNew: any[] = [];
     try {
-      poolRowsNew = await PoolDataService.fetchPoolData("pools");
+      const poolRowsResponse = await PoolDataService.get(["pools"]);
+      if (poolRowsResponse) {
+        poolRowsNew = poolRowsResponse as PoolRow[];
+      }
     } catch (e) {
-      poolRowsNew = [];
       console.error(e);
     }
 
@@ -60,9 +67,28 @@ export default () => {
 
   return (
     <Card>
-      <Button className="bg-neutral-600 w-40 p-1" onClick={onClick}>
-        FETCH TokenInfos
-      </Button>
+      <div className="flex">
+        <Button className="bg-neutral-600 w-40 p-1" onClick={onClick}>
+          FETCH TokenInfos
+        </Button>
+        <Button
+          className="bg-neutral-600 w-40 p-1"
+          onClick={async () => {
+            const abiERC20 = ABIS["erc20"];
+            const currencies = CHAINDATA[10].currencies;
+            const currency = currencies["dai"];
+            const addressPool = CHAINDATA[10].oldpool["dai"];
+            const contractPool = new Contract(currency, abiERC20, library);
+            const decimals = await contractPool.decimals();
+            const balance = await contractPool.balanceOf(addressPool);
+            const balanceFormatted = formatUnits(balance, decimals || 18);
+            console.log("HERE balanceFormatted", balanceFormatted);
+          }}
+        >
+          log DAI on OP
+        </Button>
+      </div>
+
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

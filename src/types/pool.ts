@@ -9,4 +9,4 @@ export type PoolRow = {
   amountClaim: number;
 };
 
-export type PoolDataName = "pools" | "prices" | "tvl";
+export type PoolDataName = "pools" | "prices" | "tvlTotal" | "tvlPool";

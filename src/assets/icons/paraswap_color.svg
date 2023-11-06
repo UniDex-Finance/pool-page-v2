@@ -1,0 +1,10 @@
+<svg width="43" height="34" fill="#2669F5" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#logo-svg-clip-path)">
+        <path d="M42.5 34L22.8442 0L3.1875 34L42.5 34ZM9.03114 15.9375L18.0625 0H0L9.03114 15.9375ZM34.4725 29.4995L11.2156 29.4995L22.8442 9.38452L34.4725 29.4995Z" fill="current"></path>
+    </g>
+    <defs>
+        <clipPath id="logo-svg-clip-path">
+            <rect width="180.625" height="34" fill="white"></rect>
+        </clipPath>
+    </defs>
+</svg>

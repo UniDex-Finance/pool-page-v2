@@ -1,7 +1,12 @@
+import { Header } from "../../widgets";
 import { Pool } from "../../modules";
 
 export default () => (
-  <div className="p-12">
-    <Pool />
-  </div>
+  <>
+    <Header />
+    <div className="p-12">
+      <Pool />
+    </div>
+    <div id="portal" />
+  </>
 );

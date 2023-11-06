@@ -1,0 +1,526 @@
+import { ADDRESS_ZERO } from "./tokens";
+
+export const ABIS = {
+  router: [
+    "function trading() view returns(address)",
+    "function treasury() view returns(address)",
+    "function capPool() view returns(address)",
+    "function oracle() view returns(address)",
+
+    "function getPool(address currency) view returns(address)",
+    "function getPoolShare(address currency) view returns(uint256)",
+    "function getCapShare(address currency) view returns(uint256)",
+    "function getPoolRewards(address currency) view returns(address)",
+    "function getCapRewards(address currency) view returns(address)",
+  ],
+  trading: [
+    "function getProduct(bytes32 productId) view returns(tuple(uint64 maxLeverage, uint64 liquidationThreshold, uint64 liquidationFee, uint64 fee, uint64 shortFee, uint64 interest))",
+    "function getOrders(bytes32[] keys) view returns(tuple(bool isClose, uint64 size, uint64 margin)[])",
+    "function getPositions(bytes32[] keys) view returns(tuple(uint64 size, uint64 margin, uint64 timestamp, uint64 price)[])",
+
+    "function submitOrder(bytes32 productId,address currency,address referral,bool isLong,bytes32 limitPrice,uint256 margin,uint256 size) payable",
+    "function submitCloseOrder(bytes32 productId,address currency, address referral, bool isLong, bytes32 limitPrice,uint256 size) payable",
+    "function cancelOrder(bytes32 productId,address currency,bool isLong)",
+
+    "event NewOrder(bytes32 indexed key,address indexed user,bytes32 indexed productId,address currency,bool isLong,uint256 margin,uint256 size,bool isClose)",
+    "event PositionUpdated(bytes32 indexed key,address indexed user,bytes32 indexed productId,address currency,bool isLong,uint256 margin,uint256 size,uint256 price,uint256 fee)",
+    "event ClosePosition(bytes32 indexed key,address indexed user,bytes32 indexed productId,address currency,bool isLong,uint256 price,uint256 margin,uint256 size,uint256 fee,int256 pnl,bool wasLiquidated)",
+  ],
+  pool: [
+    "function getUtilization() view returns(uint256)",
+    "function getBalance(address account) view returns(uint256)",
+    "function getCurrencyBalance(address account) view returns(uint256)",
+    "function totalSupply() view returns(uint256)",
+    "function withdrawFee() view returns(uint256)",
+    "function openInterest() view returns(uint256)",
+    "function utilizationMultiplier() view returns(uint256)",
+
+    "function deposit(uint256 amount) payable",
+    "function withdraw(uint256 amount)",
+  ],
+  rewards: [
+    "function getClaimableReward() view returns(uint256)",
+
+    "function collectReward()",
+  ],
+  treasury: [],
+  oracle: [
+    "event SettlementError(uint256 indexed orderId,bool indexed isClose,string reason)",
+  ],
+  erc20: [
+    "function totalSupply() view returns (uint256)",
+    "function decimals() view returns (uint8)",
+    "function balanceOf(address account) view returns (uint256)",
+    "function transfer(address recipient, uint256 amount) returns (bool)",
+    "function allowance(address owner, address spender) view returns (uint256)",
+    "function approve(address spender, uint256 amount) returns (bool)",
+  ],
+};
+
+export const CHAINDATA = {
+  42161: {
+    label: "arbitrum",
+    name: "Arbitrum",
+    volumeName: "ETH",
+    nativeCurrency: "ETH",
+    Logo: "ARB",
+    hexId: "0xA4B1",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/arbitrumleveragev2",
+    router: "0x00FE4127d6aEB0E85be804d9B8498F638101Ba0D",
+    explorer: "https://arbiscan.io/",
+    rpc: "https://red-cosmological-model.arbitrum-mainnet.quiknode.pro/d8d673e498044e324e1e9e0921a9dc95f78078d5/", // for walletconnect
+    oldpool: {
+      weth: "0xdAF7D157F5c6E0F1d7917Ca02a7C185cEF81e6d0",
+      usdc: "0x09E122453A079bc2Be621769ae7799e53dA0054E",
+      dai: "0xb764729C6bEbd6E60E151F2c46aFce7D6Ff513fD",
+      usdt: "0x9f6B9e253De52C5fD6c65283ff472b15520a7070",
+      wbtc: "0xe736742Eb62F271c48F4a26168FD8F356AeE68db",
+      arb: "0xF1Cb521C753e41906073eBEd30FE34BCB00845f8",
+      mim: "0x266B30394da3D99a846dD30A2F7C50bb523c5dE1",
+      gdai: "0x7638Db20715c5AC09f52bE1E3a4DBb220680BdFd",
+      ram: "0x914172b52262E867D8f2959D884e0ea73795B2c6",
+      mai: "0xEfD0B28810dC3cdD88763f40DCc44462bb85Cf32",
+      gmx: "0xDaa78E776D3788F9FBABDAc02aa6De45f7BC50C6",
+      wsteth: "0x53C6c525a635eF56Bce43d4523D90aACE551D81b",
+      captoken: "0x99DDb3E66A592579B9D46a47824042F62D690a9e",
+      unsheth: "0x5372Af9b4E9d4b9C016574Dad0f2406Dfe023D5F",
+      gns: "0x13ff1aB07540b1681173003E361D046530506c11",
+    },
+    oldpoolrewards: {
+      weth: "0xf2669628818384fa40c3E68e4e5995f4D882F811",
+      usdc: "0xa40dCF6C15419d418337E177dAE6a54f1FA65569",
+      dai: "0x0a7865B126aFcbA2b02Bc20bd99400Cb86367C39",
+      usdt: "0x2F7a4F73C51cb8Ed2a0CEcf8F2deB66dc60db3c8",
+      wbtc: "0xb1F2a1C2CC7755AD0DEeF9b1dC9f444995B1ACCE",
+      arb: "0x5ab75775F40f70B6a7bb6f3248bffA7f2a8Cd886",
+      mim: "0xB937ED209d1f873AaC100FC49102F13825D31651",
+      gdai: "0xAfA5E952aC5f2Ec97189575bc8952d74dB73b1Cf",
+      ram: "0x899139544E20b3a843aBcbc6217Fc037eeD57062",
+      mai: "0x729eDFE0126458Dc917897525ecB19E7F4b48d9b",
+      gmx: "0x94916f4429E7315F66a5C6B38Eda704c0ae1Cc9A",
+      wsteth: "0x5A45876025e515D03A356b40d7945055b8611bAA",
+      captoken: "0x3727EBe1b7744463b43Aa9A365D6B931c2368Fa0",
+      unsheth: "0xDFf241260f3cFa5b2c88FC47030097BA6fdCCB85",
+      gns: "0x47958D1f65c6514bC1460b2Ae8073564B38549Ad",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+      usdc: "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
+      dai: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+      usdt: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+      wbtc: "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+      arb: "0x912ce59144191c1204e64559fe8253a0e49e6548",
+      mim: "0xfea7a6a0b346362bf88a9e4a88416b77a57d6c2a",
+      gdai: "0xd85e038593d7a098614721eae955ec2022b9b91b",
+      ram: "0xaaa6c1e32c55a7bfa8066a6fae9b42650f262418",
+      mai: "0x3f56e0c36d275367b8c502090edf38289b3dea0d",
+      gmx: "0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
+      wsteth: "0x5979d7b546e38e414f7e9822514be443a4800529",
+      captoken: "0x031d35296154279dc1984dcd93e392b1f946737b",
+      unsheth: "0x0ae38f7e10a43b5b2fb064b42a2f4514cba909ef",
+      gns: "0x18c11fd286c5ec11c3b683caa813b77f5163a122",
+    },
+    poolInception: {
+      weth: 1690899999999,
+      usdc: 1690899999999,
+      cap: 1690899999999,
+      dai: 1690899999999,
+      usdt: 1690899999999,
+      wbtc: 1690899999999,
+      arb: 1690899999999,
+      mim: 1690899999999,
+      gdai: 1690899999999,
+      ram: 1690899999999,
+      mai: 1690899999999,
+      gmx: 1690899999999,
+      wsteth: 1690899999999,
+      captoken: 1690899999999,
+      unsheth: 1690899999999,
+      gns: 1690899999999,
+    },
+    cap: "0x5429706887FCb58a595677B73E9B0441C25d993D",
+    pools: [
+      "wsteth",
+      "captoken",
+      "usdt",
+      "usdc",
+      "eth",
+      "gns",
+      "mai",
+      "gmx",
+      "arb",
+      "gdai",
+      "gdai",
+      "mim",
+      "wbtc",
+      "dai",
+      "unsheth",
+    ],
+  },
+  137: {
+    label: "Polygon",
+    name: "Polygon",
+    volumeName: "MATIC",
+    nativeCurrency: "MATIC",
+    Logo: "MATIC",
+    hexId: "0x89",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/polygonleveragev2",
+    router: "0xee7e8F3347501d38921C24a369DBdA6D5c9BB932",
+    explorer: "https://polygonscan.com/",
+    rpc: "https://tame-spring-season.matic.quiknode.pro/f43eab5473fa77e7d4877c693e1f2d1303216c7c/", // for walletconnect
+    oldpool: {
+      retro: "0xf10C6fE83330945810a6B732590879Bdc5919F7B",
+      cash: "0xB1aA59750F1a46dBd6D49b9976f74123567514BE",
+    },
+    oldpoolrewards: {
+      retro: "0x8182b69C7048263E82781eC6885e4a696792AcE6",
+      cash: "0xDd048400960267A8ef47546782633217bD7b68da",
+    },
+    currencies: {
+      retro: "0xBFA35599c7AEbb0dAcE9b5aa3ca5f2a79624D8Eb",
+      cash: "0x5d066d022ede10efa2717ed3d79f22f949f8c175",
+    },
+    poolInception: {
+      retro: 1690899999999,
+      cash: 1690899999999,
+    },
+    cap: "0x625299B279FE7DC609185e4ba03D8A56D28Bbe0b",
+    pools: ["retro", "cash"],
+  },
+  324: {
+    label: "zksync",
+    name: "zkSync",
+    volumeName: "ETH",
+    nativeCurrency: "ETH",
+    Logo: "ZKSYNC",
+    hexId: "0x144",
+    graphUrl:
+      "https://zksync.tempsubgraph.xyz/subgraphs/name/unidex-finance/zkssyncleveragev2",
+    router: "0x029FF7E65DEC9FAe8c7aD35A4b4A79e5e92506bb",
+    explorer: "https://explorer.zksync.io/",
+    rpc: "https://mainnet.era.zksync.io", // for walletconnect
+    oldpool: {
+      usdc: "0xa41A6a4A04E711B53a82E594CeB525e89206627A",
+    },
+    oldpoolrewards: {
+      usdc: "0xe66248B8eE03643FDf87bF69ecaF07AdF01E0eaa",
+    },
+    currencies: {
+      usdc: "0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4",
+    },
+    poolInception: {
+      usdc: 1687399999999,
+      cap: 1687399999999,
+    },
+    cap: "0x82649Fd5203aAdA6949430d5465ab80061cCB0cf",
+    pools: ["usdc"],
+  },
+  250: {
+    label: "ftm",
+    name: "Fantom",
+    volumeName: "FTM",
+    Logo: "FTM",
+    nativeCurrency: "FTM",
+    hexId: "0xfa",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/fantomleveragev2",
+    router: "0xbA21F70d11cD58D463bfDfE3dA609272ECb767a0",
+    explorer: "https://ftmscan.com",
+    rpc: "https://nd-346-151-565.p2pify.com/ba2fff0c3270acfa9e24859e1e694ff7", // for walletconnect
+    oldpool: {
+      weth: "0xBec7d4561037e657830F78b87e780AeE1d09Fc7B",
+      usdc: "0x7A494C755911Ce06444C47248108439a06Ac028C",
+      dai: "0xC451dF1B05828519C014cB967ef1a614BD41834d",
+    },
+    oldpoolrewards: {
+      weth: "0xb29b4A6589b489E44644f661648A7706B9360059",
+      usdc: "0x2A3dF79D2F6b13Bed4Cf9c28C34E310C5bdAFc13",
+      dai: "0x74694b8BAA6C1578019482409Cdd979feC26c6f2",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+      usdc: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
+      dai: "0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e",
+    },
+    poolInception: {
+      weth: 1687399999999,
+      usdc: 1687399999999,
+      cap: 1687399999999,
+    },
+    cap: "0x625299B279FE7DC609185e4ba03D8A56D28Bbe0b",
+    pools: ["eth", "usdc", "dai"],
+  },
+  3: {
+    label: "ropsten",
+    name: "Ropsten Testnet",
+    router: "0x1AA263d79E1f70409CE9159bb1A51F7844010a01",
+    volumeName: "ETH",
+    Logo: "ETH",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/ropstenleverage",
+    explorer: "https://https://ropsten.etherscan.io",
+    rpc: "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161", // for walletconnect
+    currencies: {
+      weth: ADDRESS_ZERO,
+      usdc: "0x8f785910e0cc96f854450dfb53be6492daff0b15",
+    },
+    poolInception: {
+      weth: 1687399999999,
+      usdc: 1687399999999,
+      cap: 1687399999999,
+    },
+    cap: "0x0000000000000000000000000000000000000001",
+    pools: ["eth", "usdc"],
+  },
+  4002: {
+    label: "ftmtestnet",
+    name: "Fantom Testnet",
+    volumeName: "FTM",
+    Logo: "FTM",
+    graphUrl:
+      "https://fantomohlc.xyz/subgraphs/name/unidex-finance/leverageinfo",
+    router: "0x3972D2655A0Ee3a72dF26690681A80b600D3B6ED",
+    explorer: "https://testnet.ftmscan.com",
+    rpc: "https://rpc.testnet.fantom.network//", // for walletconnect
+    oldpool: {
+      weth: "0xBec7d4561037e657830F78b87e780AeE1d09Fc7B",
+      usdc: "0x7A494C755911Ce06444C47248108439a06Ac028C",
+      dai: "0xC451dF1B05828519C014cB967ef1a614BD41834d",
+    },
+    oldpoolrewards: {
+      weth: "0xb29b4A6589b489E44644f661648A7706B9360059",
+      usdc: "0x2A3dF79D2F6b13Bed4Cf9c28C34E310C5bdAFc13",
+      dai: "0x74694b8BAA6C1578019482409Cdd979feC26c6f2",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+      usdc: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
+      dai: "0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e",
+    },
+    poolInception: {
+      weth: 1687399999999,
+      usdc: 1687399999999,
+      dai: 1687399999999,
+      cap: 1687399999999,
+    },
+    cap: "0x0000000000000000000000000000000000000001",
+    pools: ["eth", "usdc"],
+  },
+  28: {
+    label: "bobatestnet",
+    name: "Boba Testnet",
+    volumeName: "ETH",
+    Logo: "ETH",
+    graphUrl:
+      "https://graph.rinkeby.boba.network/subgraphs/name/unidex-finance/bobaleverage",
+    router: "0x930731C8107f2673118a4Ec022a3291833f05869",
+    explorer: "https://blockexplorer.rinkeby.boba.network/",
+    rpc: "https://rinkeby.boba.netwokr", // for walletconnect
+    oldpool: {
+      weth: "0xcFca8f4afF8d03DF8900C39b6C36FBb0233D624B",
+      usdc: "0x549060b7469918b0b54B204DCbFbc520A2326bd9",
+    },
+    oldpoolrewards: {
+      weth: "0x120dc94fDa562E922ec87ac100FE4A829d8171dE",
+      usdc: "0x5F17e80326CB1624B45cCAFda81B979D0b151155",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+      usdc: ADDRESS_ZERO,
+    },
+    poolInception: {
+      weth: 1687399999999,
+      usdc: 1687399999999,
+      cap: 1687399999999,
+    },
+    cap: ADDRESS_ZERO,
+    pools: ["eth"],
+  },
+  288: {
+    label: "boba",
+    name: "Boba",
+    volumeName: "ETH",
+    nativeCurrency: "ETH",
+    Logo: "BOBA",
+    hexId: "0x120",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/bobaleverage",
+    router: "0x053c611b86F63707c1A66f6a77E26607F2624b2C",
+    explorer: "https://bobascan.com",
+    rpc: "https://boba-mainnet.gateway.pokt.network/v1/lb/62112c72146632003b62151f", // for walletconnect
+    oldpool: {
+      weth: "0x9673B0E0F07e4a6da712F6847aE93C3F157DD509",
+      usdc: "",
+    },
+    oldpoolrewards: {
+      weth: "0x10d125b314b97434970a4Fc0D5b71b71EFC38494",
+      usdc: "",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+    },
+    poolInception: {
+      weth: 1687399999999,
+      cap: 1687399999999,
+    },
+    cap: "0x82649Fd5203aAdA6949430d5465ab80061cCB0cf",
+    pools: ["eth"],
+  },
+  56: {
+    label: "bsc",
+    name: "Binance Smart Chain",
+    volumeName: "BNB",
+    nativeCurrency: "BNB",
+    Logo: "BNB",
+    hexId: "0x38",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/bscleverage",
+    router: "0x959E494e2894D314c25Ec8Fb0Fc16F51071d32F6",
+    explorer: "https://bscscan.com/",
+    rpc: "https://rpc.ankr.com/bsc", // for walletconnect
+    oldpool: {
+      busd: "0xa8D4bd632f394CED42BD439Bc34F09198072e519",
+    },
+    oldpoolrewards: {
+      busd: "0x56FBF54565A579dD389A7b1c1A55D54feFE077f0",
+    },
+    currencies: {
+      busd: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
+    },
+    poolInception: {
+      busd: 1687399999999,
+    },
+    cap: "0x82649Fd5203aAdA6949430d5465ab80061cCB0cf",
+    pools: ["busd"],
+  },
+  10: {
+    label: "op",
+    name: "Optimistic Ethereum",
+    volumeName: "ETH",
+    nativeCurrency: "ETH",
+    Logo: "OP",
+    hexId: "0xa",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/optimismleveragev2",
+    router: "0xB94BB10b3c33d76BC283B60705C2904a47F5B3a3",
+    explorer: "https://optimistic.etherscan.io/",
+    rpc: "https://sly-virulent-waterfall.optimism.quiknode.pro/e7187027dce1e6ffb4eef92ac5066a0b94ea28ef/", // for walletconnect
+    oldpool: {
+      dai: "0xCdDF71750E596b4C38785afFEc3bd4C9bff43f6F",
+    },
+    oldpoolrewards: {
+      dai: "0x267c39Bbc612FD0dcEeaB8Ec6Ea65c67e2Bf8FAB",
+    },
+    currencies: {
+      dai: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+    },
+    poolInception: {
+      dai: 1687399999999,
+    },
+    cap: "0x95181a951112df9aa1b8191c53dac436658926b7",
+    pools: ["dai"],
+  },
+  5000: {
+    label: "mantle",
+    name: "Mantle",
+    volumeName: "MNT",
+    nativeCurrency: "MNT",
+    Logo: "MANTLE",
+    hexId: "0x1388",
+    graphUrl:
+      "https://api.thegraph.com/subgraphs/name/unidex-finance/optimismleveragev2",
+    router: "0x053c611b86F63707c1A66f6a77E26607F2624b2C",
+    explorer: "https://explorer.mantle.xyz/",
+    rpc: "https://rpc.mantle.xyz/", // for walletconnect
+    oldpool: {
+      weth: "0x10d125b314b97434970a4Fc0D5b71b71EFC38494",
+    },
+    oldpoolrewards: {
+      weth: "0xbE94BAf82fb64bC8DB6C6E431Fb6eB534Ee74046",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+    },
+    poolInception: {
+      weth: 1687399999999,
+    },
+    cap: "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111",
+    pools: ["eth"],
+  },
+  8453: {
+    label: "base",
+    name: "Base",
+    volumeName: "ETH",
+    nativeCurrency: "ETH",
+    Logo: "BASE",
+    hexId: "0x2105",
+    graphUrl:
+      "https://base.tempsubgraph.xyz/subgraphs/name/unidex-finance/baseleveragev2",
+    router: "0x1AA263d79E1f70409CE9159bb1A51F7844010a01",
+    explorer: "https://basescan.org/",
+    rpc: "https://developer-access-mainnet.base.org", // for walletconnect
+    oldpool: {
+      weth: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",
+      ogre: "0xEb0e6915B8fe9Cfca3Fa028C8CBaFC50d786C865",
+      crvusd: "0xEfD0B28810dC3cdD88763f40DCc44462bb85Cf32",
+      bswap: "0xe10f7BCFf83A0263c03Ba27795d11f4B1631Ef4e",
+      bvm: "0x15d1108bE736c7b43db388fEFF9aF93e130517C1",
+    },
+    oldpoolrewards: {
+      weth: "0x9673B0E0F07e4a6da712F6847aE93C3F157DD509",
+      ogre: "0xFeda1f54173FD98cF2C05F05B0600C19D0a97C26",
+      crvusd: "0xDaa78E776D3788F9FBABDAc02aa6De45f7BC50C6",
+      bswap: "0x3B245f36e39509B41471Ea7793c893f5d97eE69E",
+      bvm: "0x196181d3FB362808e08AD6a9d2B92822203693c6",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+      ogre: "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",
+      crvusd: "0x417ac0e078398c154edfadd9ef675d30be60af93",
+      bswap: "0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9",
+      bvm: "0xd386a121991E51Eab5e3433Bf5B1cF4C8884b47a",
+    },
+    poolInception: {
+      weth: 1691519999999,
+      ogre: 1691519999999,
+      crvusd: 1691519999999,
+      bswap: 1691519999999,
+      bvm: 1691519999999,
+    },
+    cap: "0x95181a951112df9aa1b8191c53dac436658926b7",
+    pools: ["eth", "ogre", "crvusd", "bswap", "bvm"],
+  },
+  1088: {
+    label: "metis",
+    name: "Metis Andromeda",
+    volumeName: "METIS",
+    nativeCurrency: "METIS",
+    Logo: "METIS",
+    graphUrl: "https://unidexcronos.xyz/subgraphs/name/unidex-finance/leverage",
+    router: "0x1AA263d79E1f70409CE9159bb1A51F7844010a01",
+    explorer: "https://andromeda-explorer.metis.io",
+    rpc: "https://andromeda.metis.io/?owner=1088", // for walletconnect
+    oldpool: {
+      weth: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",
+      usdc: "0xb3D7D548dA38Dac2876Da57842a3cbaaf9a3bD96",
+    },
+    oldpoolrewards: {
+      weth: "0x615B1fcf461249b12342726819CB6Da23413CB48",
+      usdc: "0x6aFCa82fa77d49a77EB72fF5E611e434ddDC8856",
+    },
+    currencies: {
+      weth: ADDRESS_ZERO,
+      usdc: "0x420000000000000000000000000000000000000a",
+    },
+    poolInception: {
+      weth: 1661785000000,
+      usdc: 1661785000000,
+      cap: 1661785000000,
+    },
+    hexId: "0x440",
+    cap: "0x88C56b270b1E1b8932A92357C36dD873798AB9ee",
+    pools: ["eth", "usdc"],
+  },
+};
