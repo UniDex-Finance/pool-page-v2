@@ -1,7 +1,4 @@
 import { useState } from "react";
-import { Contract } from "ethers";
-import { formatUnits } from "ethers/lib/utils";
-import { useEthers } from "@usedapp/core";
 import {
   useReactTable,
   getCoreRowModel,
@@ -10,22 +7,14 @@ import {
 import { Button, Card } from "@material-tailwind/react";
 import { PoolDataService } from "../../../../services";
 import { PoolRow } from "../../../../types";
-import { ABIS, CHAINDATA } from "../../../../constants";
-import columns from "./columns";
+import createColumns from "./createColumns";
 
 // DEV
-// import tokenInfos from "../../../../dev/constants/tokenInfos.json";
-
-/*
-const ROWS_TEST: PoolRow[] = tokenInfos.data.TokenInfos.map((t) => ({
-  chainId: t.chainId,
-  collateral: t.symbol,
-  tvl: 123,
-  apr: 456,
-  amountDeposit: 123,
-  amountClaim: 456,
-}));
-*/
+import { Contract } from "ethers";
+import { formatUnits } from "ethers/lib/utils";
+import { useEthers } from "@usedapp/core";
+import { ABIS, CHAINDATA } from "../../../../constants";
+import { roundAndFloor } from "../../../../helpers";
 
 const EMPTY_ROW: PoolRow = {
   chainId: 0,
@@ -37,7 +26,7 @@ const EMPTY_ROW: PoolRow = {
 };
 
 export default () => {
-  const { library } = useEthers();
+  const { library, account } = useEthers();
   const [poolRows, setPoolRows] = useState<PoolRow[]>([]);
 
   const onClick = async () => {
@@ -59,8 +48,44 @@ export default () => {
     setPoolRows(poolRowsNewFormatted);
   };
 
+  const onClick1 = async () => {
+    const currencies = CHAINDATA[42161].currencies;
+    const addressCurrency = currencies["dai"];
+    const addressPool = CHAINDATA[42161].oldpool["dai"];
+    const addressRewards = CHAINDATA[42161].oldpoolrewards["dai"];
+
+    // TODO get TVL for native token
+    const abiERC20 = ABIS["erc20"];
+    const contractCurrency = new Contract(addressCurrency, abiERC20, library);
+    const decimals = await contractCurrency.decimals();
+    const balance = await contractCurrency.balanceOf(addressPool);
+    const tvlString = formatUnits(balance, decimals || 18);
+    const tvl = Number(roundAndFloor(Number(tvlString), 3));
+
+    const abiPool = ABIS["pool"];
+    const contractPool = new Contract(addressPool, abiPool, library);
+    const currencyBalance = await contractPool.getCurrencyBalance(account);
+    const amountDepositString = formatUnits(currencyBalance, decimals || 18);
+    const amountDeposit = Number(roundAndFloor(Number(amountDepositString), 3));
+
+    const abiRewards = ABIS["rewards"];
+    const contractRewards = new Contract(addressRewards, abiRewards, library);
+    const claimableReward = await contractRewards.getClaimableReward();
+    const amountClaimString = formatUnits(claimableReward, decimals || 18);
+    const amountClaim = Number(roundAndFloor(Number(amountClaimString), 3));
+
+    const poolRowsNew = poolRows.map((p) => {
+      if (!(p.chainId === 42161 && p.collateral.toLowerCase() === "dai")) {
+        return p;
+      }
+      return { ...p, tvl, amountDeposit, amountClaim };
+    });
+
+    setPoolRows(poolRowsNew);
+  };
+
   const table = useReactTable({
-    columns,
+    columns: createColumns(library),
     data: poolRows,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -71,21 +96,8 @@ export default () => {
         <Button className="bg-neutral-600 w-40 p-1" onClick={onClick}>
           FETCH TokenInfos
         </Button>
-        <Button
-          className="bg-neutral-600 w-40 p-1"
-          onClick={async () => {
-            const abiERC20 = ABIS["erc20"];
-            const currencies = CHAINDATA[10].currencies;
-            const currency = currencies["dai"];
-            const addressPool = CHAINDATA[10].oldpool["dai"];
-            const contractPool = new Contract(currency, abiERC20, library);
-            const decimals = await contractPool.decimals();
-            const balance = await contractPool.balanceOf(addressPool);
-            const balanceFormatted = formatUnits(balance, decimals || 18);
-            console.log("HERE balanceFormatted", balanceFormatted);
-          }}
-        >
-          log DAI on OP
+        <Button className="bg-neutral-600 w-40 p-1" onClick={onClick1}>
+          Populate row (DAI on ARB)
         </Button>
       </div>
 
