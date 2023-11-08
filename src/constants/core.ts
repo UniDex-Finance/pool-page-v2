@@ -1,6 +1,6 @@
 import { ADDRESS_ZERO } from "./tokens";
 
-export const ABIS = {
+export const ABIS: { [key: string]: string[] } = {
   router: [
     "function trading() view returns(address)",
     "function treasury() view returns(address)",
@@ -57,7 +57,7 @@ export const ABIS = {
   ],
 };
 
-export const CHAINDATA = {
+export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
   42161: {
     label: "arbitrum",
     name: "Arbitrum",

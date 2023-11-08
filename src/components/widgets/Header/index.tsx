@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
 import { Navbar, IconButton } from "@material-tailwind/react";
-import {
-  DEFAULT_NETWORK,
-  NETWORKS_AVAILABLE_LEVERAGE,
-  NETWORK_DISPLAY_NAME,
-  NETWORK_ICON_SRC,
-} from "../../../constants";
-import { BSC_CHAIN_ID } from "../../../constants/networks";
-import { ChainId } from "../../../types";
-import { Dropdown, Option } from "../Dropdown";
+// import { BSC_CHAIN_ID } from "../../../constants/networks";
+// import { ChainId } from "../../../types";
+import { Dropdown /* , Option */ } from "../Dropdown";
 import WalletConnect from "../WalletConnect";
 import logoLarge from "../../../assets/logo-large.png";
 
@@ -59,6 +53,7 @@ const optionsInfo = [
   { name: "Mirror", value: "4", url: "https://mirror.xyz/unidexexchange.eth" },
 ];
 
+/*
 // eslint-disable-next-line prefer-const
 let supportedChainsByChainId: { [chainId: ChainId]: Option } = {
   10: {
@@ -104,40 +99,10 @@ let supportedChainsByChainId: { [chainId: ChainId]: Option } = {
   },
   0: { name: "Wallet Disconnected", value: "-1", img: "" },
 };
-
-const supportedChains: Option[] = NETWORKS_AVAILABLE_LEVERAGE.map((network) => {
-  const option = {
-    name: NETWORK_DISPLAY_NAME[network],
-    value: network.toString(),
-    img: NETWORK_ICON_SRC[network],
-  };
-
-  supportedChainsByChainId[network] = option;
-  return option;
-});
+*/
 
 export default function Header() {
   const [openNav, setOpenNav] = useState(false);
-  // const [openPopover, setOpenPopover] = useState(false);
-
-  // const [openPopover, setOpenPopover] = useState(false);
-  const [initialChainId, setInitialChainId] = useState(
-    /* PersistentStorage.get("chainId")  || */ DEFAULT_NETWORK
-  );
-
-  /*
-  const triggers = {
-    onMouseEnter: () => setOpenPopover(true),
-    onMouseLeave: () => setOpenPopover(false),
-  };
-  */
-
-  async function onChangeChainDropdown(val: Option) {
-    // await switchNetwork(Number(val.value));
-    setInitialChainId(Number(val.value));
-    // setChainId(Number(val.value));
-    // PersistentStorage.set("chainId", Number(val.value));
-  }
 
   useEffect(() => {
     window.addEventListener(
@@ -202,15 +167,6 @@ export default function Header() {
 
         <div className="hidden lg:flex space-x-6 lg:space-x-4 lg:space-x-6 lg:flex-row lg:items-center mr-6">
           <span className="vertical-line-1" />
-
-          <Dropdown
-            options={supportedChains}
-            onChange={(val) => onChangeChainDropdown(val)}
-            selectedOverride={supportedChainsByChainId[initialChainId]}
-            size="medium"
-            titleStyle="pair-title"
-          />
-
           <WalletConnect />
         </div>
         <IconButton

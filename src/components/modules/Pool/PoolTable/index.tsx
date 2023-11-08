@@ -7,7 +7,7 @@ import {
 import { Button, Card } from "@material-tailwind/react";
 import { PoolDataService } from "../../../../services";
 import { PoolRow } from "../../../../types";
-import createColumns from "./createColumns";
+import Columns from "./Columns";
 
 // DEV
 import { Contract } from "ethers";
@@ -27,7 +27,7 @@ const EMPTY_ROW: PoolRow = {
 
 export default () => {
   const { library, account } = useEthers();
-  const [poolRows, setPoolRows] = useState<PoolRow[]>([]);
+  const [poolRows, setPoolRows] = useState<PoolRow[]>([EMPTY_ROW]);
 
   const onClick = async () => {
     let poolRowsNew: any[] = [];
@@ -49,10 +49,11 @@ export default () => {
   };
 
   const onClick1 = async () => {
-    const currencies = CHAINDATA[42161].currencies;
+    const chainIdTest = 10;
+    const currencies = CHAINDATA[chainIdTest].currencies;
     const addressCurrency = currencies["dai"];
-    const addressPool = CHAINDATA[42161].oldpool["dai"];
-    const addressRewards = CHAINDATA[42161].oldpoolrewards["dai"];
+    const addressPool = CHAINDATA[chainIdTest].oldpool["dai"];
+    const addressRewards = CHAINDATA[chainIdTest].oldpoolrewards["dai"];
 
     // TODO get TVL for native token
     const abiERC20 = ABIS["erc20"];
@@ -75,7 +76,9 @@ export default () => {
     const amountClaim = Number(roundAndFloor(Number(amountClaimString), 3));
 
     const poolRowsNew = poolRows.map((p) => {
-      if (!(p.chainId === 42161 && p.collateral.toLowerCase() === "dai")) {
+      if (
+        !(p.chainId === chainIdTest && p.collateral.toLowerCase() === "dai")
+      ) {
         return p;
       }
       return { ...p, tvl, amountDeposit, amountClaim };
@@ -85,7 +88,7 @@ export default () => {
   };
 
   const table = useReactTable({
-    columns: createColumns(library),
+    columns: Columns(),
     data: poolRows,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -97,7 +100,7 @@ export default () => {
           FETCH TokenInfos
         </Button>
         <Button className="bg-neutral-600 w-40 p-1" onClick={onClick1}>
-          Populate row (DAI on ARB)
+          Populate row (DAI on OP)
         </Button>
       </div>
 

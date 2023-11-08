@@ -53,7 +53,7 @@ export default class {
   }
 
   static async get([name, address]: ParamsGet): Promise<
-    any[] | {} | undefined
+    any[] | { [key: string]: any } | undefined
   > {
     if (name === "tvlPool" && !address) {
       throw Error("Address required for PoolDataService get tvlPool");
