@@ -60,7 +60,7 @@ export default function WalletModal({
     >
       <div className="flex flex-col-reverse">
         {addressList.map((address, i, list) => (
-          <div key={address} className="flex flex-row justify-between mt-3">
+          <div key={i} className="flex flex-row justify-between mt-3">
             <div className="flex items-center">
               <div className="w-[28px] mr-2">
                 {walletIcon && (

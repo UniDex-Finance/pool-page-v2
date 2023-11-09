@@ -9,24 +9,17 @@ import { PoolDataService } from "../../../../services";
 import { PoolRow } from "../../../../types";
 import Columns from "./Columns";
 
-// DEV
-import { Contract } from "ethers";
-import { formatUnits } from "ethers/lib/utils";
-import { useEthers } from "@usedapp/core";
-import { ABIS, CHAINDATA } from "../../../../constants";
-import { roundAndFloor } from "../../../../helpers";
-
 const EMPTY_ROW: PoolRow = {
   chainId: 0,
   collateral: "",
   tvl: 0,
   apr: 0,
+  createdAtTimestamp: 0,
   amountDeposit: 0,
   amountClaim: 0,
 };
 
 export default () => {
-  const { library, account } = useEthers();
   const [poolRows, setPoolRows] = useState<PoolRow[]>([EMPTY_ROW]);
 
   const onClick = async () => {
@@ -44,47 +37,9 @@ export default () => {
       ...EMPTY_ROW,
       chainId: p.chainId,
       collateral: p.symbol,
+      createdAtTimestamp: p.createdAtTimestamp,
     }));
     setPoolRows(poolRowsNewFormatted);
-  };
-
-  const onClick1 = async () => {
-    const chainIdTest = 10;
-    const currencies = CHAINDATA[chainIdTest].currencies;
-    const addressCurrency = currencies["dai"];
-    const addressPool = CHAINDATA[chainIdTest].oldpool["dai"];
-    const addressRewards = CHAINDATA[chainIdTest].oldpoolrewards["dai"];
-
-    // TODO get TVL for native token
-    const abiERC20 = ABIS["erc20"];
-    const contractCurrency = new Contract(addressCurrency, abiERC20, library);
-    const decimals = await contractCurrency.decimals();
-    const balance = await contractCurrency.balanceOf(addressPool);
-    const tvlString = formatUnits(balance, decimals || 18);
-    const tvl = Number(roundAndFloor(Number(tvlString), 3));
-
-    const abiPool = ABIS["pool"];
-    const contractPool = new Contract(addressPool, abiPool, library);
-    const currencyBalance = await contractPool.getCurrencyBalance(account);
-    const amountDepositString = formatUnits(currencyBalance, decimals || 18);
-    const amountDeposit = Number(roundAndFloor(Number(amountDepositString), 3));
-
-    const abiRewards = ABIS["rewards"];
-    const contractRewards = new Contract(addressRewards, abiRewards, library);
-    const claimableReward = await contractRewards.getClaimableReward();
-    const amountClaimString = formatUnits(claimableReward, decimals || 18);
-    const amountClaim = Number(roundAndFloor(Number(amountClaimString), 3));
-
-    const poolRowsNew = poolRows.map((p) => {
-      if (
-        !(p.chainId === chainIdTest && p.collateral.toLowerCase() === "dai")
-      ) {
-        return p;
-      }
-      return { ...p, tvl, amountDeposit, amountClaim };
-    });
-
-    setPoolRows(poolRowsNew);
   };
 
   const table = useReactTable({
@@ -95,15 +50,9 @@ export default () => {
 
   return (
     <Card>
-      <div className="flex">
-        <Button className="bg-neutral-600 w-40 p-1" onClick={onClick}>
-          FETCH TokenInfos
-        </Button>
-        <Button className="bg-neutral-600 w-40 p-1" onClick={onClick1}>
-          Populate row (DAI on OP)
-        </Button>
-      </div>
-
+      <Button className="bg-neutral-600 w-40 p-1" onClick={onClick}>
+        FETCH TokenInfos
+      </Button>
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
