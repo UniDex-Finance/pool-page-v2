@@ -1,13 +1,22 @@
 // import { Contract } from "ethers";
-import { CHAINDATA } from "../constants";
+import { CHAINDATA, NETWORK_NAMES_API } from "../constants";
 import { Address, ChainId, PoolDataName } from "../types";
 
 const NAME_TO_URL_CALLBACK: {
-  [key in Exclude<PoolDataName, "tvlPool">]: (chainId?: ChainId) => string;
+  [key in Exclude<PoolDataName, "tvlPool">]: (...values: any[]) => string;
 } = {
   pools: () => "https://arkiver.moltennetwork.com/graphql",
   stats: (chainId) => CHAINDATA[chainId!]?.graphUrl,
-  prices: () => "https://coins.llama.fi/prices/current",
+  prices: (chainIds: ChainId[]) => {
+    const priceKeys: string[] = [];
+    chainIds.forEach((c) => {
+      const { currencies } = CHAINDATA[c];
+      Object.values(currencies).forEach((addressCurrency) => {
+        priceKeys.push(`${NETWORK_NAMES_API.defillama[c]}:${addressCurrency}`);
+      });
+    });
+    return `https://coins.llama.fi/prices/current/${priceKeys}`;
+  },
   tvlTotal: () => "https://api.llama.fi/tvl/unidex",
 };
 
@@ -58,19 +67,42 @@ export default class {
     chainId?: ChainId,
     addressCollateral?: Address
   ) {
-    const response = await fetch(NAME_TO_URL_CALLBACK[name](chainId), {
+    let callbackArg: any = chainId;
+    // TODO: move creating defillama token list where `PoolDataSevice.get` is called
+    if (name === "prices") {
+      const callbackArgPrices: ChainId[] = [];
+      Object.entries(CHAINDATA).forEach(([entryChainId, entryData]) => {
+        if (!entryData.isTestnet) {
+          callbackArgPrices.push(Number(entryChainId));
+        }
+      });
+      callbackArg = callbackArgPrices;
+    }
+
+    const response = await fetch(NAME_TO_URL_CALLBACK[name](callbackArg), {
       method,
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        query: NAME_TO_QUERY_CALLBACK[name](addressCollateral),
-      }),
+      body:
+        method === "POST"
+          ? JSON.stringify({
+              query: NAME_TO_QUERY_CALLBACK[name](addressCollateral),
+            })
+          : undefined,
     });
 
     const obj = await response.json();
-    const poolData = obj?.data?.[NAME_TO_QUERY_TITLE[name]];
-    return poolData;
+    if (name === "pools") {
+      return obj?.data?.[NAME_TO_QUERY_TITLE[name]];
+    }
+
+    if (name === "prices") {
+      console.log(obj?.coins);
+      return obj?.coins;
+    }
+
+    return obj;
   }
 
   static async #getFromContract(/* address: Address */) {

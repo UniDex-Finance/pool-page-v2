@@ -6,7 +6,7 @@ type Props = {
 };
 
 export default ({ className }: Props) => {
-  const [, setTvlTotal] = useState("0");
+  const [tvlTotal, setTvlTotal] = useState("0");
 
   const updateTvl = async () => {
     try {
@@ -26,7 +26,7 @@ export default ({ className }: Props) => {
       <button>Chain Filter</button>
       <button>APR Date Range RANGE v</button>
       <div>
-        <span className="mr-4">TVL: $1,234,567</span>
+        <span className="mr-4">TVL: ${tvlTotal}</span>
         <span className="mr-4">Total Deposited: $1,234,567</span>
         <span>Unclaimed Rewards: $1,234,567</span>
       </div>

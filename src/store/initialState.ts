@@ -1,5 +1,5 @@
-import { DEFAULT_NETWORK } from "../constants";
+import { Store } from "../types/core";
 
 export default {
-  chainId: DEFAULT_NETWORK,
-};
+  prices: {},
+} as Store;

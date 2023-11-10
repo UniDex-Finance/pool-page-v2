@@ -9,11 +9,11 @@ export default (state: any, action: any) => {
         ...data,
       };
     }
-    case actions.SET_CHAIN_ID: {
+    case actions.SET_PRICES: {
       const data = action.payload;
       return {
         ...state,
-        chainId: data,
+        prices: data,
       };
     }
     default:

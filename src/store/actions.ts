@@ -1,4 +1,4 @@
 export default {
   SET_INITIAL_DATA: "SET_INITIAL_DATA",
-  SET_CHAIN_ID: "SET_CHAIN_ID",
+  SET_PRICES: "SET_PRICES",
 };

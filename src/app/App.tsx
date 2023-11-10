@@ -1,4 +1,5 @@
 import { DynamicContextProvider } from "@dynamic-labs/sdk-react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Arbitrum,
   ArbitrumGoerli,
@@ -7,6 +8,7 @@ import {
   DEFAULT_SUPPORTED_CHAINS,
 } from "@usedapp/core";
 import { ThemeProvider } from "@material-tailwind/react";
+import { StateProvider } from "../store/store";
 import { createDynamicSettings } from "../helpers";
 import { MainLayout } from "../components/layouts";
 import { Main } from "../components/pages";
@@ -72,13 +74,19 @@ const USEDAPP_CONFIG: Config = {
   networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL],
 };
 
+const QUERY_CLIENT = new QueryClient();
+
 export default () => (
   <MainLayout>
     <DynamicContextProvider theme="dark" settings={DYNAMIC_SETTINGS}>
       <DAppProvider config={USEDAPP_CONFIG}>
-        <ThemeProvider>
-          <Main />
-        </ThemeProvider>
+        <StateProvider>
+          <ThemeProvider>
+            <QueryClientProvider client={QUERY_CLIENT}>
+              <Main />
+            </QueryClientProvider>
+          </ThemeProvider>
+        </StateProvider>
       </DAppProvider>
     </DynamicContextProvider>
   </MainLayout>
