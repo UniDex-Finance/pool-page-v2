@@ -1,19 +1,25 @@
-// import { useState } from "react";
-// import { ChainId } from "../../../../types";
+import { useEffect, useState } from "react";
+import { PoolDataService } from "../../../../services";
 
 type Props = {
   className?: string;
 };
 
 export default ({ className }: Props) => {
-  /*
-  const [filterSelectionChain, setFilterSelectionChain] =
-    useState<ChainId | null>(null);
-    
-  const onSelectFilterChain = (selectionChain: ChainId | null) => {
-    setFilterSelectionChain(selectionChain);
+  const [, setTvlTotal] = useState("0");
+
+  const updateTvl = async () => {
+    try {
+      const tvlTotalNew = await PoolDataService.get(["tvlTotal"]);
+      setTvlTotal((tvlTotalNew as number).toFixed(2));
+    } catch (e) {
+      console.error(e);
+    }
   };
-  */
+
+  useEffect(() => {
+    updateTvl();
+  }, []);
 
   return (
     <div className={`flex justify-between ${className}`}>

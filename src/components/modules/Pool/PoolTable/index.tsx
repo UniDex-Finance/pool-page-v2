@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { Button, Card } from "@material-tailwind/react";
-import { PoolDataService } from "../../../../services";
+import { Card } from "@material-tailwind/react";
+import { CHAINDATA } from "../../../../constants";
 import { PoolRow } from "../../../../types";
 import Columns from "./Columns";
 
@@ -14,7 +14,6 @@ const EMPTY_ROW: PoolRow = {
   collateral: "",
   tvl: 0,
   apr: 0,
-  createdAtTimestamp: 0,
   amountDeposit: 0,
   amountClaim: 0,
 };
@@ -22,37 +21,34 @@ const EMPTY_ROW: PoolRow = {
 export default () => {
   const [poolRows, setPoolRows] = useState<PoolRow[]>([EMPTY_ROW]);
 
-  const onClick = async () => {
-    let poolRowsNew: any[] = [];
-    try {
-      const poolRowsResponse = await PoolDataService.get(["pools"]);
-      if (poolRowsResponse) {
-        poolRowsNew = poolRowsResponse as PoolRow[];
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    const poolRowsNewFormatted: PoolRow[] = poolRowsNew.map((p) => ({
-      ...EMPTY_ROW,
-      chainId: p.chainId,
-      collateral: p.symbol,
-      createdAtTimestamp: p.createdAtTimestamp,
-    }));
-    setPoolRows(poolRowsNewFormatted);
-  };
-
   const table = useReactTable({
     columns: Columns(),
     data: poolRows,
     getCoreRowModel: getCoreRowModel(),
   });
 
+  useEffect(() => {
+    const poolRowsChainData: PoolRow[] = [];
+    Object.entries(CHAINDATA).forEach(([entryChainId, entryData]) => {
+      if (entryData.isTestnet) {
+        return;
+      }
+
+      const chainPools: PoolRow[] = Object.keys(entryData.oldpool).map(
+        (symbol) => ({
+          ...EMPTY_ROW,
+          chainId: Number(entryChainId),
+          collateral: symbol.toUpperCase(),
+        })
+      );
+      poolRowsChainData.push.apply(poolRowsChainData, chainPools);
+    });
+
+    setPoolRows(poolRowsChainData);
+  }, []);
+
   return (
     <Card>
-      <Button className="bg-neutral-600 w-40 p-1" onClick={onClick}>
-        FETCH TokenInfos
-      </Button>
       <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

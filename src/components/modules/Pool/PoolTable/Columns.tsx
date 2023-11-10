@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+// import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { NumericFormat } from "react-number-format";
 import { Contract } from "ethers";
 import {
@@ -19,7 +20,7 @@ import { Address, ChainId, PoolRow } from "../../../../types";
 import { ABIS, CHAINDATA } from "../../../../constants";
 import { formatUnits, parseUnitsSafe } from "../../../../helpers";
 import { ADDRESS_ZERO } from "../../../../constants/tokens";
-import { PoolDataService } from "../../../../services";
+// import { PoolDataService } from "../../../../services";
 
 type PropsPoolCell = {
   chainIdRow: ChainId;
@@ -101,10 +102,12 @@ const PoolClaimable = ({
   return amountClaimFormattedRounded;
 };
 
+/*
 type PoolStats = {
   cumulativeFees: string;
   cumulativePnl: string;
 };
+
 
 const PoolAPR = ({
   chainIdRow,
@@ -210,6 +213,7 @@ const PoolAPR = ({
 
   return poolAPRRow;
 };
+*/
 
 type ButtonAction = "deposit" | "withdraw" | "claim";
 type ParamsOnClickAction = [
@@ -336,19 +340,13 @@ export default () => {
         />
       ),
     }),
-    // TODO: update value pf and use `apr` accessor instead
+    /* TODO: update value pf and use `apr` accessor instead
     columnHelper.accessor("createdAtTimestamp", {
       id: "apr",
       header: "APR",
-      cell: (info) => (
-        <PoolAPR
-          chainIdRow={info.row.getValue("chainId")}
-          collateralRow={info.row.getValue("collateral")}
-          createdAtTimestampRow={info.getValue()}
-          library={library}
-        />
-      ),
+      cell: (info) => info.getValue(),
     }),
+    */
     columnHelper.accessor("amountDeposit", {
       id: "amountDeposit",
       header: "DEPOSITED",

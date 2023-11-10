@@ -65,6 +65,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "ETH",
     Logo: "ARB",
     hexId: "0xA4B1",
+    isTestnet: false,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/arbitrumleveragev2",
     router: "0x00FE4127d6aEB0E85be804d9B8498F638101Ba0D",
@@ -165,6 +166,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "MATIC",
     Logo: "MATIC",
     hexId: "0x89",
+    isTestnet: false,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/polygonleveragev2",
     router: "0xee7e8F3347501d38921C24a369DBdA6D5c9BB932",
@@ -196,6 +198,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "ETH",
     Logo: "ZKSYNC",
     hexId: "0x144",
+    isTestnet: false,
     graphUrl:
       "https://zksync.tempsubgraph.xyz/subgraphs/name/unidex-finance/zkssyncleveragev2",
     router: "0x029FF7E65DEC9FAe8c7aD35A4b4A79e5e92506bb",
@@ -224,6 +227,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     Logo: "FTM",
     nativeCurrency: "FTM",
     hexId: "0xfa",
+    isTestnet: false,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/fantomleveragev2",
     router: "0xbA21F70d11cD58D463bfDfE3dA609272ECb767a0",
@@ -258,6 +262,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     router: "0x1AA263d79E1f70409CE9159bb1A51F7844010a01",
     volumeName: "ETH",
     Logo: "ETH",
+    isTestnet: true,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/ropstenleverage",
     explorer: "https://https://ropsten.etherscan.io",
@@ -279,6 +284,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     name: "Fantom Testnet",
     volumeName: "FTM",
     Logo: "FTM",
+    isTestnet: true,
     graphUrl:
       "https://fantomohlc.xyz/subgraphs/name/unidex-finance/leverageinfo",
     router: "0x3972D2655A0Ee3a72dF26690681A80b600D3B6ED",
@@ -313,6 +319,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     name: "Boba Testnet",
     volumeName: "ETH",
     Logo: "ETH",
+    isTestnet: true,
     graphUrl:
       "https://graph.rinkeby.boba.network/subgraphs/name/unidex-finance/bobaleverage",
     router: "0x930731C8107f2673118a4Ec022a3291833f05869",
@@ -345,6 +352,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "ETH",
     Logo: "BOBA",
     hexId: "0x120",
+    isTestnet: false,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/bobaleverage",
     router: "0x053c611b86F63707c1A66f6a77E26607F2624b2C",
@@ -375,6 +383,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "BNB",
     Logo: "BNB",
     hexId: "0x38",
+    isTestnet: false,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/bscleverage",
     router: "0x959E494e2894D314c25Ec8Fb0Fc16F51071d32F6",
@@ -402,6 +411,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "ETH",
     Logo: "OP",
     hexId: "0xa",
+    isTestnet: false,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/optimismleveragev2",
     router: "0xB94BB10b3c33d76BC283B60705C2904a47F5B3a3",
@@ -429,6 +439,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "MNT",
     Logo: "MANTLE",
     hexId: "0x1388",
+    isTestnet: false,
     graphUrl:
       "https://api.thegraph.com/subgraphs/name/unidex-finance/optimismleveragev2",
     router: "0x053c611b86F63707c1A66f6a77E26607F2624b2C",
@@ -456,6 +467,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     nativeCurrency: "ETH",
     Logo: "BASE",
     hexId: "0x2105",
+    isTestnet: false,
     graphUrl:
       "https://base.tempsubgraph.xyz/subgraphs/name/unidex-finance/baseleveragev2",
     router: "0x1AA263d79E1f70409CE9159bb1A51F7844010a01",
@@ -498,6 +510,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     volumeName: "METIS",
     nativeCurrency: "METIS",
     Logo: "METIS",
+    isTestnet: false,
     graphUrl: "https://unidexcronos.xyz/subgraphs/name/unidex-finance/leverage",
     router: "0x1AA263d79E1f70409CE9159bb1A51F7844010a01",
     explorer: "https://andromeda-explorer.metis.io",

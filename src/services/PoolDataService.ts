@@ -78,7 +78,7 @@ export default class {
   }
 
   static async get([name, chainId, addressCollateral]: ParamsGet): Promise<
-    any[] | { [key: string]: any } | undefined
+    any[] | { [key: string]: any } | number | undefined
   > {
     /*
     if (name === "tvlPool" && !address) {
