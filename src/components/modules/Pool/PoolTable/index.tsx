@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   useReactTable,
   getCoreRowModel,
@@ -6,8 +6,10 @@ import {
 } from "@tanstack/react-table";
 import { Card } from "@material-tailwind/react";
 import { CHAINDATA } from "../../../../constants";
+import { useAppState } from "../../../../hooks";
 import { PoolRow } from "../../../../types";
 import Columns from "./Columns";
+import actions from "../../../../store/actions";
 
 const EMPTY_ROW: PoolRow = {
   chainId: 0,
@@ -19,7 +21,8 @@ const EMPTY_ROW: PoolRow = {
 };
 
 export default () => {
-  const [poolRows, setPoolRows] = useState<PoolRow[]>([EMPTY_ROW]);
+  const { state, dispatch } = useAppState();
+  const poolRows = state?.poolRows;
 
   const table = useReactTable({
     columns: Columns(),
@@ -44,7 +47,10 @@ export default () => {
       poolRowsChainData.push.apply(poolRowsChainData, chainPools);
     });
 
-    setPoolRows(poolRowsChainData);
+    dispatch({
+      type: actions.SET_POOL_ROWS,
+      payload: poolRowsChainData,
+    });
   }, []);
 
   return (

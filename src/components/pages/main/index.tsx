@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-// import { useQuery } from "@tanstack/react-query";
 import { PoolDataService } from "../../../services";
 import { useAppState } from "../../../hooks";
 import { actions } from "../../../store/store";
@@ -7,7 +5,7 @@ import { Header } from "../../widgets";
 import { Pool } from "../../modules";
 
 export default () => {
-  const { state, dispatch } = useAppState();
+  const { dispatch } = useAppState();
 
   /*
   const { data: prices } = useQuery({
@@ -16,10 +14,6 @@ export default () => {
     refetchInterval: 5 * 60 * 1000,
   });
   */
-
-  useEffect(() => {
-    console.log("STATE", state);
-  }, [state]);
 
   return (
     <>

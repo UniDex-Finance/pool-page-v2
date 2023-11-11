@@ -98,7 +98,6 @@ export default class {
     }
 
     if (name === "prices") {
-      console.log(obj?.coins);
       return obj?.coins;
     }
 

@@ -1,5 +1,5 @@
 // import { useEffect, useRef, useState } from "react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import { Contract } from "ethers";
 import {
@@ -17,9 +17,11 @@ import {
   PopoverHandler,
 } from "@material-tailwind/react";
 import { Address, ChainId, PoolRow } from "../../../../types";
-import { ABIS, CHAINDATA } from "../../../../constants";
+import { ABIS, CHAINDATA, NETWORK_NAMES_API } from "../../../../constants";
 import { formatUnits, parseUnitsSafe } from "../../../../helpers";
 import { ADDRESS_ZERO } from "../../../../constants/tokens";
+import { useAppState } from "../../../../hooks";
+import { METIS_CHAIN_ID } from "../../../../constants/networks";
 // import { PoolDataService } from "../../../../services";
 
 type PropsPoolCell = {
@@ -27,11 +29,16 @@ type PropsPoolCell = {
   collateralRow: string;
 };
 
-const PoolTVL = ({ chainIdRow, collateralRow }: PropsPoolCell) => {
+const usePoolTVL = ({ chainIdRow, collateralRow }: PropsPoolCell) => {
   const collateralRowLower = collateralRow.toLowerCase();
   const chainDataRow = CHAINDATA[chainIdRow];
   const addressCollateralRow = chainDataRow?.currencies?.[collateralRowLower];
   const addressPoolRow = chainDataRow?.oldpool?.[collateralRowLower];
+  const pricesKeyRow = `${NETWORK_NAMES_API.defillama[chainIdRow]}:${addressCollateralRow}`;
+
+  const [tvlRowUSD, setTvlRowUSD] = useState("0");
+  const { state } = useAppState();
+  const prices = state?.prices;
 
   const tvlRow =
     addressCollateralRow === ADDRESS_ZERO
@@ -39,15 +46,29 @@ const PoolTVL = ({ chainIdRow, collateralRow }: PropsPoolCell) => {
       : useTokenBalance(addressCollateralRow, addressPoolRow, {
           chainId: chainIdRow,
         });
-  const tvlRowFormatted = formatUnits(
-    tvlRow || 0,
-    collateralRowLower === "usdc" ? 6 : 18
-  );
-  const tvlRowFormattedRounded = Number(tvlRowFormatted).toFixed(2);
-  return tvlRowFormattedRounded;
+
+  useEffect(() => {
+    if (tvlRow && prices && Object.keys(prices).length) {
+      if (!prices[pricesKeyRow]) {
+        return;
+      }
+
+      const tvlRowFormatted = formatUnits(
+        tvlRow || 0,
+        collateralRowLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
+      );
+      const tvlRowFormattedNumber = Number(tvlRowFormatted);
+      const priceCurrencyRow = prices[pricesKeyRow];
+      const tvlRowFormattedNumberUSD =
+        tvlRowFormattedNumber * priceCurrencyRow.price;
+      setTvlRowUSD(tvlRowFormattedNumberUSD.toFixed(2));
+    }
+  }, [prices, tvlRow]);
+
+  return tvlRowUSD;
 };
 
-const PoolDesposited = ({
+const usePoolDeposited = ({
   chainIdRow,
   collateralRow,
   library,
@@ -69,7 +90,7 @@ const PoolDesposited = ({
   const amountDeposit = callResult?.value;
   const amountDepositFormatted = formatUnits(
     amountDeposit?.toString() || "0",
-    collateralRowLower === "usdc" ? 6 : 18
+    collateralRowLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
   );
   const amountDepositFormattedRounded = Number(amountDepositFormatted).toFixed(
     2
@@ -77,7 +98,7 @@ const PoolDesposited = ({
   return amountDepositFormattedRounded;
 };
 
-const PoolClaimable = ({
+const usePoolClaimable = ({
   chainIdRow,
   collateralRow,
   library,
@@ -96,7 +117,7 @@ const PoolClaimable = ({
   const amountClaim = callResult?.value;
   const amountClaimFormatted = formatUnits(
     amountClaim?.toString() || "0",
-    collateralRowLower === "usdc" ? 6 : 18
+    collateralRowLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
   );
   const amountClaimFormattedRounded = Number(amountClaimFormatted).toFixed(2);
   return amountClaimFormattedRounded;
@@ -146,7 +167,7 @@ const PoolAPR = ({
         });
   const tvlRowFormatted = formatUnits(
     tvlRow || 0,
-    collateralRowLower === "usdc" ? 6 : 18
+    collateralRowLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
   );
   const tvlRowFormattedNumber = Number(tvlRowFormatted);
 
@@ -177,7 +198,8 @@ const PoolAPR = ({
       } = poolStatsRow;
 
       if (cumulativeFeesRow && cumulativePnlRow) {
-        const decimalsCollateralRow = collateralRowLower === "usdc" ? 6 : 18;
+        const decimalsCollateralRow = collateralRowLower === "usdc" 
+          && chainIdRow !== METIS_CHAIN_ID ? 6 : 18;
         const cumulativeFeesRowFormatted = formatUnits(
           cumulativeFeesRow,
           decimalsCollateralRow
@@ -250,7 +272,7 @@ export default () => {
         const valueDepositBigNumber = parseUnitsSafe(
           valueDeposit.toString(),
           // TODO: use dict or something else here
-          collateralLower === "usdc" ? 6 : 18
+          collateralLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
         );
         tx = await contractPool.deposit(valueDepositBigNumber);
       } else {
@@ -258,7 +280,7 @@ export default () => {
         const valueWithdrawBigNumber = parseUnitsSafe(
           valueWithdraw.toString(),
           // TODO: use dict or something else here
-          collateralLower === "usdc" ? 6 : 18
+          collateralLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
         );
         tx = await contractPool.withdraw(valueWithdrawBigNumber);
       }
@@ -333,12 +355,11 @@ export default () => {
     columnHelper.accessor("tvl", {
       id: "tvl",
       header: "TVL",
-      cell: (info) => (
-        <PoolTVL
-          chainIdRow={info.row.getValue("chainId")}
-          collateralRow={info.row.getValue("collateral")}
-        />
-      ),
+      cell: (info) =>
+        usePoolTVL({
+          chainIdRow: info.row.getValue("chainId"),
+          collateralRow: info.row.getValue("collateral"),
+        }),
     }),
     /* TODO: update value pf and use `apr` accessor instead
     columnHelper.accessor("createdAtTimestamp", {
@@ -350,25 +371,24 @@ export default () => {
     columnHelper.accessor("amountDeposit", {
       id: "amountDeposit",
       header: "DEPOSITED",
-      cell: (info) => (
-        <PoolDesposited
-          chainIdRow={info.row.getValue("chainId")}
-          collateralRow={info.row.getValue("collateral")}
-          library={library}
-          account={account}
-        />
-      ),
+      cell: (info) =>
+        usePoolDeposited({
+          chainIdRow: info.row.getValue("chainId"),
+          collateralRow: info.row.getValue("collateral"),
+          library: library,
+          account: account,
+        }),
     }),
     columnHelper.accessor("amountClaim", {
       id: "amountClaim",
       header: "CLAIMABLE REWARDS",
-      cell: (info) => (
-        <PoolClaimable
-          chainIdRow={info.row.getValue("chainId")}
-          collateralRow={info.row.getValue("collateral")}
-          library={library}
-        />
-      ),
+      cell: (info) => 
+        usePoolClaimable({
+          chainIdRow:info.row.getValue("chainId"),
+          collateralRow:info.row.getValue("collateral"),
+          library:library,
+        }
+    )
     }),
     columnHelper.display({
       id: "actionDeposit",
