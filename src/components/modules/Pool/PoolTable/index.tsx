@@ -30,7 +30,7 @@ export default () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  useEffect(() => {
+  const init = () => {
     const poolRowsChainData: PoolRow[] = [];
     Object.entries(CHAINDATA).forEach(([entryChainId, entryData]) => {
       if (entryData.isTestnet) {
@@ -51,12 +51,16 @@ export default () => {
       type: actions.SET_POOL_ROWS,
       payload: poolRowsChainData,
     });
+  };
+
+  useEffect(() => {
+    init();
   }, []);
 
   return (
-    <Card>
+    <Card className="bg-main-card py-4 px-2 rounded-md">
       <table>
-        <thead>
+        <thead className="text-secondary-text underline">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
@@ -72,12 +76,12 @@ export default () => {
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody className="text-lg font-semibold">
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center py-2.5 px-4">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </div>
                 </td>

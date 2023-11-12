@@ -14,7 +14,7 @@ export default function DropdownModal({ setDropdownVisible, onChange, options }:
   }
 
   return (
-    <div className="dropdown-modal absolute z-40 bg-neutral-800 rounded-lg md:border-0 mr-2 mx-auto items-center text-center justify-center text-white bg-[#262626] border-white border-2 mt-4 p-2">
+    <div className="dropdown-modal absolute z-40 bg-main-front rounded-lg md:border-0 mr-2 mx-auto items-center text-center justify-center text-white border-white border-2 mt-4 p-2">
       <div className="dropdown-list-wrapper overflow-y-auto scrollbar-thin scrollbar-track-neutral-900 scrollbar-thumb-neutral-600 hover:scrollbar-thumb-[#676767]">
         {options.map((option) => (
           <div

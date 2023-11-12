@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { PoolDataService } from "../../../services";
 import { useAppState } from "../../../hooks";
 import { actions } from "../../../store/store";
@@ -15,24 +16,26 @@ export default () => {
   });
   */
 
+  const getAndSavePrices = async () => {
+    const prices = await PoolDataService.get(["prices"]);
+    dispatch({
+      type: actions.SET_PRICES,
+      payload: prices,
+    });
+  };
+
+  useEffect(() => {
+    console.log("HERE111");
+    getAndSavePrices();
+  }, []);
+
   return (
-    <>
+    <div className="text-main-text bg-main-back">
       <Header />
-      <button
-        onClick={async () => {
-          const prices = await PoolDataService.get(["prices"]);
-          dispatch({
-            type: actions.SET_PRICES,
-            payload: prices,
-          });
-        }}
-      >
-        GET AND SAVE PRICES
-      </button>
       <div className="p-12">
         <Pool />
       </div>
       <div id="portal" />
-    </>
+    </div>
   );
 };

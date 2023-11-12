@@ -117,10 +117,10 @@ export default function Header() {
 
   return (
     <Navbar
-      className="header-container mx-auto py-4 lg:py-2 px-2 lg:px-2 sticky top-0 border-0 rounded-none border-none z-40 shadow-none bg-opacity-0 backdrop-saturate-500 bg-transparent"
+      className="mx-auto py-4 lg:py-2 px-2 lg:px-2 sticky top-0 border-0 rounded-none border-none z-40 shadow-none bg-opacity-0 backdrop-saturate-500 bg-transparent"
       fullWidth
     >
-      <div className="mx-auto flex items-center justify-between text-white px-4 gap-x-4 flex-row">
+      <div className="bg-main-back mx-auto flex items-center justify-between text-white px-4 gap-x-4 flex-row">
         <div className="flex gap-x-4 justify-center">
           <div
             onClick={() => {
@@ -145,7 +145,7 @@ export default function Header() {
             />
           </div>
 
-          <div className="hidden lg:flex ml-4" style={{ alignItems: "center" }}>
+          <div className="hidden lg:flex items-center ml-4" style={{ alignItems: "center" }}>
             <div className="dropdown mr-6 mt-1">
               <Dropdown
                 selectedOverride={options[0]}

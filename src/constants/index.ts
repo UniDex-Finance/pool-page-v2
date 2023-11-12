@@ -1,4 +1,4 @@
-import { ABIS, CHAINDATA } from "./core";
+import { CURRENCY_LOGOS, ABIS, CHAINDATA } from "./core";
 
 import {
   NETWORKS_AVAILABLE,
@@ -28,6 +28,7 @@ import {
 } from "./tokens";
 
 export {
+  CURRENCY_LOGOS,
   ABIS,
   CHAINDATA,
   NETWORKS_AVAILABLE,

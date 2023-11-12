@@ -76,7 +76,7 @@ export default function WalletButton() {
         <HeaderButton onClick={() => setShowAuthFlow(true)}>
           <div className="flex flex-row justify-evenly items-center space-x-2 px-2 text-2xl  ">
             <img width={25} height={24} src={walletIcon} title="" alt="" />
-            <div className="min-w-max">
+            <div className="text-xl min-w-max">
               <span>Connect</span>
               <span className="lg:inline "> Wallet</span>
             </div>

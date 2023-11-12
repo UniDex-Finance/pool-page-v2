@@ -17,12 +17,22 @@ import {
   PopoverHandler,
 } from "@material-tailwind/react";
 import { Address, ChainId, PoolRow } from "../../../../types";
-import { ABIS, CHAINDATA, NETWORK_NAMES_API } from "../../../../constants";
+import {
+  ABIS,
+  CHAINDATA,
+  CURRENCY_LOGOS,
+  NETWORK_NAMES_API,
+} from "../../../../constants";
 import { formatUnits, parseUnitsSafe } from "../../../../helpers";
 import { ADDRESS_ZERO } from "../../../../constants/tokens";
 import { useAppState } from "../../../../hooks";
-import { METIS_CHAIN_ID } from "../../../../constants/networks";
+import {
+  METIS_CHAIN_ID,
+  NETWORK_ICON_SRC,
+} from "../../../../constants/networks";
 // import { PoolDataService } from "../../../../services";
+
+type CurrencyLogos = typeof CURRENCY_LOGOS;
 
 type PropsPoolCell = {
   chainIdRow: ChainId;
@@ -345,50 +355,93 @@ export default () => {
     columnHelper.accessor("chainId", {
       id: "chainId",
       header: "CHAIN",
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <img
+          src={NETWORK_ICON_SRC[info.getValue()]}
+          alt={info.getValue()}
+          width={30}
+          height={30}
+        />
+      ),
     }),
     columnHelper.accessor("collateral", {
       id: "collateral",
       header: "COLLATERAL",
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <div className="flex">
+          <img
+            className="mr-3"
+            src={
+              CURRENCY_LOGOS[
+                info.getValue().toLowerCase() as keyof CurrencyLogos
+              ]
+            }
+            alt=""
+            width={30}
+            height={30}
+          />
+          <div>{info.getValue()}</div>
+        </div>
+      ),
     }),
     columnHelper.accessor("tvl", {
       id: "tvl",
       header: "TVL",
-      cell: (info) =>
-        usePoolTVL({
-          chainIdRow: info.row.getValue("chainId"),
-          collateralRow: info.row.getValue("collateral"),
-        }),
+      cell: (info) => (
+        <div>
+          <span>$</span>
+          <span>
+            {usePoolTVL({
+              chainIdRow: info.row.getValue("chainId"),
+              collateralRow: info.row.getValue("collateral"),
+            })}
+          </span>
+        </div>
+      ),
     }),
-    /* TODO: update value pf and use `apr` accessor instead
-    columnHelper.accessor("createdAtTimestamp", {
+    // TODO: update value pf and use `apr` accessor instead
+    columnHelper.accessor("apr", {
       id: "apr",
       header: "APR",
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <div>
+          <span>{info.getValue()}</span>
+          <span>%</span>
+        </div>
+      ),
     }),
-    */
     columnHelper.accessor("amountDeposit", {
       id: "amountDeposit",
       header: "DEPOSITED",
-      cell: (info) =>
-        usePoolDeposited({
-          chainIdRow: info.row.getValue("chainId"),
-          collateralRow: info.row.getValue("collateral"),
-          library: library,
-          account: account,
-        }),
+      cell: (info) => (
+        <div>
+          <span className="mr-2">
+            {usePoolDeposited({
+              chainIdRow: info.row.getValue("chainId"),
+              collateralRow: info.row.getValue("collateral"),
+              library: library,
+              account: account,
+            })}
+          </span>
+          <span>{info.row.getValue("collateral")}</span>
+        </div>
+      ),
     }),
     columnHelper.accessor("amountClaim", {
       id: "amountClaim",
       header: "CLAIMABLE REWARDS",
-      cell: (info) => 
-        usePoolClaimable({
-          chainIdRow:info.row.getValue("chainId"),
-          collateralRow:info.row.getValue("collateral"),
-          library:library,
-        }
-    )
+      cell: (info) => (
+        <div>
+          <span className="mr-2">
+            {usePoolClaimable({
+              chainIdRow: info.row.getValue("chainId"),
+              collateralRow: info.row.getValue("collateral"),
+              library: library,
+            })}
+          </span>
+          <span>{info.row.getValue("collateral")}</span>
+        </div>
+      ),
     }),
     columnHelper.display({
       id: "actionDeposit",
@@ -396,11 +449,14 @@ export default () => {
       cell: (info) => (
         <Popover placement="bottom">
           <PopoverHandler>
-            <Button>DEPOSIT</Button>
+            <Button className="text-base font-normal bg-main-front py-1 px-7">
+              DEPOSIT
+            </Button>
           </PopoverHandler>
           <PopoverContent>
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center bg-main-back p-4 rounded-lg">
               <NumericFormat
+                className="text-white !bg-main-front mb-4"
                 crossOrigin={undefined}
                 thousandSeparator
                 customInput={Input}
@@ -411,6 +467,7 @@ export default () => {
                 }}
               />
               <Button
+                className="font-normal bg-main-front py-1"
                 onClick={() =>
                   onClickActionWrapper([
                     info.row.getValue("chainId"),
@@ -432,11 +489,14 @@ export default () => {
       cell: (info) => (
         <Popover placement="bottom">
           <PopoverHandler>
-            <Button>WITHDRAW</Button>
+            <Button className="text-base font-normal bg-main-front py-1 px-7">
+              WITHDRAW
+            </Button>
           </PopoverHandler>
           <PopoverContent>
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center bg-main-back p-4 rounded-lg">
               <NumericFormat
+                className="text-white !bg-main-front mb-4"
                 crossOrigin={undefined}
                 thousandSeparator
                 customInput={Input}
@@ -447,6 +507,7 @@ export default () => {
                 }}
               />
               <Button
+                className="font-normal bg-main-front py-1"
                 onClick={() =>
                   onClickActionWrapper([
                     info.row.getValue("chainId"),
@@ -467,6 +528,7 @@ export default () => {
       header: "CLAIM REWARDS",
       cell: (info) => (
         <Button
+          className="text-base font-normal bg-main-front py-1 px-7"
           onClick={() =>
             onClickActionWrapper([
               info.row.getValue("chainId"),

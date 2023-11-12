@@ -1,5 +1,37 @@
 import { ADDRESS_ZERO } from "./tokens";
 
+export const CURRENCY_LOGOS = {
+  weth: "/src/assets/logos/ETH.svg",
+  usdc: "/src/assets/logos/USDC.svg",
+  ftm: "/src/assets/logos/FTM.svg",
+  arb: "/src/assets/logos/ARB.svg",
+  metis: "/src/assets/logos/METIS.svg",
+  cap: "/src/assets/logos/CAP.svg",
+  dai: "/src/assets/logos/DAI.svg",
+  busd: "/src/assets/logos/BUSD.svg",
+  boba: "/src/assets/logos/BOBA.svg",
+  op: "/src/assets/logos/OP.svg",
+  mim: "/src/assets/logos/MIM.png",
+  usdt: "/src/assets/logos/USDT.svg",
+  gdai: "/src/assets/logos/GDAI.webp",
+  ram: "/src/assets/logos/RAM.webp",
+  mai: "/src/assets/logos/MAI.webp",
+  gmx: "/src/assets/logos/GMX.svg",
+  wsteth: "/src/assets/logos/WSTETH.png",
+  gns: "/src/assets/logos/GNS.png",
+  captoken: "/src/assets/logos/CAPLOGO.svg",
+  unsheth: "/src/assets/logos/UNSHETH.png",
+  wbtc: "/src/assets/logos/BTC.svg",
+  retro: "/src/assets/logos/RETRO.png",
+  cash: "/src/assets/logos/CASH.png",
+  ogre: "/src/assets/logos/OGRE.webp",
+  base: "/src/assets/logos/BASE.svg",
+  bswap: "/src/assets/logos/BSWAP.jpg",
+  bvm: "/src/assets/logos/bvm.png",
+  crvusd: "/src/assets/logos/CRVUSD.png",
+  mantle: "/src/assets/logos/MANTLE.jpg",
+};
+
 export const ABIS: { [key: string]: string[] } = {
   router: [
     "function trading() view returns(address)",
