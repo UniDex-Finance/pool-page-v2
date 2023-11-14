@@ -25,12 +25,11 @@ export default () => {
   };
 
   useEffect(() => {
-    console.log("HERE111");
     getAndSavePrices();
   }, []);
 
   return (
-    <div className="text-main-text bg-main-back">
+    <div className="text-main-text">
       <Header />
       <div className="p-12">
         <Pool />

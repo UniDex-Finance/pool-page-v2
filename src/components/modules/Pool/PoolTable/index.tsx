@@ -5,20 +5,10 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { Card } from "@material-tailwind/react";
-import { CHAINDATA } from "../../../../constants";
 import { useAppState } from "../../../../hooks";
-import { PoolRow } from "../../../../types";
 import Columns from "./Columns";
 import actions from "../../../../store/actions";
-
-const EMPTY_ROW: PoolRow = {
-  chainId: 0,
-  collateral: "",
-  tvl: 0,
-  apr: 0,
-  amountDeposit: 0,
-  amountClaim: 0,
-};
+import { createPoolRows } from "../../../../helpers";
 
 export default () => {
   const { state, dispatch } = useAppState();
@@ -31,22 +21,7 @@ export default () => {
   });
 
   const init = () => {
-    const poolRowsChainData: PoolRow[] = [];
-    Object.entries(CHAINDATA).forEach(([entryChainId, entryData]) => {
-      if (entryData.isTestnet) {
-        return;
-      }
-
-      const chainPools: PoolRow[] = Object.keys(entryData.oldpool).map(
-        (symbol) => ({
-          ...EMPTY_ROW,
-          chainId: Number(entryChainId),
-          collateral: symbol.toUpperCase(),
-        })
-      );
-      poolRowsChainData.push.apply(poolRowsChainData, chainPools);
-    });
-
+    const poolRowsChainData = createPoolRows();
     dispatch({
       type: actions.SET_POOL_ROWS,
       payload: poolRowsChainData,

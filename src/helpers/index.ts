@@ -1,3 +1,4 @@
+import createPoolRows from "./createPoolRows";
 import createDynamicSettings from "./createDynamicSettings";
 import shortenENS from "./shortenENS";
 import {
@@ -12,6 +13,7 @@ import {
 } from "./utils";
 
 export {
+  createPoolRows,
   createDynamicSettings,
   shortenENS,
   toBytes32,
