@@ -75,7 +75,7 @@ const usePoolTVL = ({ chainIdRow, collateralRow }: PropsPoolCell) => {
     }
   }, [prices, tvlRow]);
 
-  return tvlRowUSD;
+  return Number(tvlRowUSD).toLocaleString();
 };
 
 const usePoolDeposited = ({
@@ -105,7 +105,7 @@ const usePoolDeposited = ({
   const amountDepositFormattedRounded = Number(amountDepositFormatted).toFixed(
     2
   );
-  return amountDepositFormattedRounded;
+  return Number(amountDepositFormattedRounded).toLocaleString();
 };
 
 const usePoolClaimable = ({
@@ -130,7 +130,7 @@ const usePoolClaimable = ({
     collateralRowLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
   );
   const amountClaimFormattedRounded = Number(amountClaimFormatted).toFixed(2);
-  return amountClaimFormattedRounded;
+  return Number(amountClaimFormattedRounded).toLocaleString();
 };
 
 /*
@@ -359,8 +359,8 @@ export default () => {
         <img
           src={NETWORK_ICON_SRC[info.getValue()]}
           alt={info.getValue()}
-          width={30}
-          height={30}
+          width={25}
+          height={25}
         />
       ),
     }),
@@ -377,8 +377,8 @@ export default () => {
               ]
             }
             alt=""
-            width={30}
-            height={30}
+            width={25}
+            height={25}
           />
           <div>{info.getValue()}</div>
         </div>
@@ -449,7 +449,7 @@ export default () => {
       cell: (info) => (
         <Popover placement="bottom">
           <PopoverHandler>
-            <Button className="text-base font-normal bg-main-front py-1 px-7">
+            <Button className="text-[15px] font-normal bg-main-front py-1 px-7">
               DEPOSIT
             </Button>
           </PopoverHandler>
@@ -489,7 +489,7 @@ export default () => {
       cell: (info) => (
         <Popover placement="bottom">
           <PopoverHandler>
-            <Button className="text-base font-normal bg-main-front py-1 px-7">
+            <Button className="text-[15px] font-normal bg-main-front py-1 px-7">
               WITHDRAW
             </Button>
           </PopoverHandler>
@@ -528,7 +528,7 @@ export default () => {
       header: "CLAIM REWARDS",
       cell: (info) => (
         <Button
-          className="text-base font-normal bg-main-front py-1 px-7"
+          className="text-[15px] font-normal bg-main-front py-1 px-7"
           onClick={() =>
             onClickActionWrapper([
               info.row.getValue("chainId"),

@@ -33,13 +33,13 @@ export default () => {
   }, []);
 
   return (
-    <Card className="bg-main-card py-4 px-2 rounded-md">
+    <Card className="bg-main-card py-4 px-2 rounded-lg">
       <table>
-        <thead className="text-secondary-text underline">
+        <thead className="text-secondary-text">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <th className="pb-2" key={header.id}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -51,7 +51,7 @@ export default () => {
             </tr>
           ))}
         </thead>
-        <tbody className="text-lg font-semibold">
+        <tbody className="text-[17px] font-semibold">
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
