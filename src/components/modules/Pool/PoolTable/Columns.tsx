@@ -368,7 +368,7 @@ export default () => {
       id: "collateral",
       header: "COLLATERAL",
       cell: (info) => (
-        <div className="flex">
+        <div className="flex ml-10">
           <img
             className="mr-3"
             src={
@@ -414,7 +414,7 @@ export default () => {
       id: "amountDeposit",
       header: "DEPOSITED",
       cell: (info) => (
-        <div>
+        <div className="ml-11">
           <span className="mr-2">
             {usePoolDeposited({
               chainIdRow: info.row.getValue("chainId"),
@@ -431,7 +431,7 @@ export default () => {
       id: "amountClaim",
       header: "CLAIMABLE REWARDS",
       cell: (info) => (
-        <div>
+        <div className="mr-16">
           <span className="mr-2">
             {usePoolClaimable({
               chainIdRow: info.row.getValue("chainId"),
@@ -449,7 +449,7 @@ export default () => {
       cell: (info) => (
         <Popover placement="bottom">
           <PopoverHandler>
-            <Button className="text-[15px] font-normal bg-main-front py-1 px-7">
+            <Button className="text-[15px] font-normal bg-main-front py-1 px-5">
               DEPOSIT
             </Button>
           </PopoverHandler>
@@ -489,7 +489,7 @@ export default () => {
       cell: (info) => (
         <Popover placement="bottom">
           <PopoverHandler>
-            <Button className="text-[15px] font-normal bg-main-front py-1 px-7">
+            <Button className="text-[15px] font-normal bg-main-front py-1 px-5">
               WITHDRAW
             </Button>
           </PopoverHandler>
@@ -528,7 +528,7 @@ export default () => {
       header: "CLAIM REWARDS",
       cell: (info) => (
         <Button
-          className="text-[15px] font-normal bg-main-front py-1 px-7"
+          className="text-[15px] font-normal bg-main-front w-max py-1 px-5"
           onClick={() =>
             onClickActionWrapper([
               info.row.getValue("chainId"),

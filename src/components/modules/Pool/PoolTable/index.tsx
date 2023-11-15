@@ -6,9 +6,11 @@ import {
 } from "@tanstack/react-table";
 import { Card } from "@material-tailwind/react";
 import { useAppState } from "../../../../hooks";
+import { createPoolRows } from "../../../../helpers";
 import Columns from "./Columns";
 import actions from "../../../../store/actions";
-import { createPoolRows } from "../../../../helpers";
+
+const JUSTIFY_CENTER_INDICIES = [0, 6, 7, 8];
 
 export default () => {
   const { state, dispatch } = useAppState();
@@ -39,7 +41,7 @@ export default () => {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th className="pb-2" key={header.id}>
+                <th key={header.id} className="pb-2">
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -54,9 +56,15 @@ export default () => {
         <tbody className="text-[17px] font-semibold">
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
+              {row.getVisibleCells().map((cell, i) => (
                 <td key={cell.id}>
-                  <div className="flex justify-center py-2.5 px-4">
+                  <div
+                    className={`flex py-2.5 px-4 ${
+                      JUSTIFY_CENTER_INDICIES.includes(i)
+                        ? "justify-center"
+                        : "justify-start"
+                    }`}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </div>
                 </td>
