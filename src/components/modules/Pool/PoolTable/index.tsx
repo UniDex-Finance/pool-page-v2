@@ -5,17 +5,19 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { Card } from "@material-tailwind/react";
-import { useAppState } from "../../../../hooks";
 import { createPoolRows } from "../../../../helpers";
+import { PoolRow } from "../../../../types";
 import Columns from "./Columns";
-import actions from "../../../../store/actions";
+import RowDataProvider from "./RowDataProvider";
 
 const JUSTIFY_CENTER_INDICIES = [0, 6, 7, 8];
 
-export default () => {
-  const { state, dispatch } = useAppState();
-  const poolRows = state?.poolRows;
+type Props = {
+  poolRows: PoolRow[];
+  setPoolRows: React.Dispatch<React.SetStateAction<PoolRow[]>>;
+};
 
+export default ({ poolRows, setPoolRows }: Props) => {
   const table = useReactTable({
     columns: Columns(),
     data: poolRows,
@@ -24,10 +26,7 @@ export default () => {
 
   const init = () => {
     const poolRowsChainData = createPoolRows();
-    dispatch({
-      type: actions.SET_POOL_ROWS,
-      payload: poolRowsChainData,
-    });
+    setPoolRows(poolRowsChainData);
   };
 
   useEffect(() => {
@@ -54,13 +53,19 @@ export default () => {
           ))}
         </thead>
         <tbody className="text-[17px] font-semibold">
-          {table.getRowModel().rows.map((row) => (
+          {table.getRowModel().rows.map((row, indexRow) => (
             <tr key={row.id}>
-              {row.getVisibleCells().map((cell, i) => (
+              <RowDataProvider
+                chainIdRow={row.getValue("chainId")}
+                collateralRow={row.getValue("collateral")}
+                setPoolRows={setPoolRows}
+                index={indexRow}
+              />
+              {row.getVisibleCells().map((cell, indexCell) => (
                 <td key={cell.id}>
                   <div
                     className={`flex py-2.5 px-4 ${
-                      JUSTIFY_CENTER_INDICIES.includes(i)
+                      JUSTIFY_CENTER_INDICIES.includes(indexCell)
                         ? "justify-center"
                         : "justify-start"
                     }`}

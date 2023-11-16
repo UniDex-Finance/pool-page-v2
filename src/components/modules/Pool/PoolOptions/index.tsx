@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import {
   Button,
   Menu,
@@ -11,12 +11,12 @@ import {
   CHAINDATA,
   NETWORK_DISPLAY_NAME,
   NETWORK_ICON_SRC,
+  NETWORK_NAMES_API,
 } from "../../../../constants";
 import { PoolDataService } from "../../../../services";
 import { useAppState } from "../../../../hooks";
 import { createPoolRows } from "../../../../helpers";
 import arrowSelectorWhiteIcon from "../../../../assets/arrow-selector-white.svg";
-import actions from "../../../../store/actions";
 
 const CHAIN_FILTER_LIST: ChainId[] = [0];
 Object.entries(CHAINDATA).forEach(([chainKey, chainData]) => {
@@ -26,31 +26,74 @@ Object.entries(CHAINDATA).forEach(([chainKey, chainData]) => {
 });
 
 type Props = {
+  poolRows: PoolRow[];
+  setPoolRows: React.Dispatch<React.SetStateAction<PoolRow[]>>;
   className?: string;
 };
 
-export default ({ className }: Props) => {
-  const [chainIdFilter, setChainIdFilter] = useState(0);
-  const [tvlTotal, setTvlTotal] = useState("0");
+export default ({
+  poolRows,
+  setPoolRows,
+  className,
+}: Props) => {
+  const [chainIdFilter, setChainIdFilter] = useState<ChainId>(0);
+  const [tvlTotal, setTvlTotal] = useState(0);
+  const [despositTotal, setDepositTotal] = useState(0);
+  const [claimTotal, setClaimTotal] = useState(0);
 
-  const { state, dispatch } = useAppState();
-  const poolRows: PoolRow[] = state?.poolRows;
+  const { state } = useAppState();
+  const prices = state?.prices;
 
   const filterPoolRows = (chainIdNew: ChainId) => {
     const poolRowsNew = createPoolRows(chainIdNew);
-    dispatch({
-      type: actions.SET_POOL_ROWS,
-      payload: poolRowsNew,
-    });
+    setPoolRows(poolRowsNew);
   };
 
-  const updateTvl = async () => {
+  const updateTvlTotal = async () => {
     try {
       const tvlTotalNew = await PoolDataService.get(["tvlTotal"]);
-      setTvlTotal((tvlTotalNew as number).toFixed(2));
+      setTvlTotal(tvlTotalNew as number);
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const updateDepositTotal = () => {
+    if (!prices) {
+      return;
+    }
+
+    let depositTotalNew = 0;
+    poolRows.forEach((p) => {
+      const collateralRowLower = p.collateral.toLowerCase();
+      const pricesKeyRow = `${NETWORK_NAMES_API.defillama[p.chainId]}:${
+        CHAINDATA[p.chainId]?.currencies?.[collateralRowLower]
+      }`;
+
+      const priceMultiplier = prices[pricesKeyRow]?.price || 0;
+      depositTotalNew += p.amountDeposit * priceMultiplier;
+    });
+
+    setDepositTotal(depositTotalNew);
+  };
+
+  const updateClaimTotal = () => {
+    if (!prices) {
+      return;
+    }
+
+    let claimTotalNew = 0;
+    poolRows.forEach((p) => {
+      const collateralRowLower = p.collateral.toLowerCase();
+      const pricesKeyRow = `${NETWORK_NAMES_API.defillama[p.chainId]}:${
+        CHAINDATA[p.chainId]?.currencies?.[collateralRowLower]
+      }`;
+
+      const priceMultiplier = prices[pricesKeyRow]?.price || 0;
+      claimTotalNew += p.amountClaim * priceMultiplier;
+    });
+
+    setClaimTotal(claimTotalNew);
   };
 
   useEffect(() => {
@@ -60,8 +103,16 @@ export default ({ className }: Props) => {
   }, [chainIdFilter]);
 
   useEffect(() => {
-    updateTvl();
+    updateTvlTotal();
   }, []);
+
+  useEffect(() => {
+    updateDepositTotal();
+  }, [poolRows, chainIdFilter]);
+
+  useEffect(() => {
+    updateClaimTotal();
+  }, [updateClaimTotal]);
 
   return (
     <div className={`flex justify-between ${className}`}>
@@ -126,8 +177,10 @@ export default ({ className }: Props) => {
       </Button>
       <div className="bg-main-card py-3 px-6 rounded-lg">
         <span className="mr-4">TVL: ${tvlTotal}</span>
-        <span className="mr-4">Total Deposited: $---------</span>
-        <span>Unclaimed Rewards: $---------</span>
+        <span className="mr-4">
+          Total Deposited: ${despositTotal.toFixed(2)}
+        </span>
+        <span>Unclaimed Rewards: ${claimTotal.toFixed(2)}</span>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ export default (state: any, action: any) => {
         ...data,
       };
     }
+    /*
     case actions.SET_POOL_ROWS: {
       const data = action.payload;
       return {
@@ -16,6 +17,7 @@ export default (state: any, action: any) => {
         poolRows: data,
       };
     }
+    */
     case actions.SET_PRICES: {
       const data = action.payload;
       return {

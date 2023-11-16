@@ -1,6 +1,6 @@
 import { Store } from "../types/core";
 
 export default {
-  poolRows: [],
+  // poolRows: [],
   prices: {},
 } as Store;
