@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Menu,
@@ -31,11 +31,7 @@ type Props = {
   className?: string;
 };
 
-export default ({
-  poolRows,
-  setPoolRows,
-  className,
-}: Props) => {
+export default ({ poolRows, setPoolRows, className }: Props) => {
   const [chainIdFilter, setChainIdFilter] = useState<ChainId>(0);
   const [tvlTotal, setTvlTotal] = useState(0);
   const [despositTotal, setDepositTotal] = useState(0);
@@ -176,7 +172,7 @@ export default ({
         <img src={arrowSelectorWhiteIcon} />
       </Button>
       <div className="bg-main-card py-3 px-6 rounded-lg">
-        <span className="mr-4">TVL: ${tvlTotal}</span>
+        <span className="mr-4">TVL: ${tvlTotal.toFixed(2)}</span>
         <span className="mr-4">
           Total Deposited: ${despositTotal.toFixed(2)}
         </span>

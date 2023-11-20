@@ -56,7 +56,8 @@ const usePoolTVL = ({
 
       const tvlRowFormatted = formatUnits(
         tvlRow || 0,
-        collateralRowLower === "usdc" && !CHAINS_IGNORE.includes(chainIdRow)
+        collateralRowLower.includes("usdc") &&
+          !CHAINS_IGNORE.includes(chainIdRow)
           ? 6
           : 18
       );

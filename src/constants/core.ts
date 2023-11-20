@@ -66,6 +66,7 @@ export const ABIS: { [key: string]: string[] } = {
     "function withdrawFee() view returns(uint256)",
     "function openInterest() view returns(uint256)",
     "function utilizationMultiplier() view returns(uint256)",
+    "function minDepositTime() view returns(uint256)",
 
     "function deposit(uint256 amount) payable",
     "function withdraw(uint256 amount)",

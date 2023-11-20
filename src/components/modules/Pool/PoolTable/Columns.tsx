@@ -1,16 +1,9 @@
 // import { useEffect, useRef, useState } from "react";
 import { useRef } from "react";
-import { NumericFormat } from "react-number-format";
 import { Contract } from "ethers";
 import { useEthers } from "@usedapp/core";
 import { TableOptions, createColumnHelper } from "@tanstack/react-table";
-import {
-  Button,
-  Input,
-  Popover,
-  PopoverContent,
-  PopoverHandler,
-} from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import { ChainId, PoolRow } from "../../../../types";
 import { ABIS, CHAINDATA, CURRENCY_LOGOS } from "../../../../constants";
 import {
@@ -18,19 +11,20 @@ import {
   NETWORK_ICON_SRC,
 } from "../../../../constants/networks";
 import { parseUnitsSafe } from "../../../../helpers";
+import { DepositPopover, WithdrawPopover } from "./popover";
 // import { PoolDataService } from "../../../../services";
 
 type CurrencyLogos = typeof CURRENCY_LOGOS;
 
-type ButtonAction = "deposit" | "withdraw" | "claim";
-type ParamsOnClickAction = [
+export type ButtonAction = "deposit" | "withdraw" | "claim";
+export type ParamsOnClickAction = [
   chainIdRow: ChainId,
   collateral: string,
   buttonAction: ButtonAction
 ];
 
 export default () => {
-  const { library: libraryEthers, chainId } = useEthers();
+  const { library: libraryEthers, chainId, account } = useEthers();
   const library = libraryEthers as any;
   const columnHelper = createColumnHelper<PoolRow>();
   const valueDepositRef = useRef("");
@@ -220,80 +214,25 @@ export default () => {
       id: "actionDeposit",
       header: "DEPOSIT",
       cell: (info) => (
-        <Popover placement="bottom">
-          <PopoverHandler>
-            <Button className="text-[15px] font-normal bg-main-front py-1 px-5">
-              DEPOSIT
-            </Button>
-          </PopoverHandler>
-          <PopoverContent>
-            <div className="flex flex-col justify-center bg-main-back p-4 rounded-lg">
-              <NumericFormat
-                className="text-white !bg-main-front mb-4"
-                crossOrigin={undefined}
-                thousandSeparator
-                customInput={Input}
-                displayType="input"
-                placeholder="0.0"
-                onValueChange={(values) => {
-                  valueDepositRef.current = values.floatValue?.toString() || "";
-                }}
-              />
-              <Button
-                className="font-normal bg-main-front py-1"
-                onClick={() =>
-                  onClickActionWrapper([
-                    info.row.getValue("chainId"),
-                    info.row.getValue("collateral"),
-                    "deposit",
-                  ])
-                }
-              >
-                CONFIRM DEPOSIT
-              </Button>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <DepositPopover
+          chainId={info.row.getValue("chainId")}
+          collateral={info.row.getValue("collateral")}
+          valueRef={valueDepositRef}
+          onClickAction={onClickActionWrapper}
+          account={account}
+        />
       ),
     }),
     columnHelper.display({
       id: "actionWithdraw",
       header: "WITHDRAW",
       cell: (info) => (
-        <Popover placement="bottom">
-          <PopoverHandler>
-            <Button className="text-[15px] font-normal bg-main-front py-1 px-5">
-              WITHDRAW
-            </Button>
-          </PopoverHandler>
-          <PopoverContent>
-            <div className="flex flex-col justify-center bg-main-back p-4 rounded-lg">
-              <NumericFormat
-                className="text-white !bg-main-front mb-4"
-                crossOrigin={undefined}
-                thousandSeparator
-                customInput={Input}
-                displayType="input"
-                placeholder="0.0"
-                onValueChange={(values) => {
-                  valueWitdrawRef.current = values.floatValue?.toString() || "";
-                }}
-              />
-              <Button
-                className="font-normal bg-main-front py-1"
-                onClick={() =>
-                  onClickActionWrapper([
-                    info.row.getValue("chainId"),
-                    info.row.getValue("collateral"),
-                    "withdraw",
-                  ])
-                }
-              >
-                CONFIRM WITHDRAW
-              </Button>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <WithdrawPopover
+          chainId={info.row.getValue("chainId")}
+          collateral={info.row.getValue("collateral")}
+          valueRef={valueWitdrawRef}
+          onClickAction={onClickActionWrapper}
+        />
       ),
     }),
     columnHelper.display({
