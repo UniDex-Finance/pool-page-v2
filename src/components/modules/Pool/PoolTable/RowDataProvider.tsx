@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Contract } from "ethers";
 import {
   useCall,
   useEtherBalance,
@@ -15,7 +16,6 @@ import {
   METIS_CHAIN_ID,
   ZKSYNC_CHAIN_ID,
 } from "../../../../constants/networks";
-import { Contract } from "ethers";
 
 const CHAINS_IGNORE = [FANTOM_CHAIN_ID, ZKSYNC_CHAIN_ID, METIS_CHAIN_ID];
 
@@ -131,28 +131,60 @@ const usePoolClaimable = ({
   collateralRow,
   setPoolRows,
   index,
+  chainIdEthers,
   library,
-}: PropsHook & { library: any }) => {
+}: PropsHook & { chainIdEthers: number | undefined; library: any }) => {
   const collateralRowLower = collateralRow.toLowerCase();
   const chainDataRow = CHAINDATA[chainIdRow];
   const addressRewardsRow = chainDataRow?.oldpoolrewards?.[collateralRowLower];
+
+  /*
+  const contractRewardsRow: Contract | false =
+    addressRewardsRow &&
+    library &&
+    new Contract(addressRewardsRow, ABIS["rewards"], library);
+  const contractRewardsRowConnected =
+    contractRewardsRow && contractRewardsRow.connect(library.getSigner());
+
   const callResult = useCall(
     addressRewardsRow &&
       library && {
-        contract: new Contract(addressRewardsRow, ABIS["rewards"], library),
+        contract: contractRewardsRowConnected,
         method: "getClaimableReward",
+        args: [],
       },
     { chainId: chainIdRow }
   );
   const amountClaim = callResult?.value;
+  */
 
-  const updateAmountClaimRow = () => {
+  const updateAmountClaimRow = async () => {
+    /*
     const amountClaimFormatted = formatUnits(
       amountClaim?.toString() || "0",
       collateralRowLower === "usdc" && !CHAINS_IGNORE.includes(chainIdRow)
         ? 6
         : 18
     );
+    */
+
+    const contractRewardsRow = new Contract(
+      addressRewardsRow,
+      ABIS["rewards"],
+      library
+    );
+    const contractRewardsRowConnected = contractRewardsRow.connect(
+      library.getSigner()
+    );
+
+    const amountClaim = await contractRewardsRowConnected.getClaimableReward();
+    const amountClaimFormatted = formatUnits(
+      amountClaim?.toString() || "0",
+      collateralRowLower === "usdc" && !CHAINS_IGNORE.includes(chainIdRow)
+        ? 6
+        : 18
+    );
+
     setPoolRows((prevPoolRows) => {
       const poolRowNewAtIndex = prevPoolRows[index];
       poolRowNewAtIndex.amountClaim = Number(amountClaimFormatted);
@@ -163,18 +195,21 @@ const usePoolClaimable = ({
   };
 
   useEffect(() => {
-    updateAmountClaimRow();
-  }, [amountClaim]);
+    const isChainIdRowMatch = chainIdRow === chainIdEthers;
+    if (addressRewardsRow && library && isChainIdRowMatch) {
+      updateAmountClaimRow();
+    }
+  }, [library, chainIdEthers, chainIdEthers]);
 };
 
 type Props = PropsHook;
 
 export default (props: Props) => {
-  const { library, account } = useEthers();
+  const { library, account, chainId } = useEthers();
 
   usePoolTVL(props);
   usePoolDeposited({ ...props, library, account });
-  usePoolClaimable({ ...props, library });
+  usePoolClaimable({ ...props, chainIdEthers: chainId, library });
 
   return <></>;
 };

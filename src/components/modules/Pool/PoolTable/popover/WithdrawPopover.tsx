@@ -20,7 +20,9 @@ type Props = {
 };
 
 export default ({ chainId, collateral, valueRef, onClickAction }: Props) => {
-  const { library } = useEthers();
+  const { library, chainId: chainIdEthers } = useEthers();
+  const disabled = chainId !== chainIdEthers;
+
   const collateraLower = collateral.toLowerCase();
   const addressCollateral = CHAINDATA[chainId]?.oldpool?.[collateraLower];
 
@@ -38,8 +40,11 @@ export default ({ chainId, collateral, valueRef, onClickAction }: Props) => {
   return (
     <Popover placement="bottom">
       <PopoverHandler>
-        <Button className="text-[15px] font-normal bg-main-front py-1 px-5">
-          WITHDRAW
+        <Button
+          className="text-[15px] font-normal bg-main-front w-[122px] py-1 px-5"
+          disabled={disabled}
+        >
+          {disabled ? "----" : "WITHDRAW"}
         </Button>
       </PopoverHandler>
       <PopoverContent>

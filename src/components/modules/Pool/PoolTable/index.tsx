@@ -19,7 +19,7 @@ type Props = {
 
 export default ({ poolRows, setPoolRows }: Props) => {
   const table = useReactTable({
-    columns: Columns(),
+    columns: Columns({ setPoolRows }),
     data: poolRows,
     getCoreRowModel: getCoreRowModel(),
   });

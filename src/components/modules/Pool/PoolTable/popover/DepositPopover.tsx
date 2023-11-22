@@ -9,7 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { ParamsOnClickAction } from "../Columns";
 import { ChainId } from "../../../../../types";
-import { useEtherBalance, useTokenBalance } from "@usedapp/core";
+import { useEtherBalance, useEthers, useTokenBalance } from "@usedapp/core";
 import { CHAINDATA } from "../../../../../constants";
 import { ADDRESS_ZERO } from "../../../../../constants/tokens";
 import {
@@ -35,6 +35,9 @@ export default ({
   onClickAction,
   account,
 }: Props) => {
+  const { chainId: chainIdEthers } = useEthers();
+  const disabled = chainId !== chainIdEthers;
+
   const collateraLower = collateral.toLowerCase();
   const addressCollateral = CHAINDATA[chainId]?.currencies?.[collateraLower];
   const balanceDeposit =
@@ -51,8 +54,11 @@ export default ({
   return (
     <Popover placement="bottom">
       <PopoverHandler>
-        <Button className="text-[15px] font-normal bg-main-front py-1 px-5">
-          DEPOSIT
+        <Button
+          className="text-[15px] font-normal bg-main-front w-[103px] py-1 px-5"
+          disabled={disabled}
+        >
+          {disabled ? "----" : "DEPOSIT"}
         </Button>
       </PopoverHandler>
       <PopoverContent>

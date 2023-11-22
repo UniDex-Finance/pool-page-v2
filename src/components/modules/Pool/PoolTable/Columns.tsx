@@ -1,5 +1,6 @@
 // import { useEffect, useRef, useState } from "react";
 import { useRef } from "react";
+import { toast } from "react-toastify";
 import { Contract } from "ethers";
 import { useEthers } from "@usedapp/core";
 import { TableOptions, createColumnHelper } from "@tanstack/react-table";
@@ -7,12 +8,16 @@ import { Button } from "@material-tailwind/react";
 import { ChainId, PoolRow } from "../../../../types";
 import { ABIS, CHAINDATA, CURRENCY_LOGOS } from "../../../../constants";
 import {
+  FANTOM_CHAIN_ID,
   METIS_CHAIN_ID,
   NETWORK_ICON_SRC,
+  ZKSYNC_CHAIN_ID,
 } from "../../../../constants/networks";
 import { parseUnitsSafe } from "../../../../helpers";
 import { DepositPopover, WithdrawPopover } from "./popover";
 // import { PoolDataService } from "../../../../services";
+
+const CHAINS_IGNORE = [FANTOM_CHAIN_ID, ZKSYNC_CHAIN_ID, METIS_CHAIN_ID];
 
 type CurrencyLogos = typeof CURRENCY_LOGOS;
 
@@ -20,10 +25,15 @@ export type ButtonAction = "deposit" | "withdraw" | "claim";
 export type ParamsOnClickAction = [
   chainIdRow: ChainId,
   collateral: string,
-  buttonAction: ButtonAction
+  buttonAction: ButtonAction,
+  indexRow?: number
 ];
 
-export default () => {
+type Props = {
+  setPoolRows: React.Dispatch<React.SetStateAction<PoolRow[]>>;
+};
+
+export default ({ setPoolRows }: Props) => {
   const { library: libraryEthers, chainId, account } = useEthers();
   const library = libraryEthers as any;
   const columnHelper = createColumnHelper<PoolRow>();
@@ -51,7 +61,10 @@ export default () => {
         const valueDepositBigNumber = parseUnitsSafe(
           valueDeposit.toString(),
           // TODO: use dict or something else here
-          collateralLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
+          collateralLower.includes("usdc") &&
+            !CHAINS_IGNORE.includes(chainIdRow)
+            ? 6
+            : 18
         );
         tx = await contractPool.deposit(valueDepositBigNumber);
       } else {
@@ -59,16 +72,19 @@ export default () => {
         const valueWithdrawBigNumber = parseUnitsSafe(
           valueWithdraw.toString(),
           // TODO: use dict or something else here
-          collateralLower === "usdc" && chainIdRow !== METIS_CHAIN_ID ? 6 : 18
+          collateralLower.includes("usdc") &&
+            !CHAINS_IGNORE.includes(chainIdRow)
+            ? 6
+            : 18
         );
         tx = await contractPool.withdraw(valueWithdrawBigNumber);
       }
 
       await tx.wait();
-      // TODO show success toast and pass loading toast id
+      toast.success(`Tx successful (${buttonAction})`);
     } catch (e) {
-      // TODO show error toast and pass loading toast id
       console.error(e);
+      toast.error(`Tx failed (${buttonAction})`);
     }
   };
 
@@ -76,21 +92,40 @@ export default () => {
   const handleRewardsInteraction = async ([
     chainIdRow,
     collateral,
-    ,
+    buttonAction,
+    indexRow,
   ]: ParamsOnClickAction) => {
+    if (indexRow === undefined) {
+      throw Error("`indexRow` missing");
+    }
+
     const collateralLower = collateral.toLowerCase();
-    const addressRewards = CHAINDATA[chainIdRow].rewards[collateralLower];
+    const addressRewards =
+      CHAINDATA[chainIdRow].oldpoolrewards[collateralLower];
     const contractRewards = new Contract(
       addressRewards,
       ABIS["rewards"],
+      library
+    );
+    const contractRewardsConnected = contractRewards.connect(
       library.getSigner()
     );
 
     try {
-      const tx = await contractRewards.collectReward();
+      const tx = await contractRewardsConnected.collectReward();
       await tx.wait();
+      toast.success(`Tx successful (${buttonAction})`);
+
+      setPoolRows((prevPoolRows) => {
+        const poolRowNewAtIndex = prevPoolRows[indexRow];
+        poolRowNewAtIndex.amountClaim = 0;
+        const poolRowsNew = [...prevPoolRows];
+        poolRowsNew[indexRow] = poolRowNewAtIndex;
+        return poolRowsNew;
+      });
     } catch (e) {
       console.error(e);
+      toast.error(`Tx failed (${buttonAction})`);
     }
   };
 
@@ -197,13 +232,18 @@ export default () => {
       id: "amountClaim",
       header: "CLAIMABLE REWARDS",
       cell: (info) => {
+        const chainIdRow = Number(info.row.getValue("chainId"));
+        const isChainIdRowMatch = chainIdRow === chainId;
         const infoValue = info.getValue();
+
         return (
           <div className="ml-11">
             <span className="mr-2">
-              {infoValue === 0 || infoValue >= 1
-                ? infoValue.toFixed(2)
-                : infoValue.toFixed(5)}
+              {!isChainIdRowMatch && "----"}
+              {isChainIdRowMatch &&
+                (infoValue === 0 || infoValue >= 1
+                  ? infoValue.toFixed(2)
+                  : infoValue.toFixed(5))}
             </span>
             <span>{info.row.getValue("collateral")}</span>
           </div>
@@ -238,20 +278,28 @@ export default () => {
     columnHelper.display({
       id: "actionClaim",
       header: "CLAIM REWARDS",
-      cell: (info) => (
-        <Button
-          className="text-[15px] font-normal bg-main-front w-max py-1 px-5"
-          onClick={() =>
-            onClickActionWrapper([
-              info.row.getValue("chainId"),
-              info.row.getValue("collateral"),
-              "claim",
-            ])
-          }
-        >
-          CLAIM REWARDS
-        </Button>
-      ),
+      cell: (info) => {
+        const indexRow = info.row.index;
+        const chainIdRow = Number(info.row.getValue("chainId"));
+        const disabledRow = chainIdRow !== chainId;
+
+        return (
+          <Button
+            className="text-[15px] font-normal bg-main-front w-[161px] py-1 px-5"
+            disabled={disabledRow}
+            onClick={() =>
+              onClickActionWrapper([
+                info.row.getValue("chainId"),
+                info.row.getValue("collateral"),
+                "claim",
+                indexRow,
+              ])
+            }
+          >
+            {disabledRow ? "----" : "CLAIM REWARDS"}
+          </Button>
+        );
+      },
     }),
   ];
 
