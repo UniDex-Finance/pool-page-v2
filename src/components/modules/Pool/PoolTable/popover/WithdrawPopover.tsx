@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Contract } from "ethers";
 import { NumericFormat } from "react-number-format";
 import { useCall, useEthers } from "@usedapp/core";
@@ -17,9 +18,18 @@ type Props = {
   collateral: string;
   valueRef: React.MutableRefObject<string>;
   onClickAction: (params: ParamsOnClickAction) => Promise<void>;
+  doNotUpdatePoolRowsRef: React.MutableRefObject<boolean>;
 };
 
-export default ({ chainId, collateral, valueRef, onClickAction }: Props) => {
+export default ({
+  chainId,
+  collateral,
+  valueRef,
+  onClickAction,
+  doNotUpdatePoolRowsRef,
+}: Props) => {
+  const [open, setOpen] = useState(false);
+
   const { library, chainId: chainIdEthers } = useEthers();
   const disabled = chainId !== chainIdEthers;
 
@@ -38,7 +48,14 @@ export default ({ chainId, collateral, valueRef, onClickAction }: Props) => {
   const minDepositTimeHours = minDepositTime ? minDepositTime / 60 / 60 : 0;
 
   return (
-    <Popover placement="bottom">
+    <Popover
+      placement="bottom"
+      open={open}
+      handler={(value) => {
+        setOpen(value);
+        doNotUpdatePoolRowsRef.current = value;
+      }}
+    >
       <PopoverHandler>
         <Button
           className="text-[15px] font-normal bg-main-front w-[122px] py-1 px-5"

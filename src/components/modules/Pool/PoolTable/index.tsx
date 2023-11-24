@@ -15,11 +15,12 @@ const JUSTIFY_CENTER_INDICIES = [0, 6, 7, 8];
 type Props = {
   poolRows: PoolRow[];
   setPoolRows: React.Dispatch<React.SetStateAction<PoolRow[]>>;
+  doNotUpdatePoolRowsRef: React.MutableRefObject<boolean>;
 };
 
-export default ({ poolRows, setPoolRows }: Props) => {
+export default ({ poolRows, setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
   const table = useReactTable({
-    columns: Columns({ setPoolRows }),
+    columns: Columns({ setPoolRows, doNotUpdatePoolRowsRef }),
     data: poolRows,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -60,6 +61,7 @@ export default ({ poolRows, setPoolRows }: Props) => {
                 collateralRow={row.getValue("collateral")}
                 setPoolRows={setPoolRows}
                 index={indexRow}
+                doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
               />
               {row.getVisibleCells().map((cell, indexCell) => (
                 <td key={cell.id}>

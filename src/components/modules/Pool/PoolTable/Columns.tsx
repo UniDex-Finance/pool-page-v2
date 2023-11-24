@@ -31,9 +31,10 @@ export type ParamsOnClickAction = [
 
 type Props = {
   setPoolRows: React.Dispatch<React.SetStateAction<PoolRow[]>>;
+  doNotUpdatePoolRowsRef: React.MutableRefObject<boolean>;
 };
 
-export default ({ setPoolRows }: Props) => {
+export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
   const { library: libraryEthers, chainId, account } = useEthers();
   const library = libraryEthers as any;
   const columnHelper = createColumnHelper<PoolRow>();
@@ -259,6 +260,7 @@ export default ({ setPoolRows }: Props) => {
           collateral={info.row.getValue("collateral")}
           valueRef={valueDepositRef}
           onClickAction={onClickActionWrapper}
+          doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
           account={account}
         />
       ),
@@ -272,6 +274,7 @@ export default ({ setPoolRows }: Props) => {
           collateral={info.row.getValue("collateral")}
           valueRef={valueWitdrawRef}
           onClickAction={onClickActionWrapper}
+          doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
         />
       ),
     }),

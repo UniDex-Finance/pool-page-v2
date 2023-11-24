@@ -24,6 +24,7 @@ type PropsHook = {
   collateralRow: string;
   setPoolRows: React.Dispatch<React.SetStateAction<PoolRow[]>>;
   index: number;
+  doNotUpdatePoolRowsRef: React.MutableRefObject<boolean>;
 };
 
 const usePoolTVL = ({
@@ -31,6 +32,7 @@ const usePoolTVL = ({
   collateralRow,
   setPoolRows,
   index,
+  doNotUpdatePoolRowsRef,
 }: PropsHook) => {
   const collateralRowLower = collateralRow.toLowerCase();
   const chainDataRow = CHAINDATA[chainIdRow];
@@ -77,6 +79,9 @@ const usePoolTVL = ({
   };
 
   useEffect(() => {
+    if (doNotUpdatePoolRowsRef.current) {
+      return;
+    }
     updateTvlRow();
   }, [tvlRow]);
 };
@@ -86,6 +91,7 @@ const usePoolDeposited = ({
   collateralRow,
   setPoolRows,
   index,
+  doNotUpdatePoolRowsRef,
   library,
   account,
 }: PropsHook & { library: any; account: Address | undefined }) => {
@@ -122,6 +128,9 @@ const usePoolDeposited = ({
   };
 
   useEffect(() => {
+    if (doNotUpdatePoolRowsRef.current) {
+      return;
+    }
     updateAmountDepositRow();
   }, [amountDeposit]);
 };
@@ -131,6 +140,7 @@ const usePoolClaimable = ({
   collateralRow,
   setPoolRows,
   index,
+  doNotUpdatePoolRowsRef,
   chainIdEthers,
   library,
 }: PropsHook & { chainIdEthers: number | undefined; library: any }) => {
@@ -195,6 +205,9 @@ const usePoolClaimable = ({
   };
 
   useEffect(() => {
+    if (doNotUpdatePoolRowsRef.current) {
+      return;
+    }
     const isChainIdRowMatch = chainIdRow === chainIdEthers;
     if (addressRewardsRow && library && isChainIdRowMatch) {
       updateAmountClaimRow();

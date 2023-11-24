@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { formatUnits } from "ethers/lib/utils";
 import { NumericFormat } from "react-number-format";
 import {
@@ -25,6 +26,7 @@ type Props = {
   collateral: string;
   valueRef: React.MutableRefObject<string>;
   onClickAction: (params: ParamsOnClickAction) => Promise<void>;
+  doNotUpdatePoolRowsRef: React.MutableRefObject<boolean>;
   account?: string;
 };
 
@@ -33,8 +35,11 @@ export default ({
   collateral,
   valueRef,
   onClickAction,
+  doNotUpdatePoolRowsRef,
   account,
 }: Props) => {
+  const [open, setOpen] = useState(false);
+
   const { chainId: chainIdEthers } = useEthers();
   const disabled = chainId !== chainIdEthers;
 
@@ -52,7 +57,14 @@ export default ({
   const balanceDepositFormattedNumber = Number(balanceDepositFormatted);
 
   return (
-    <Popover placement="bottom">
+    <Popover
+      placement="bottom"
+      open={open}
+      handler={(value) => {
+        setOpen(value);
+        doNotUpdatePoolRowsRef.current = value;
+      }}
+    >
       <PopoverHandler>
         <Button
           className="text-[15px] font-normal bg-main-front w-[103px] py-1 px-5"
