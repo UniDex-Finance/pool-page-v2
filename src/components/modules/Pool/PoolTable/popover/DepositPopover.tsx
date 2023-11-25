@@ -13,6 +13,7 @@ import { ChainId } from "../../../../../types";
 import { useEtherBalance, useEthers, useTokenBalance } from "@usedapp/core";
 import { CHAINDATA } from "../../../../../constants";
 import { ADDRESS_ZERO } from "../../../../../constants/tokens";
+import { roundAndFloor } from "../../../../../helpers";
 import {
   FANTOM_CHAIN_ID,
   METIS_CHAIN_ID,
@@ -39,6 +40,7 @@ export default ({
   account,
 }: Props) => {
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(valueRef.current);
 
   const { chainId: chainIdEthers } = useEthers();
   const disabled = chainId !== chainIdEthers;
@@ -82,18 +84,36 @@ export default ({
             customInput={Input}
             displayType="input"
             placeholder="0.0"
+            value={value}
             onValueChange={(values) => {
-              valueRef.current = values.floatValue?.toString() || "";
+              const valueNew = values.floatValue?.toString() || "";
+              valueRef.current = valueNew;
+              setValue(valueNew);
             }}
           />
-          <div className="text-white mb-1">
-            <span>Available: </span>
-            <span>
-              {balanceDepositFormattedNumber.toFixed(
-                balanceDepositFormattedNumber >= 1 ? 2 : 5
-              )}{" "}
-              {collateral}
-            </span>
+          <div className="flex justify-between items-center text-white mb-1">
+            <div>
+              <span>Available: </span>
+              <span className="font-bold">
+                {balanceDepositFormattedNumber.toFixed(
+                  balanceDepositFormattedNumber >= 1 ? 2 : 5
+                )}{" "}
+                {collateral}
+              </span>
+            </div>
+            <Button
+              className="font-normal bg-main-front py-1 px-2"
+              onClick={() => {
+                const maxRoundedNumber = roundAndFloor(
+                  balanceDepositFormattedNumber,
+                  balanceDepositFormattedNumber >= 1 ? 3 : 8
+                );
+                valueRef.current = maxRoundedNumber;
+                setValue(maxRoundedNumber);
+              }}
+            >
+              MAX
+            </Button>
           </div>
           <Button
             className="font-normal bg-main-front py-1"

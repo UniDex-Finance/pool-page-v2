@@ -15,11 +15,13 @@ export default () => {
           <PoolTitle className="mb-8" />
           <PoolOptions poolRows={poolRows} setPoolRows={setPoolRows} />
         </div>
-        <PoolTable
-          poolRows={poolRows}
-          setPoolRows={setPoolRows}
-          doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
-        />
+        <div className="h-[1100px]">
+          <PoolTable
+            poolRows={poolRows}
+            setPoolRows={setPoolRows}
+            doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
+          />
+        </div>
       </div>
     </div>
   );

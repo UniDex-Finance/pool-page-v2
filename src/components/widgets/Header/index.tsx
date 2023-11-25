@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Navbar, IconButton } from "@material-tailwind/react";
+import { Navbar } from "@material-tailwind/react";
 // import { BSC_CHAIN_ID } from "../../../constants/networks";
 // import { ChainId } from "../../../types";
 import { Dropdown /* , Option */ } from "../Dropdown";
 import WalletConnect from "../WalletConnect";
 import logoLarge from "../../../assets/logo-large.png";
+import ChainMenu from "./ChainMenu";
 
 const options = [
   {
@@ -102,7 +103,7 @@ let supportedChainsByChainId: { [chainId: ChainId]: Option } = {
 */
 
 export default function Header() {
-  const [openNav, setOpenNav] = useState(false);
+  const [, setOpenNav] = useState(false);
 
   useEffect(() => {
     window.addEventListener(
@@ -145,7 +146,10 @@ export default function Header() {
             />
           </div>
 
-          <div className="hidden lg:flex items-center ml-4" style={{ alignItems: "center" }}>
+          <div
+            className="hidden lg:flex items-center ml-4"
+            style={{ alignItems: "center" }}
+          >
             <div className="dropdown mr-6 mt-1">
               <Dropdown
                 selectedOverride={options[0]}
@@ -165,47 +169,11 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="hidden lg:flex space-x-6 lg:space-x-4 lg:space-x-6 lg:flex-row lg:items-center mr-6">
-          <span className="vertical-line-1" />
+        <div className="flex space-x-6 lg:space-x-4 lg:space-x-6 lg:flex-row lg:items-center">
+          <ChainMenu />
+          <span className="h-[25px] border-[1px]" />
           <WalletConnect />
         </div>
-        <IconButton
-          variant="text"
-          className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-          ripple={false}
-          onClick={() => setOpenNav(!openNav)}
-        >
-          {openNav ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              className="h-6 w-6"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          )}
-        </IconButton>
       </div>
     </Navbar>
   );

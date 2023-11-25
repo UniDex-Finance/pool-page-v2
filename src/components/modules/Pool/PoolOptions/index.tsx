@@ -112,66 +112,68 @@ export default ({ poolRows, setPoolRows, className }: Props) => {
 
   return (
     <div className={`flex justify-between ${className}`}>
-      <Menu>
-        <MenuHandler>
-          <Button className="flex items-center text-md font-semibold bg-main-card py-3 px-6 rounded-lg">
-            <div className="mr-6">Chain Filter</div>
-            <div className="mr-4">
-              {chainIdFilter === 0 ? (
-                <div>All Chains</div>
-              ) : (
-                <div className="flex">
-                  <img
-                    className="mr-6"
-                    src={NETWORK_ICON_SRC[chainIdFilter]}
-                    alt=""
-                    width={25}
-                    height={25}
-                  />
-                  <div>{NETWORK_DISPLAY_NAME[chainIdFilter]}</div>
-                </div>
-              )}
-            </div>
-            <img src={arrowSelectorWhiteIcon} />
-          </Button>
-        </MenuHandler>
-        <MenuList className="text-main-text font-semibold bg-main-front w-[200px]">
-          <div className="flex flex-col items-center">
-            {CHAIN_FILTER_LIST.map((chainIdFilterItem) => (
-              <MenuItem
-                key={chainIdFilterItem}
-                className="flex justify-center text-lg p-2"
-                onClick={() => {
-                  setChainIdFilter(chainIdFilterItem);
-                }}
-              >
-                {chainIdFilterItem === 0 ? (
+      <div className="flex">
+        <Menu>
+          <MenuHandler>
+            <Button className="flex items-center text-md font-semibold bg-main-card mr-5 py-3 px-6 rounded-lg">
+              <div className="mr-6">Chain Filter</div>
+              <div className="mr-4">
+                {chainIdFilter === 0 ? (
                   <div>All Chains</div>
                 ) : (
-                  <div className="flex w-[150px]">
+                  <div className="flex">
                     <img
                       className="mr-6"
-                      src={NETWORK_ICON_SRC[chainIdFilterItem]}
+                      src={NETWORK_ICON_SRC[chainIdFilter]}
                       alt=""
-                      width={30}
-                      height={30}
+                      width={25}
+                      height={25}
                     />
-                    <div className="text-left w-[100px]">
-                      {NETWORK_DISPLAY_NAME[chainIdFilterItem]}
-                    </div>
+                    <div>{NETWORK_DISPLAY_NAME[chainIdFilter]}</div>
                   </div>
                 )}
-              </MenuItem>
-            ))}
-          </div>
-        </MenuList>
-      </Menu>
-      <Button className="flex items-center text-md font-semibold bg-main-card py-3 px-6 rounded-lg">
-        <div className="mr-6">APR Date Range RANGE </div>
-        <div className="mr-4">---</div>
-        <img src={arrowSelectorWhiteIcon} />
-      </Button>
-      <div className="bg-main-card py-3 px-6 rounded-lg">
+              </div>
+              <img src={arrowSelectorWhiteIcon} />
+            </Button>
+          </MenuHandler>
+          <MenuList className="text-main-text font-semibold bg-main-front w-[200px]">
+            <div className="flex flex-col items-center">
+              {CHAIN_FILTER_LIST.map((chainIdFilterItem) => (
+                <MenuItem
+                  key={chainIdFilterItem}
+                  className="flex justify-center text-lg p-2"
+                  onClick={() => {
+                    setChainIdFilter(chainIdFilterItem);
+                  }}
+                >
+                  {chainIdFilterItem === 0 ? (
+                    <div>All Chains</div>
+                  ) : (
+                    <div className="flex w-[150px]">
+                      <img
+                        className="mr-6"
+                        src={NETWORK_ICON_SRC[chainIdFilterItem]}
+                        alt=""
+                        width={30}
+                        height={30}
+                      />
+                      <div className="text-left w-[100px]">
+                        {NETWORK_DISPLAY_NAME[chainIdFilterItem]}
+                      </div>
+                    </div>
+                  )}
+                </MenuItem>
+              ))}
+            </div>
+          </MenuList>
+        </Menu>
+        <Button className="flex items-center text-md font-semibold bg-main-card mr-5 py-3 px-6 rounded-lg">
+          <div className="mr-6">APR Date Range RANGE </div>
+          <div className="mr-4">---</div>
+          <img src={arrowSelectorWhiteIcon} />
+        </Button>
+      </div>
+      <div className="flex justify-between font-semibold bg-main-card w-1/2 py-3 px-6 rounded-lg">
         <span className="mr-4">TVL: ${tvlTotal.toFixed(2)}</span>
         <span className="mr-4">
           Total Deposited: ${despositTotal.toFixed(2)}

@@ -79,7 +79,7 @@ export default ({
           />
           <div className="text-white mb-1">
             <span>Min withdraw time: </span>
-            <span>{minDepositTimeHours} hr</span>
+            <span className="font-bold">{minDepositTimeHours} hr</span>
           </div>
           <Button
             className="font-normal bg-main-front py-1"

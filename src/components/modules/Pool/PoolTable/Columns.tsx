@@ -173,7 +173,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
       id: "collateral",
       header: "COLLATERAL",
       cell: (info) => (
-        <div className="flex ml-10">
+        <div className="flex">
           <img
             className="mr-3"
             src={
@@ -218,7 +218,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
       cell: (info) => {
         const infoValue = info.getValue();
         return (
-          <div className="ml-11">
+          <div>
             <span className="mr-2">
               {infoValue === 0 || infoValue >= 1
                 ? infoValue.toFixed(2)
@@ -238,7 +238,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         const infoValue = info.getValue();
 
         return (
-          <div className="ml-11">
+          <div>
             <span className="mr-2">
               {!isChainIdRowMatch && "----"}
               {isChainIdRowMatch &&
