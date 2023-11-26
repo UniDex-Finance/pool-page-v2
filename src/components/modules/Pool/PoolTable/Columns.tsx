@@ -6,7 +6,7 @@ import { useEthers } from "@usedapp/core";
 import { TableOptions, createColumnHelper } from "@tanstack/react-table";
 import { Button } from "@material-tailwind/react";
 import { ChainId, PoolRow } from "../../../../types";
-import { ABIS, CHAINDATA, CURRENCY_LOGOS } from "../../../../constants";
+import { ABIS, CHAINDATA } from "../../../../constants";
 import {
   FANTOM_CHAIN_ID,
   METIS_CHAIN_ID,
@@ -21,8 +21,6 @@ import { Store } from "../../../../types/core";
 // import { PoolDataService } from "../../../../services";
 
 const CHAINS_IGNORE = [FANTOM_CHAIN_ID, ZKSYNC_CHAIN_ID, METIS_CHAIN_ID];
-
-type CurrencyLogos = typeof CURRENCY_LOGOS;
 
 export type ButtonAction = "deposit" | "withdraw" | "claim";
 export type ParamsOnClickAction = [
@@ -186,14 +184,22 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         const poolDataRow: Store["poolData"][string][string] | undefined =
           poolData?.[dataKeyRow]?.[addressRow];
 
-        const urlLogo =
-          poolDataRow?.logo ||
-          CURRENCY_LOGOS[info.getValue().toLowerCase() as keyof CurrencyLogos];
-
         return (
           <div className="flex">
-            <img className="mr-3" src={urlLogo} alt="" width={25} height={25} />
-            <div>{info.getValue()}</div>
+            <div className="flex items-center mr-3">
+              {poolDataRow?.logo ? (
+                <img
+                  className="rounded-full"
+                  src={poolDataRow.logo}
+                  alt=""
+                  width={25}
+                  height={25}
+                />
+              ) : (
+                <div className="text-[25px] -ml-[5px] -mr-[5px]">🌕</div>
+              )}
+            </div>
+            <div className="flex items-center">{info.getValue()}</div>
           </div>
         );
       },
