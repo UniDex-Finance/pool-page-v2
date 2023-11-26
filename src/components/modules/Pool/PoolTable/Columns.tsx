@@ -11,10 +11,13 @@ import {
   FANTOM_CHAIN_ID,
   METIS_CHAIN_ID,
   NETWORK_ICON_SRC,
+  NETWORK_NAMES_API,
   ZKSYNC_CHAIN_ID,
 } from "../../../../constants/networks";
 import { parseUnitsSafe } from "../../../../helpers";
 import { DepositPopover, WithdrawPopover } from "./popover";
+import { useAppState } from "../../../../hooks";
+import { Store } from "../../../../types/core";
 // import { PoolDataService } from "../../../../services";
 
 const CHAINS_IGNORE = [FANTOM_CHAIN_ID, ZKSYNC_CHAIN_ID, METIS_CHAIN_ID];
@@ -36,8 +39,11 @@ type Props = {
 
 export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
   const { library: libraryEthers, chainId, account } = useEthers();
+  const { state } = useAppState();
   const library = libraryEthers as any;
+  const poolData: Store["poolData"] | undefined = state?.poolData;
   const columnHelper = createColumnHelper<PoolRow>();
+
   const valueDepositRef = useRef("");
   const valueWitdrawRef = useRef("");
 
@@ -172,22 +178,25 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     columnHelper.accessor("collateral", {
       id: "collateral",
       header: "COLLATERAL",
-      cell: (info) => (
-        <div className="flex">
-          <img
-            className="mr-3"
-            src={
-              CURRENCY_LOGOS[
-                info.getValue().toLowerCase() as keyof CurrencyLogos
-              ]
-            }
-            alt=""
-            width={25}
-            height={25}
-          />
-          <div>{info.getValue()}</div>
-        </div>
-      ),
+      cell: (info) => {
+        const chainIdRow = Number(info.row.getValue("chainId"));
+        const collateralRowLower = info.getValue().toLowerCase();
+        const dataKeyRow = NETWORK_NAMES_API.unidexPool[chainIdRow];
+        const addressRow = CHAINDATA[chainIdRow]?.oldpool?.[collateralRowLower];
+        const poolDataRow: Store["poolData"][string][string] | undefined =
+          poolData?.[dataKeyRow]?.[addressRow];
+
+        const urlLogo =
+          poolDataRow?.logo ||
+          CURRENCY_LOGOS[info.getValue().toLowerCase() as keyof CurrencyLogos];
+
+        return (
+          <div className="flex">
+            <img className="mr-3" src={urlLogo} alt="" width={25} height={25} />
+            <div>{info.getValue()}</div>
+          </div>
+        );
+      },
     }),
     columnHelper.accessor("tvl", {
       id: "tvl",
