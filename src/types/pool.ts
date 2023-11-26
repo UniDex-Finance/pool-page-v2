@@ -14,4 +14,5 @@ export type PoolDataName =
   | "prices"
   | "stats"
   | "tvlTotal"
-  | "tvlPool";
+  | "tvlPool"
+  | "poolData";

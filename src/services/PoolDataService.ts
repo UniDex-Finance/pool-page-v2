@@ -18,6 +18,7 @@ const NAME_TO_URL_CALLBACK: {
     return `https://coins.llama.fi/prices/current/${priceKeys}`;
   },
   tvlTotal: () => "https://api.llama.fi/tvl/unidex",
+  poolData: () => "https://pool.unidexapi.com/pools",
 };
 
 const NAME_TO_QUERY_CALLBACK: {
@@ -43,6 +44,7 @@ const NAME_TO_QUERY_CALLBACK: {
     }`,
   prices: () => "",
   tvlTotal: () => "",
+  poolData: () => "",
 };
 
 const NAME_TO_QUERY_TITLE: {
@@ -52,6 +54,7 @@ const NAME_TO_QUERY_TITLE: {
   stats: "datas",
   prices: "",
   tvlTotal: "",
+  poolData: "",
 };
 
 type ParamsGet = [
@@ -130,6 +133,7 @@ export default class {
         prices: async () => await this.#getFromAPI(name as "prices", "GET"),
         tvlTotal: async () => await this.#getFromAPI(name as "tvlTotal", "GET"),
         tvlPool: async () => await this.#getFromContract(/* account! */),
+        poolData: async () => await this.#getFromAPI(name as "poolData", "GET"),
       };
 
     const poolData = await nameToFunction[name]();

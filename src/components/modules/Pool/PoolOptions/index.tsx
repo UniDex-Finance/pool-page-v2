@@ -16,7 +16,15 @@ import {
 import { PoolDataService } from "../../../../services";
 import { useAppState } from "../../../../hooks";
 import { createPoolRows } from "../../../../helpers";
+import { PoolDataRangeKey } from "../../../../types/core";
 import arrowSelectorWhiteIcon from "../../../../assets/arrow-selector-white.svg";
+
+const POOL_RANGE_TO_TEXT: { [key in PoolDataRangeKey]: string } = {
+  "1DayData": "1 Day",
+  "7DayData": "7 Days",
+  "30DayData": "30 Days",
+  "365DayData": "365 Days",
+};
 
 const CHAIN_FILTER_LIST: ChainId[] = [0];
 Object.entries(CHAINDATA).forEach(([chainKey, chainData]) => {
@@ -28,14 +36,21 @@ Object.entries(CHAINDATA).forEach(([chainKey, chainData]) => {
 type Props = {
   poolRows: PoolRow[];
   setPoolRows: React.Dispatch<React.SetStateAction<PoolRow[]>>;
+  updatePoolRowsAPR: (aprRange: PoolDataRangeKey) => void;
   className?: string;
 };
 
-export default ({ poolRows, setPoolRows, className }: Props) => {
+export default ({
+  poolRows,
+  setPoolRows,
+  updatePoolRowsAPR,
+  className,
+}: Props) => {
   const [chainIdFilter, setChainIdFilter] = useState<ChainId>(0);
   const [tvlTotal, setTvlTotal] = useState(0);
   const [despositTotal, setDepositTotal] = useState(0);
   const [claimTotal, setClaimTotal] = useState(0);
+  const [aprRangeText, setAprRangeText] = useState<string>("7 Days");
 
   const { state } = useAppState();
   const prices = state?.prices;
@@ -99,16 +114,16 @@ export default ({ poolRows, setPoolRows, className }: Props) => {
   }, [chainIdFilter]);
 
   useEffect(() => {
-    updateTvlTotal();
-  }, []);
-
-  useEffect(() => {
     updateDepositTotal();
   }, [poolRows, chainIdFilter]);
 
   useEffect(() => {
     updateClaimTotal();
   }, [updateClaimTotal]);
+
+  useEffect(() => {
+    updateTvlTotal();
+  }, []);
 
   return (
     <div className={`flex justify-between ${className}`}>
@@ -137,41 +152,57 @@ export default ({ poolRows, setPoolRows, className }: Props) => {
             </Button>
           </MenuHandler>
           <MenuList className="text-main-text font-semibold bg-main-front w-[200px]">
-            <div className="flex flex-col items-center">
-              {CHAIN_FILTER_LIST.map((chainIdFilterItem) => (
-                <MenuItem
-                  key={chainIdFilterItem}
-                  className="flex justify-center text-lg p-2"
-                  onClick={() => {
-                    setChainIdFilter(chainIdFilterItem);
-                  }}
-                >
-                  {chainIdFilterItem === 0 ? (
-                    <div>All Chains</div>
-                  ) : (
-                    <div className="flex w-[150px]">
-                      <img
-                        className="mr-6"
-                        src={NETWORK_ICON_SRC[chainIdFilterItem]}
-                        alt=""
-                        width={30}
-                        height={30}
-                      />
-                      <div className="text-left w-[100px]">
-                        {NETWORK_DISPLAY_NAME[chainIdFilterItem]}
-                      </div>
+            {CHAIN_FILTER_LIST.map((chainIdFilterItem) => (
+              <MenuItem
+                key={chainIdFilterItem}
+                className="flex justify-center text-lg p-2"
+                onClick={() => {
+                  setChainIdFilter(chainIdFilterItem);
+                }}
+              >
+                {chainIdFilterItem === 0 ? (
+                  <div>All Chains</div>
+                ) : (
+                  <div className="flex w-[150px]">
+                    <img
+                      className="mr-6"
+                      src={NETWORK_ICON_SRC[chainIdFilterItem]}
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                    <div className="text-left w-[100px]">
+                      {NETWORK_DISPLAY_NAME[chainIdFilterItem]}
                     </div>
-                  )}
-                </MenuItem>
-              ))}
-            </div>
+                  </div>
+                )}
+              </MenuItem>
+            ))}
           </MenuList>
         </Menu>
-        <Button className="flex items-center text-md font-semibold bg-main-card mr-5 py-3 px-6 rounded-lg">
-          <div className="mr-6">APR Date Range RANGE </div>
-          <div className="mr-4">---</div>
-          <img src={arrowSelectorWhiteIcon} />
-        </Button>
+        <Menu>
+          <MenuHandler>
+            <Button className="flex items-center text-md font-semibold bg-main-card mr-5 py-3 px-6 rounded-lg">
+              <div className="mr-6">APR Date Range </div>
+              <div className="mr-4">{aprRangeText}</div>
+              <img src={arrowSelectorWhiteIcon} />
+            </Button>
+          </MenuHandler>
+          <MenuList className="text-main-text font-semibold bg-main-front w-[200px]">
+            {Object.entries(POOL_RANGE_TO_TEXT).map(([entryKey, entryText]) => (
+              <MenuItem
+                key={entryKey}
+                className="flex justify-center text-lg p-2"
+                onClick={() => {
+                  updatePoolRowsAPR(entryKey as PoolDataRangeKey);
+                  setAprRangeText(entryText);
+                }}
+              >
+                {entryText}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu>
       </div>
       <div className="flex justify-between font-semibold bg-main-card w-1/2 py-3 px-6 rounded-lg">
         <span className="mr-4">TVL: ${tvlTotal.toFixed(2)}</span>

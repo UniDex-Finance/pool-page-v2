@@ -303,6 +303,33 @@ export const NETWORK_NAMES_API: {
     [ZKEVM_CHAIN_ID]: "polygon_zkevm",
     [BASE_CHAIN_ID]: "base",
   },
+  /** NOTE: some names may be guesses */
+  unidexPool: {
+    [MAINNET_CHAIN_ID]: "ethereum",
+    [KOVAN_CHAIN_ID]: "",
+    [BSC_CHAIN_ID]: "bsc",
+    [POLYGON_CHAIN_ID]: "polygon",
+    [AVA_CHAIN_ID]: "avax",
+    [FANTOM_CHAIN_ID]: "fantom",
+    [XDAI_CHAIN_ID]: "xdai",
+    [FUSE_CHAIN_ID]: "fuse",
+    [KUCOIN_CHAIN_ID]: "",
+    [MOONBEAM_CHAIN_ID]: "moonbeam",
+    [ARBITRUM_CHAIN_ID]: "arbitrum",
+    [MOON_RIVER_CHAIN_ID]: "moonriver",
+    [BOBA_CHAIN_ID]: "boba",
+    [HARMONY_CHAIN_ID]: "harmony",
+    [OP_CHAIN_ID]: "optimism",
+    [CRONOS_CHAIN_ID]: "cronos",
+    [AUORA_CHAIN_ID]: "aurora",
+    [METIS_CHAIN_ID]: "metis",
+    [VELAS_CHAIN_ID]: "velas",
+    [KAVA_CHAIN_ID]: "kava",
+    [ZKSYNC_CHAIN_ID]: "zksync",
+    [ZKEVM_CHAIN_ID]: "zkevm",
+    [BASE_CHAIN_ID]: "base",
+    [SCROLL_CHAIN_ID]: "scroll",
+  },
 };
 
 export const NETWORK_ICON_SRC: {

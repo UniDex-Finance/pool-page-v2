@@ -44,30 +44,28 @@ export default () => {
         </Button>
       </MenuHandler>
       <MenuList className="text-main-text font-semibold bg-main-front w-[180px]">
-        <div className="flex flex-col items-center">
-          {CHAIN_FILTER_LIST.map((chainIdFilterItem) => (
-            <MenuItem
-              key={chainIdFilterItem}
-              className="flex justify-center text-lg p-2"
-              onClick={() => {
-                switchNetwork(chainIdFilterItem);
-              }}
-            >
-              <div className="flex w-[150px]">
-                <img
-                  className="mr-6"
-                  src={NETWORK_ICON_SRC[chainIdFilterItem]}
-                  alt=""
-                  width={30}
-                  height={30}
-                />
-                <div className="text-left w-[100px]">
-                  {NETWORK_DISPLAY_NAME[chainIdFilterItem]}
-                </div>
+        {CHAIN_FILTER_LIST.map((chainIdFilterItem) => (
+          <MenuItem
+            key={chainIdFilterItem}
+            className="flex justify-center text-lg p-2"
+            onClick={() => {
+              switchNetwork(chainIdFilterItem);
+            }}
+          >
+            <div className="flex w-[150px]">
+              <img
+                className="mr-6"
+                src={NETWORK_ICON_SRC[chainIdFilterItem]}
+                alt=""
+                width={30}
+                height={30}
+              />
+              <div className="text-left w-[100px]">
+                {NETWORK_DISPLAY_NAME[chainIdFilterItem]}
               </div>
-            </MenuItem>
-          ))}
-        </div>
+            </div>
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );

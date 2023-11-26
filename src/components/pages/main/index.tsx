@@ -24,8 +24,17 @@ export default () => {
     });
   };
 
+  const getAndSavePoolData = async () => {
+    const poolData = await PoolDataService.get(["poolData"]);
+    dispatch({
+      type: actions.SET_POOL_DATA,
+      payload: poolData,
+    });
+  };
+
   useEffect(() => {
     getAndSavePrices();
+    getAndSavePoolData();
   }, []);
 
   return (

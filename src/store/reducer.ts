@@ -25,6 +25,13 @@ export default (state: any, action: any) => {
         prices: data,
       };
     }
+    case actions.SET_POOL_DATA: {
+      const data = action.payload;
+      return {
+        ...state,
+        poolData: data,
+      };
+    }
     default:
       return state;
   }

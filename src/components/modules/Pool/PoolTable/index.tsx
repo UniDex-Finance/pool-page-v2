@@ -70,7 +70,7 @@ export default ({ poolRows, setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
               {headerGroup.headers.map((header, indexHeader) => (
                 <th
                   key={header.id}
-                  className={`pb-2 ${
+                  className={`whitespace-nowrap pb-2 ${
                     !JUSTIFY_CENTER_INDICIES.includes(indexHeader)
                       ? "text-left px-4"
                       : ""
