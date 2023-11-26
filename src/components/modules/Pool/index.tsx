@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PoolRow } from "../../../types";
-// import { useAppState } from "../../../hooks";
+ import { useAppState } from "../../../hooks";
 import { PoolDataRangeKey, Store } from "../../../types/core";
 import { CHAINDATA } from "../../../constants";
 import { NETWORK_NAMES_API } from "../../../constants";
@@ -9,15 +9,15 @@ import PoolOptions from "./PoolOptions";
 import PoolTable from "./PoolTable";
 
 // DEV
-import poolDataTest from "../dev/poolDataTest.json";
+//import poolDataTest from "../dev/poolDataTest.json";
 
 export default () => {
   const [poolRows, setPoolRows] = useState<PoolRow[]>([]);
   const doNotUpdatePoolRowsRef = useRef(false);
 
-  // const { state } = useAppState();
-  // const poolData: Store["poolData"] | undefined = state?.poolData;
-  const poolData: Store["poolData"] = poolDataTest;
+   const { state } = useAppState();
+   const poolData: Store["poolData"] | undefined = state?.poolData;
+  //const poolData: Store["poolData"] = poolDataTest;
 
   const updatePoolRowsAPR = (aprRange: PoolDataRangeKey) => {
     if (!(poolRows.length && poolData && Object.keys(poolData).length)) {

@@ -2,6 +2,7 @@ import { ADDRESS_ZERO } from "./tokens";
 
 export const CURRENCY_LOGOS = {
   weth: "/src/assets/logos/ETH.svg",
+  eth: "/src/assets/logos/ETH.svg",
   usdc: "/src/assets/logos/USDC.svg",
   ftm: "/src/assets/logos/FTM.svg",
   arb: "/src/assets/logos/ARB.svg",
@@ -105,7 +106,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     explorer: "https://arbiscan.io/",
     rpc: "https://red-cosmological-model.arbitrum-mainnet.quiknode.pro/d8d673e498044e324e1e9e0921a9dc95f78078d5/", // for walletconnect
     oldpool: {
-      weth: "0xdAF7D157F5c6E0F1d7917Ca02a7C185cEF81e6d0",
+      eth: "0xdAF7D157F5c6E0F1d7917Ca02a7C185cEF81e6d0",
       usdc: "0x09E122453A079bc2Be621769ae7799e53dA0054E",
       dai: "0xb764729C6bEbd6E60E151F2c46aFce7D6Ff513fD",
       usdt: "0x9f6B9e253De52C5fD6c65283ff472b15520a7070",
@@ -122,7 +123,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       gns: "0x13ff1aB07540b1681173003E361D046530506c11",
     },
     oldpoolrewards: {
-      weth: "0xf2669628818384fa40c3E68e4e5995f4D882F811",
+      eth: "0xf2669628818384fa40c3E68e4e5995f4D882F811",
       usdc: "0xa40dCF6C15419d418337E177dAE6a54f1FA65569",
       dai: "0x0a7865B126aFcbA2b02Bc20bd99400Cb86367C39",
       usdt: "0x2F7a4F73C51cb8Ed2a0CEcf8F2deB66dc60db3c8",
@@ -139,7 +140,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       gns: "0x47958D1f65c6514bC1460b2Ae8073564B38549Ad",
     },
     currencies: {
-      weth: ADDRESS_ZERO,
+      eth: ADDRESS_ZERO,
       usdc: "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
       dai: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
       usdt: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
@@ -156,7 +157,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       gns: "0x18c11fd286c5ec11c3b683caa813b77f5163a122",
     },
     poolInception: {
-      weth: 1690899999999,
+      eth: 1690899999999,
       usdc: 1690899999999,
       cap: 1690899999999,
       dai: 1690899999999,
@@ -192,6 +193,35 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       "unsheth",
     ],
   },
+  324: {
+    label: "zksync",
+    name: "zkSync",
+    volumeName: "ETH",
+    nativeCurrency: "ETH",
+    Logo: "ZKSYNC",
+    hexId: "0x144",
+    isTestnet: false,
+    graphUrl:
+      "https://zksync.tempsubgraph.xyz/subgraphs/name/unidex-finance/zkssyncleveragev2",
+    router: "0x029FF7E65DEC9FAe8c7aD35A4b4A79e5e92506bb",
+    explorer: "https://explorer.zksync.io/",
+    rpc: "https://mainnet.era.zksync.io", // for walletconnect
+    oldpool: {
+      usdc: "0xa41A6a4A04E711B53a82E594CeB525e89206627A",
+    },
+    oldpoolrewards: {
+      usdc: "0xe66248B8eE03643FDf87bF69ecaF07AdF01E0eaa",
+    },
+    currencies: {
+      usdc: "0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4",
+    },
+    poolInception: {
+      usdc: 1687399999999,
+      cap: 1687399999999,
+    },
+    cap: "0x82649Fd5203aAdA6949430d5465ab80061cCB0cf",
+    pools: ["usdc"],
+  },
   137: {
     label: "Polygon",
     name: "Polygon",
@@ -224,35 +254,6 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     cap: "0x625299B279FE7DC609185e4ba03D8A56D28Bbe0b",
     pools: ["retro", "cash"],
   },
-  324: {
-    label: "zksync",
-    name: "zkSync",
-    volumeName: "ETH",
-    nativeCurrency: "ETH",
-    Logo: "ZKSYNC",
-    hexId: "0x144",
-    isTestnet: false,
-    graphUrl:
-      "https://zksync.tempsubgraph.xyz/subgraphs/name/unidex-finance/zkssyncleveragev2",
-    router: "0x029FF7E65DEC9FAe8c7aD35A4b4A79e5e92506bb",
-    explorer: "https://explorer.zksync.io/",
-    rpc: "https://mainnet.era.zksync.io", // for walletconnect
-    oldpool: {
-      usdc: "0xa41A6a4A04E711B53a82E594CeB525e89206627A",
-    },
-    oldpoolrewards: {
-      usdc: "0xe66248B8eE03643FDf87bF69ecaF07AdF01E0eaa",
-    },
-    currencies: {
-      usdc: "0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4",
-    },
-    poolInception: {
-      usdc: 1687399999999,
-      cap: 1687399999999,
-    },
-    cap: "0x82649Fd5203aAdA6949430d5465ab80061cCB0cf",
-    pools: ["usdc"],
-  },
   250: {
     label: "ftm",
     name: "Fantom",
@@ -267,175 +268,22 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     explorer: "https://ftmscan.com",
     rpc: "https://nd-346-151-565.p2pify.com/ba2fff0c3270acfa9e24859e1e694ff7", // for walletconnect
     oldpool: {
-      weth: "0xBec7d4561037e657830F78b87e780AeE1d09Fc7B",
-      usdc: "0x7A494C755911Ce06444C47248108439a06Ac028C",
-      dai: "0xC451dF1B05828519C014cB967ef1a614BD41834d",
+      ftm: "0xBec7d4561037e657830F78b87e780AeE1d09Fc7B",
+
     },
     oldpoolrewards: {
-      weth: "0xb29b4A6589b489E44644f661648A7706B9360059",
-      usdc: "0x2A3dF79D2F6b13Bed4Cf9c28C34E310C5bdAFc13",
-      dai: "0x74694b8BAA6C1578019482409Cdd979feC26c6f2",
+      ftm: "0xb29b4A6589b489E44644f661648A7706B9360059",
+
     },
     currencies: {
-      weth: ADDRESS_ZERO,
-      usdc: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
-      dai: "0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e",
+      ftm: ADDRESS_ZERO,
+
     },
     poolInception: {
-      weth: 1687399999999,
-      usdc: 1687399999999,
-      cap: 1687399999999,
+      ftm: 1687399999999,
     },
     cap: "0x625299B279FE7DC609185e4ba03D8A56D28Bbe0b",
     pools: ["eth", "usdc", "dai"],
-  },
-  3: {
-    label: "ropsten",
-    name: "Ropsten Testnet",
-    router: "0x1AA263d79E1f70409CE9159bb1A51F7844010a01",
-    volumeName: "ETH",
-    Logo: "ETH",
-    isTestnet: true,
-    graphUrl:
-      "https://api.thegraph.com/subgraphs/name/unidex-finance/ropstenleverage",
-    explorer: "https://https://ropsten.etherscan.io",
-    rpc: "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161", // for walletconnect
-    currencies: {
-      weth: ADDRESS_ZERO,
-      usdc: "0x8f785910e0cc96f854450dfb53be6492daff0b15",
-    },
-    poolInception: {
-      weth: 1687399999999,
-      usdc: 1687399999999,
-      cap: 1687399999999,
-    },
-    cap: "0x0000000000000000000000000000000000000001",
-    pools: ["eth", "usdc"],
-  },
-  4002: {
-    label: "ftmtestnet",
-    name: "Fantom Testnet",
-    volumeName: "FTM",
-    Logo: "FTM",
-    isTestnet: true,
-    graphUrl:
-      "https://fantomohlc.xyz/subgraphs/name/unidex-finance/leverageinfo",
-    router: "0x3972D2655A0Ee3a72dF26690681A80b600D3B6ED",
-    explorer: "https://testnet.ftmscan.com",
-    rpc: "https://rpc.testnet.fantom.network//", // for walletconnect
-    oldpool: {
-      weth: "0xBec7d4561037e657830F78b87e780AeE1d09Fc7B",
-      usdc: "0x7A494C755911Ce06444C47248108439a06Ac028C",
-      dai: "0xC451dF1B05828519C014cB967ef1a614BD41834d",
-    },
-    oldpoolrewards: {
-      weth: "0xb29b4A6589b489E44644f661648A7706B9360059",
-      usdc: "0x2A3dF79D2F6b13Bed4Cf9c28C34E310C5bdAFc13",
-      dai: "0x74694b8BAA6C1578019482409Cdd979feC26c6f2",
-    },
-    currencies: {
-      weth: ADDRESS_ZERO,
-      usdc: "0x04068da6c83afcfa0e13ba15a6696662335d5b75",
-      dai: "0x8d11ec38a3eb5e956b052f67da8bdc9bef8abf3e",
-    },
-    poolInception: {
-      weth: 1687399999999,
-      usdc: 1687399999999,
-      dai: 1687399999999,
-      cap: 1687399999999,
-    },
-    cap: "0x0000000000000000000000000000000000000001",
-    pools: ["eth", "usdc"],
-  },
-  28: {
-    label: "bobatestnet",
-    name: "Boba Testnet",
-    volumeName: "ETH",
-    Logo: "ETH",
-    isTestnet: true,
-    graphUrl:
-      "https://graph.rinkeby.boba.network/subgraphs/name/unidex-finance/bobaleverage",
-    router: "0x930731C8107f2673118a4Ec022a3291833f05869",
-    explorer: "https://blockexplorer.rinkeby.boba.network/",
-    rpc: "https://rinkeby.boba.netwokr", // for walletconnect
-    oldpool: {
-      weth: "0xcFca8f4afF8d03DF8900C39b6C36FBb0233D624B",
-      usdc: "0x549060b7469918b0b54B204DCbFbc520A2326bd9",
-    },
-    oldpoolrewards: {
-      weth: "0x120dc94fDa562E922ec87ac100FE4A829d8171dE",
-      usdc: "0x5F17e80326CB1624B45cCAFda81B979D0b151155",
-    },
-    currencies: {
-      weth: ADDRESS_ZERO,
-      usdc: ADDRESS_ZERO,
-    },
-    poolInception: {
-      weth: 1687399999999,
-      usdc: 1687399999999,
-      cap: 1687399999999,
-    },
-    cap: ADDRESS_ZERO,
-    pools: ["eth"],
-  },
-  288: {
-    label: "boba",
-    name: "Boba",
-    volumeName: "ETH",
-    nativeCurrency: "ETH",
-    Logo: "BOBA",
-    hexId: "0x120",
-    isTestnet: false,
-    graphUrl:
-      "https://api.thegraph.com/subgraphs/name/unidex-finance/bobaleverage",
-    router: "0x053c611b86F63707c1A66f6a77E26607F2624b2C",
-    explorer: "https://bobascan.com",
-    rpc: "https://boba-mainnet.gateway.pokt.network/v1/lb/62112c72146632003b62151f", // for walletconnect
-    oldpool: {
-      weth: "0x9673B0E0F07e4a6da712F6847aE93C3F157DD509",
-      usdc: "",
-    },
-    oldpoolrewards: {
-      weth: "0x10d125b314b97434970a4Fc0D5b71b71EFC38494",
-      usdc: "",
-    },
-    currencies: {
-      weth: ADDRESS_ZERO,
-    },
-    poolInception: {
-      weth: 1687399999999,
-      cap: 1687399999999,
-    },
-    cap: "0x82649Fd5203aAdA6949430d5465ab80061cCB0cf",
-    pools: ["eth"],
-  },
-  56: {
-    label: "bsc",
-    name: "Binance Smart Chain",
-    volumeName: "BNB",
-    nativeCurrency: "BNB",
-    Logo: "BNB",
-    hexId: "0x38",
-    isTestnet: false,
-    graphUrl:
-      "https://api.thegraph.com/subgraphs/name/unidex-finance/bscleverage",
-    router: "0x959E494e2894D314c25Ec8Fb0Fc16F51071d32F6",
-    explorer: "https://bscscan.com/",
-    rpc: "https://rpc.ankr.com/bsc", // for walletconnect
-    oldpool: {
-      busd: "0xa8D4bd632f394CED42BD439Bc34F09198072e519",
-    },
-    oldpoolrewards: {
-      busd: "0x56FBF54565A579dD389A7b1c1A55D54feFE077f0",
-    },
-    currencies: {
-      busd: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
-    },
-    poolInception: {
-      busd: 1687399999999,
-    },
-    cap: "0x82649Fd5203aAdA6949430d5465ab80061cCB0cf",
-    pools: ["busd"],
   },
   10: {
     label: "op",
@@ -465,34 +313,6 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     cap: "0x95181a951112df9aa1b8191c53dac436658926b7",
     pools: ["dai"],
   },
-  5000: {
-    label: "mantle",
-    name: "Mantle",
-    volumeName: "MNT",
-    nativeCurrency: "MNT",
-    Logo: "MANTLE",
-    hexId: "0x1388",
-    isTestnet: false,
-    graphUrl:
-      "https://api.thegraph.com/subgraphs/name/unidex-finance/optimismleveragev2",
-    router: "0x053c611b86F63707c1A66f6a77E26607F2624b2C",
-    explorer: "https://explorer.mantle.xyz/",
-    rpc: "https://rpc.mantle.xyz/", // for walletconnect
-    oldpool: {
-      weth: "0x10d125b314b97434970a4Fc0D5b71b71EFC38494",
-    },
-    oldpoolrewards: {
-      weth: "0xbE94BAf82fb64bC8DB6C6E431Fb6eB534Ee74046",
-    },
-    currencies: {
-      weth: ADDRESS_ZERO,
-    },
-    poolInception: {
-      weth: 1687399999999,
-    },
-    cap: "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111",
-    pools: ["eth"],
-  },
   8453: {
     label: "base",
     name: "Base",
@@ -507,32 +327,24 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     explorer: "https://basescan.org/",
     rpc: "https://developer-access-mainnet.base.org", // for walletconnect
     oldpool: {
-      weth: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",
-      ogre: "0xEb0e6915B8fe9Cfca3Fa028C8CBaFC50d786C865",
+      eth: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",
       crvusd: "0xEfD0B28810dC3cdD88763f40DCc44462bb85Cf32",
       bswap: "0xe10f7BCFf83A0263c03Ba27795d11f4B1631Ef4e",
-      bvm: "0x15d1108bE736c7b43db388fEFF9aF93e130517C1",
     },
     oldpoolrewards: {
-      weth: "0x9673B0E0F07e4a6da712F6847aE93C3F157DD509",
-      ogre: "0xFeda1f54173FD98cF2C05F05B0600C19D0a97C26",
+      eth: "0x9673B0E0F07e4a6da712F6847aE93C3F157DD509",
       crvusd: "0xDaa78E776D3788F9FBABDAc02aa6De45f7BC50C6",
       bswap: "0x3B245f36e39509B41471Ea7793c893f5d97eE69E",
-      bvm: "0x196181d3FB362808e08AD6a9d2B92822203693c6",
     },
     currencies: {
-      weth: ADDRESS_ZERO,
-      ogre: "0xAB8a1c03b8E4e1D21c8Ddd6eDf9e07f26E843492",
+      eth: ADDRESS_ZERO,
       crvusd: "0x417ac0e078398c154edfadd9ef675d30be60af93",
       bswap: "0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9",
-      bvm: "0xd386a121991E51Eab5e3433Bf5B1cF4C8884b47a",
     },
     poolInception: {
-      weth: 1691519999999,
-      ogre: 1691519999999,
+      eth: 1691519999999,
       crvusd: 1691519999999,
       bswap: 1691519999999,
-      bvm: 1691519999999,
     },
     cap: "0x95181a951112df9aa1b8191c53dac436658926b7",
     pools: ["eth", "ogre", "crvusd", "bswap", "bvm"],
@@ -549,21 +361,16 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     explorer: "https://andromeda-explorer.metis.io",
     rpc: "https://andromeda.metis.io/?owner=1088", // for walletconnect
     oldpool: {
-      weth: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",
-      usdc: "0xb3D7D548dA38Dac2876Da57842a3cbaaf9a3bD96",
+      metis: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",
     },
     oldpoolrewards: {
-      weth: "0x615B1fcf461249b12342726819CB6Da23413CB48",
-      usdc: "0x6aFCa82fa77d49a77EB72fF5E611e434ddDC8856",
+      metis: "0x615B1fcf461249b12342726819CB6Da23413CB48",
     },
     currencies: {
-      weth: ADDRESS_ZERO,
-      usdc: "0x420000000000000000000000000000000000000a",
+      metis: ADDRESS_ZERO,
     },
     poolInception: {
-      weth: 1661785000000,
-      usdc: 1661785000000,
-      cap: 1661785000000,
+      metis: 1661785000000,
     },
     hexId: "0x440",
     cap: "0x88C56b270b1E1b8932A92357C36dD873798AB9ee",
