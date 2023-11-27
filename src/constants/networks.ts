@@ -299,7 +299,7 @@ export const NETWORK_NAMES_API: {
     [METIS_CHAIN_ID]: "metis",
     [VELAS_CHAIN_ID]: "velas",
     [KAVA_CHAIN_ID]: "kava",
-    [ZKSYNC_CHAIN_ID]: "zksync_era",
+    [ZKSYNC_CHAIN_ID]: "era",
     [ZKEVM_CHAIN_ID]: "polygon_zkevm",
     [BASE_CHAIN_ID]: "base",
   },
