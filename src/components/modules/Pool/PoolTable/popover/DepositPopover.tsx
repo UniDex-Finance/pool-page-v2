@@ -14,13 +14,6 @@ import { useEtherBalance, useEthers, useTokenBalance } from "@usedapp/core";
 import { CHAINDATA } from "../../../../../constants";
 import { ADDRESS_ZERO } from "../../../../../constants/tokens";
 import { roundAndFloor } from "../../../../../helpers";
-import {
-  FANTOM_CHAIN_ID,
-  METIS_CHAIN_ID,
-  ZKSYNC_CHAIN_ID,
-} from "../../../../../constants/networks";
-
-const CHAINS_IGNORE = [FANTOM_CHAIN_ID, ZKSYNC_CHAIN_ID, METIS_CHAIN_ID];
 
 type Props = {
   chainId: ChainId;
@@ -54,7 +47,7 @@ export default ({
 
   const balanceDepositFormatted = formatUnits(
     balanceDeposit || 0,
-    collateraLower.includes("usdc") && !CHAINS_IGNORE.includes(chainId) ? 6 : 18
+    collateraLower.includes("usdc") ? 6 : 18
   );
   const balanceDepositFormattedNumber = Number(balanceDepositFormatted);
 

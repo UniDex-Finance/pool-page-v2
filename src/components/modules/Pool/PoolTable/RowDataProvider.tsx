@@ -11,13 +11,6 @@ import { ABIS, CHAINDATA, NETWORK_NAMES_API } from "../../../../constants";
 import { ADDRESS_ZERO } from "../../../../constants/tokens";
 import { useAppState } from "../../../../hooks";
 import { formatUnits } from "../../../../helpers";
-import {
-  FANTOM_CHAIN_ID,
-  METIS_CHAIN_ID,
-  ZKSYNC_CHAIN_ID,
-} from "../../../../constants/networks";
-
-const CHAINS_IGNORE = [FANTOM_CHAIN_ID, ZKSYNC_CHAIN_ID, METIS_CHAIN_ID];
 
 type PropsHook = {
   chainIdRow: ChainId;
@@ -58,10 +51,7 @@ const usePoolTVL = ({
 
       const tvlRowFormatted = formatUnits(
         tvlRow || 0,
-        collateralRowLower.includes("usdc") &&
-          !CHAINS_IGNORE.includes(chainIdRow)
-          ? 6
-          : 18
+        collateralRowLower.includes("usdc") ? 6 : 18
       );
       const tvlRowFormattedNumber = Number(tvlRowFormatted);
       const priceCurrencyRow = prices[pricesKeyRow];
@@ -114,9 +104,7 @@ const usePoolDeposited = ({
   const updateAmountDepositRow = () => {
     const amountDepositFormatted = formatUnits(
       amountDeposit?.toString() || "0",
-      collateralRowLower === "usdc" && !CHAINS_IGNORE.includes(chainIdRow)
-        ? 6
-        : 18
+      18
     );
     setPoolRows((prevPoolRows) => {
       const poolRowNewAtIndex = prevPoolRows[index];
@@ -172,9 +160,8 @@ const usePoolClaimable = ({
     /*
     const amountClaimFormatted = formatUnits(
       amountClaim?.toString() || "0",
-      collateralRowLower === "usdc" && !CHAINS_IGNORE.includes(chainIdRow)
-        ? 6
-        : 18
+        collateralRowLower.includes("usdc"),
+        18
     );
     */
 
@@ -190,9 +177,7 @@ const usePoolClaimable = ({
     const amountClaim = await contractRewardsRowConnected.getClaimableReward();
     const amountClaimFormatted = formatUnits(
       amountClaim?.toString() || "0",
-      collateralRowLower === "usdc" && !CHAINS_IGNORE.includes(chainIdRow)
-        ? 6
-        : 18
+      18
     );
 
     setPoolRows((prevPoolRows) => {

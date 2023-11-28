@@ -8,19 +8,14 @@ import { Button } from "@material-tailwind/react";
 import { ChainId, PoolRow } from "../../../../types";
 import { ABIS, CHAINDATA } from "../../../../constants";
 import {
-  FANTOM_CHAIN_ID,
-  METIS_CHAIN_ID,
   NETWORK_ICON_SRC,
   NETWORK_NAMES_API,
-  ZKSYNC_CHAIN_ID,
 } from "../../../../constants/networks";
 import { parseUnitsSafe } from "../../../../helpers";
 import { DepositPopover, WithdrawPopover } from "./popover";
 import { useAppState } from "../../../../hooks";
 import { Store } from "../../../../types/core";
 // import { PoolDataService } from "../../../../services";
-
-const CHAINS_IGNORE = [FANTOM_CHAIN_ID, ZKSYNC_CHAIN_ID, METIS_CHAIN_ID];
 
 export type ButtonAction = "deposit" | "withdraw" | "claim";
 export type ParamsOnClickAction = [
@@ -66,10 +61,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         const valueDepositBigNumber = parseUnitsSafe(
           valueDeposit.toString(),
           // TODO: use dict or something else here
-          collateralLower.includes("usdc") &&
-            !CHAINS_IGNORE.includes(chainIdRow)
-            ? 6
-            : 18
+          collateralLower.includes("usdc") ? 6 : 18
         );
         tx = await contractPool.deposit(valueDepositBigNumber);
       } else {
@@ -77,10 +69,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         const valueWithdrawBigNumber = parseUnitsSafe(
           valueWithdraw.toString(),
           // TODO: use dict or something else here
-          collateralLower.includes("usdc") &&
-            !CHAINS_IGNORE.includes(chainIdRow)
-            ? 6
-            : 18
+          collateralLower.includes("usdc") ? 6 : 18
         );
         tx = await contractPool.withdraw(valueWithdrawBigNumber);
       }
@@ -180,7 +169,8 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         const chainIdRow = Number(info.row.getValue("chainId"));
         const collateralRowLower = info.getValue().toLowerCase();
         const dataKeyRow = NETWORK_NAMES_API.unidexPool[chainIdRow];
-        const addressRow = CHAINDATA[chainIdRow]?.poolAddress?.[collateralRowLower];
+        const addressRow =
+          CHAINDATA[chainIdRow]?.poolAddress?.[collateralRowLower];
         const poolDataRow: Store["poolData"][string][string] | undefined =
           poolData?.[dataKeyRow]?.[addressRow];
 
