@@ -46,7 +46,7 @@ export default ({
   const disabled = chainId !== chainIdEthers;
 
   const collateraLower = collateral.toLowerCase();
-  const addressCollateral = CHAINDATA[chainId]?.currencies?.[collateraLower];
+  const addressCollateral = CHAINDATA[chainId]?.collateral?.[collateraLower];
   const balanceDeposit =
     addressCollateral === ADDRESS_ZERO
       ? useEtherBalance(account, { chainId })

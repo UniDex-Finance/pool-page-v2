@@ -27,7 +27,7 @@ export default () => {
     const poolRowsNew = poolRows.map((p) => {
       const poolRowDataKey = NETWORK_NAMES_API.unidexPool[p.chainId];
       const poolRowAddress =
-        CHAINDATA[p.chainId].oldpool[p.collateral.toLowerCase()];
+        CHAINDATA[p.chainId].poolAddress[p.collateral.toLowerCase()];
 
       const poolRowData: Store["poolData"][string][string] | undefined =
         poolData?.[poolRowDataKey]?.[poolRowAddress];

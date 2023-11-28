@@ -51,7 +51,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     buttonAction,
   ]: ParamsOnClickAction) => {
     const collateralLower = collateral.toLowerCase();
-    const addressPool = CHAINDATA[chainIdRow].oldpool[collateralLower];
+    const addressPool = CHAINDATA[chainIdRow].poolAddress[collateralLower];
     const contractPool = new Contract(
       addressPool,
       ABIS["pool"],
@@ -106,7 +106,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
 
     const collateralLower = collateral.toLowerCase();
     const addressRewards =
-      CHAINDATA[chainIdRow].oldpoolrewards[collateralLower];
+      CHAINDATA[chainIdRow].rewardsContract[collateralLower];
     const contractRewards = new Contract(
       addressRewards,
       ABIS["rewards"],
@@ -180,7 +180,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         const chainIdRow = Number(info.row.getValue("chainId"));
         const collateralRowLower = info.getValue().toLowerCase();
         const dataKeyRow = NETWORK_NAMES_API.unidexPool[chainIdRow];
-        const addressRow = CHAINDATA[chainIdRow]?.oldpool?.[collateralRowLower];
+        const addressRow = CHAINDATA[chainIdRow]?.poolAddress?.[collateralRowLower];
         const poolDataRow: Store["poolData"][string][string] | undefined =
           poolData?.[dataKeyRow]?.[addressRow];
 

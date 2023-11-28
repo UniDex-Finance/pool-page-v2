@@ -36,8 +36,8 @@ const usePoolTVL = ({
 }: PropsHook) => {
   const collateralRowLower = collateralRow.toLowerCase();
   const chainDataRow = CHAINDATA[chainIdRow];
-  const addressCollateralRow = chainDataRow?.currencies?.[collateralRowLower];
-  const addressPoolRow = chainDataRow?.oldpool?.[collateralRowLower];
+  const addressCollateralRow = chainDataRow?.collateral?.[collateralRowLower];
+  const addressPoolRow = chainDataRow?.poolAddress?.[collateralRowLower];
   const pricesKeyRow = `${NETWORK_NAMES_API.defillama[chainIdRow]}:${addressCollateralRow}`;
 
   const { state } = useAppState();
@@ -97,7 +97,7 @@ const usePoolDeposited = ({
 }: PropsHook & { library: any; account: Address | undefined }) => {
   const collateralRowLower = collateralRow.toLowerCase();
   const chainDataRow = CHAINDATA[chainIdRow];
-  const addressPoolRow = chainDataRow?.oldpool?.[collateralRowLower];
+  const addressPoolRow = chainDataRow?.poolAddress?.[collateralRowLower];
 
   const callResult = useCall(
     addressPoolRow &&
@@ -146,7 +146,7 @@ const usePoolClaimable = ({
 }: PropsHook & { chainIdEthers: number | undefined; library: any }) => {
   const collateralRowLower = collateralRow.toLowerCase();
   const chainDataRow = CHAINDATA[chainIdRow];
-  const addressRewardsRow = chainDataRow?.oldpoolrewards?.[collateralRowLower];
+  const addressRewardsRow = chainDataRow?.rewardsContract?.[collateralRowLower];
 
   /*
   const contractRewardsRow: Contract | false =

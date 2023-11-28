@@ -78,7 +78,7 @@ export default ({
     poolRows.forEach((p) => {
       const collateralRowLower = p.collateral.toLowerCase();
       const pricesKeyRow = `${NETWORK_NAMES_API.defillama[p.chainId]}:${
-        CHAINDATA[p.chainId]?.currencies?.[collateralRowLower]
+        CHAINDATA[p.chainId]?.collateral?.[collateralRowLower]
       }`;
 
       const priceMultiplier = prices[pricesKeyRow]?.price || 0;
@@ -97,7 +97,7 @@ export default ({
     poolRows.forEach((p) => {
       const collateralRowLower = p.collateral.toLowerCase();
       const pricesKeyRow = `${NETWORK_NAMES_API.defillama[p.chainId]}:${
-        CHAINDATA[p.chainId]?.currencies?.[collateralRowLower]
+        CHAINDATA[p.chainId]?.collateral?.[collateralRowLower]
       }`;
 
       const priceMultiplier = prices[pricesKeyRow]?.price || 0;
