@@ -22,7 +22,7 @@ export default (chainIdFilter?: ChainId) => {
       return;
     }
 
-    const chainPools: PoolRow[] = Object.keys(entryData.oldpool).map(
+    const chainPools: PoolRow[] = Object.keys(entryData.poolAddress).map(
       (symbol) => ({
         ...EMPTY_ROW,
         chainId: Number(entryChainId),

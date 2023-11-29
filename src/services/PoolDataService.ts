@@ -10,8 +10,8 @@ const NAME_TO_URL_CALLBACK: {
   prices: (chainIds: ChainId[]) => {
     const priceKeys: string[] = [];
     chainIds.forEach((c) => {
-      const { currencies } = CHAINDATA[c];
-      Object.values(currencies).forEach((addressCurrency) => {
+      const { collateral } = CHAINDATA[c];
+      Object.values(collateral).forEach((addressCurrency) => {
         priceKeys.push(`${NETWORK_NAMES_API.defillama[c]}:${addressCurrency}`);
       });
     });

@@ -34,7 +34,7 @@ export default ({
   const disabled = chainId !== chainIdEthers;
 
   const collateraLower = collateral.toLowerCase();
-  const addressCollateral = CHAINDATA[chainId]?.oldpool?.[collateraLower];
+  const addressCollateral = CHAINDATA[chainId]?.poolAddress?.[collateraLower];
 
   const callResult = useCall(
     addressCollateral &&

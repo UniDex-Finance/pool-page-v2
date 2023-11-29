@@ -16,7 +16,6 @@ import { NETWORKS_URLS_LEVERAGE } from "../constants";
 import {
   BASE_CHAIN_ID,
   SCROLL_CHAIN_ID,
-  ZKSYNC_CHAIN_ID,
 } from "../constants/networks";
 
 export const BASE = {
@@ -67,7 +66,6 @@ const USEDAPP_CONFIG: Config = {
       "https://arb-goerli.g.alchemy.com/v2/clalwfFmsbGLGqKV6gBYp-y5BdG_F2aQ",
   },
   multicallAddresses: {
-    [ZKSYNC_CHAIN_ID]: "0x1De2452e12b982Bc31500FcfD1AFf8FfdAd93CBa",
     [BASE_CHAIN_ID]: "0x8182b69C7048263E82781eC6885e4a696792AcE6",
     [SCROLL_CHAIN_ID]: "0x895d9130Dc56196Ab2c0c8787c8D80D5DE15E64f",
   },
