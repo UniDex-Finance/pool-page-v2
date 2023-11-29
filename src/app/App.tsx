@@ -63,7 +63,7 @@ export const EVMOS = {
   chainName: "evmos",
   isTestChain: false,
   isLocalChain: false,
-  multicallAddress: "0xF946EA986944Aa93b03362Bd7F2d86a7607B54D7",
+  multicallAddress: "0x92D88c8E913739537726B6462505Fa6Da4ce234C",
   multicall2Address: "0xF946EA986944Aa93b03362Bd7F2d86a7607B54D7",
   rpcUrl: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
   nativeCurrency: {
@@ -89,7 +89,7 @@ const USEDAPP_CONFIG: Config = {
   multicallAddresses: {
     [BASE_CHAIN_ID]: "0x8182b69C7048263E82781eC6885e4a696792AcE6",
     [SCROLL_CHAIN_ID]: "0x895d9130Dc56196Ab2c0c8787c8D80D5DE15E64f",
-    [EVMOS_CHAIN_ID]: "0xF946EA986944Aa93b03362Bd7F2d86a7607B54D7"
+    [EVMOS_CHAIN_ID]: "0x92D88c8E913739537726B6462505Fa6Da4ce234C"
   },
   networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL, EVMOS],
 };

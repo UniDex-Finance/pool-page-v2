@@ -165,7 +165,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       stevmos: "0x42EbA10b9bf487baD672c9479810DbFE305721D3",
     },
     collateral: {
-      stevmos: "0x2c68d1d6ab986ff4640b51e1f14c716a076e44c4",
+      stevmos: "0x2C68D1d6aB986Ff4640b51e1F14C716a076E44C4",
     },
   },
   137: {
