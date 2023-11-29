@@ -31,6 +31,7 @@ export const CURRENCY_LOGOS = {
   bvm: "/src/assets/logos/bvm.png",
   crvusd: "/src/assets/logos/CRVUSD.png",
   mantle: "/src/assets/logos/MANTLE.jpg",
+  stevmos: "/src/assets/logos/STEVMOS.webp",
 };
 
 export const ABIS: { [key: string]: string[] } = {
@@ -154,6 +155,17 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     },
     collateral: {
       usdc: "0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4",
+    },
+  },
+  9001: {
+    poolAddress: {
+      stevmos: "0x21708707f03A19C3a4ea5E1a132B5cF96b86F294",
+    },
+    rewardsContract: {
+      stevmos: "0x42EbA10b9bf487baD672c9479810DbFE305721D3",
+    },
+    collateral: {
+      stevmos: "0x2c68d1d6ab986ff4640b51e1f14c716a076e44c4",
     },
   },
   137: {

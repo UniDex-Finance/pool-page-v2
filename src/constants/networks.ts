@@ -22,6 +22,7 @@ import AURORA_ICON from "../assets/icons_chain/aurora.svg";
 import ZKSYNC_ICON from "../assets/icons_chain/zksync.svg";
 import BASE_ICON from "../assets/icons_chain/base.svg";
 import SCROLL_ICON from "../assets/icons_chain/scroll.svg";
+import EVMOS_ICON from "../assets/icons_chain/EVMOS.png";
 
 import USDC_LOGO from "../assets/logos/USDC.svg";
 import DAI_LOGO from "../assets/logos/DAI.svg";
@@ -71,6 +72,7 @@ export const ZKSYNC_CHAIN_ID = 324;
 export const ZKEVM_CHAIN_ID = 1101;
 export const BASE_CHAIN_ID = 8453;
 export const SCROLL_CHAIN_ID = 534352;
+export const EVMOS_CHAIN_ID = 9001;
 
 export const DEFAULT_NETWORK = OP_CHAIN_ID;
 
@@ -99,6 +101,8 @@ export const NETWORKS_AVAILABLE: ChainId[] = [
   ZKSYNC_CHAIN_ID,
   ZKEVM_CHAIN_ID,
   BASE_CHAIN_ID,
+  SCROLL_CHAIN_ID,
+  EVMOS_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
@@ -121,6 +125,8 @@ export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
   KAVA_CHAIN_ID,
   METIS_CHAIN_ID,
   BASE_CHAIN_ID,
+  SCROLL_CHAIN_ID,
+  EVMOS_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
@@ -133,6 +139,8 @@ export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
   AVA_CHAIN_ID,
   BSC_CHAIN_ID,
   METIS_CHAIN_ID,
+  SCROLL_CHAIN_ID,
+  EVMOS_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
@@ -168,6 +176,7 @@ export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
   [ZKSYNC_CHAIN_ID]: "zkSync",
   [BASE_CHAIN_ID]: "Base",
   [SCROLL_CHAIN_ID]: "Scroll",
+  [EVMOS_CHAIN_ID]: "Evmos",
 };
 
 export const NETWORK_NAMES_API: {
@@ -302,6 +311,8 @@ export const NETWORK_NAMES_API: {
     [ZKSYNC_CHAIN_ID]: "era",
     [ZKEVM_CHAIN_ID]: "polygon_zkevm",
     [BASE_CHAIN_ID]: "base",
+    [SCROLL_CHAIN_ID]: "scroll",
+    [EVMOS_CHAIN_ID]: "evmos",
   },
   /** NOTE: some names may be guesses */
   unidexPool: {
@@ -329,6 +340,7 @@ export const NETWORK_NAMES_API: {
     [ZKEVM_CHAIN_ID]: "zkevm",
     [BASE_CHAIN_ID]: "base",
     [SCROLL_CHAIN_ID]: "scroll",
+    [EVMOS_CHAIN_ID]: "evmos",
   },
 };
 
@@ -360,6 +372,7 @@ export const NETWORK_ICON_SRC: {
   [ZKSYNC_CHAIN_ID]: ZKSYNC_ICON,
   [BASE_CHAIN_ID]: BASE_ICON,
   [SCROLL_CHAIN_ID]: SCROLL_ICON,
+  [EVMOS_CHAIN_ID]: EVMOS_ICON,
 };
 
 export const CRYPTO_ICON_SRC = {
@@ -422,6 +435,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]:
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
+  [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
 };
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
@@ -450,6 +464,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]:
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
+  [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
 };
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
@@ -464,6 +479,7 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]:
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
+  [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
 };
 
 export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
@@ -491,6 +507,7 @@ export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
   [ZKSYNC_CHAIN_ID]: "https://zksync2-mainnet.zkscan.io/",
   [BASE_CHAIN_ID]: "https://basescan.org/",
   [SCROLL_CHAIN_ID]: "https://scrollscan.com/",
+  [EVMOS_CHAIN_ID]: "https://escan.live/",
 };
 
 export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
@@ -518,4 +535,5 @@ export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
   [ZKSYNC_CHAIN_ID]: "ETH",
   [BASE_CHAIN_ID]: "ETH",
   [SCROLL_CHAIN_ID]: "ETH",
+  [EVMOS_CHAIN_ID]: "EVMOS",
 };

@@ -16,6 +16,7 @@ import { NETWORKS_URLS_LEVERAGE } from "../constants";
 import {
   BASE_CHAIN_ID,
   SCROLL_CHAIN_ID,
+  EVMOS_CHAIN_ID
 } from "../constants/networks";
 
 export const BASE = {
@@ -57,6 +58,25 @@ export const SCROLL = {
   getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
 };
 
+export const EVMOS = {
+  chainId: 9001,
+  chainName: "evmos",
+  isTestChain: false,
+  isLocalChain: false,
+  multicallAddress: "0xF946EA986944Aa93b03362Bd7F2d86a7607B54D7",
+  multicall2Address: "0xF946EA986944Aa93b03362Bd7F2d86a7607B54D7",
+  rpcUrl: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
+  nativeCurrency: {
+    name: "EVMOS",
+    symbol: "EVMOS",
+    address: "0x0000000000000000000000000000000000000000",
+    decimals: 18,
+  },
+  getExplorerAddressLink: (address: string) =>
+    `https://scrollscan.com/${address}`,
+  getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
+};
+
 const DYNAMIC_SETTINGS = createDynamicSettings();
 const USEDAPP_CONFIG: Config = {
   readOnlyUrls: {
@@ -64,12 +84,14 @@ const USEDAPP_CONFIG: Config = {
     [Arbitrum.chainId]: "https://arb1.arbitrum.io/rpc",
     [ArbitrumGoerli.chainId]:
       "https://arb-goerli.g.alchemy.com/v2/clalwfFmsbGLGqKV6gBYp-y5BdG_F2aQ",
+    [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
   },
   multicallAddresses: {
     [BASE_CHAIN_ID]: "0x8182b69C7048263E82781eC6885e4a696792AcE6",
     [SCROLL_CHAIN_ID]: "0x895d9130Dc56196Ab2c0c8787c8D80D5DE15E64f",
+    [EVMOS_CHAIN_ID]: "0xF946EA986944Aa93b03362Bd7F2d86a7607B54D7"
   },
-  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL],
+  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL, EVMOS],
 };
 
 const QUERY_CLIENT = new QueryClient();

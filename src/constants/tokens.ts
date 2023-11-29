@@ -24,7 +24,8 @@ import {
   KAVA_CHAIN_ID,
   ZKSYNC_CHAIN_ID,
   BASE_CHAIN_ID,
-  SCROLL_CHAIN_ID
+  SCROLL_CHAIN_ID,
+  EVMOS_CHAIN_ID
 } from './networks';
 
 export const DISABLE_TOKENS: Map<TokenSymbol, boolean> = new Map<TokenSymbol, boolean>();
@@ -184,6 +185,12 @@ export const NATIVE_TOKENS = [
     'ETH',
     'https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png'
   ),
+  newNativeToken(
+    EVMOS_CHAIN_ID,
+    'Evmos',
+    'EVMOS',
+    'https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/stevmos.png'
+  ),
 ];
 
 export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
@@ -210,6 +217,7 @@ export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
   [ZKSYNC_CHAIN_ID]: NATIVE_TOKENS[19],
   [BASE_CHAIN_ID]: NATIVE_TOKENS[20],
   [SCROLL_CHAIN_ID]: NATIVE_TOKENS[21],
+  [EVMOS_CHAIN_ID]: NATIVE_TOKENS[22],
 };
 
 export const USDC_ADDRESS_BY_CHAIN: { [chainId: ChainId]: Address } = {
