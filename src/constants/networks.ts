@@ -22,7 +22,7 @@ import AURORA_ICON from "../assets/icons_chain/aurora.svg";
 import ZKSYNC_ICON from "../assets/icons_chain/zksync.svg";
 import BASE_ICON from "../assets/icons_chain/base.svg";
 import SCROLL_ICON from "../assets/icons_chain/scroll.svg";
-import EVMOS_ICON from "../assets/icons_chain/EVMOS.png";
+import EVMOS_ICON from "../assets/icons_chain/evmos.png";
 
 import USDC_LOGO from "../assets/logos/USDC.svg";
 import DAI_LOGO from "../assets/logos/DAI.svg";
