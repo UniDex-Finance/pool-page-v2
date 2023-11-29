@@ -33,8 +33,8 @@ export default ({
   const { library, chainId: chainIdEthers } = useEthers();
   const disabled = chainId !== chainIdEthers;
 
-  const collateraLower = collateral.toLowerCase();
-  const addressCollateral = CHAINDATA[chainId]?.poolAddress?.[collateraLower];
+  const collateralLower = collateral.toLowerCase();
+  const addressCollateral = CHAINDATA[chainId]?.poolAddress?.[collateralLower];
 
   const callResult = useCall(
     addressCollateral &&

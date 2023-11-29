@@ -2,6 +2,12 @@ import { useState } from "react";
 import { formatUnits } from "ethers/lib/utils";
 import { NumericFormat } from "react-number-format";
 import {
+  useEtherBalance,
+  useEthers,
+  useTokenAllowance,
+  useTokenBalance,
+} from "@usedapp/core";
+import {
   Button,
   Input,
   Popover,
@@ -10,7 +16,6 @@ import {
 } from "@material-tailwind/react";
 import { ParamsOnClickAction } from "../Columns";
 import { ChainId } from "../../../../../types";
-import { useEtherBalance, useEthers, useTokenBalance } from "@usedapp/core";
 import { CHAINDATA } from "../../../../../constants";
 import { ADDRESS_ZERO } from "../../../../../constants/tokens";
 import { roundAndFloor } from "../../../../../helpers";
@@ -33,23 +38,39 @@ export default ({
   account,
 }: Props) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(valueRef.current);
+  const [value, setValue] = useState("");
 
   const { chainId: chainIdEthers } = useEthers();
   const disabled = chainId !== chainIdEthers;
 
-  const collateraLower = collateral.toLowerCase();
-  const addressCollateral = CHAINDATA[chainId]?.collateral?.[collateraLower];
+  const collateralLower = collateral.toLowerCase();
+  const addressCollateral = CHAINDATA[chainId]?.collateral?.[collateralLower];
+  const addressPool = CHAINDATA[chainId]?.poolAddress?.[collateralLower];
+
   const balanceDeposit =
     addressCollateral === ADDRESS_ZERO
       ? useEtherBalance(account, { chainId })
       : useTokenBalance(addressCollateral, account, { chainId });
+  const allowanceDeposit = useTokenAllowance(
+    addressCollateral,
+    account,
+    addressPool
+  );
 
   const balanceDepositFormatted = formatUnits(
     balanceDeposit || 0,
-    collateraLower.includes("usdc") ? 6 : 18
+    collateralLower.includes("usdc") ? 6 : 18
   );
+  const allowanceDepositFormatted = formatUnits(
+    allowanceDeposit || 0,
+    collateralLower.includes("usdc") ? 6 : 18
+  );
+
   const balanceDepositFormattedNumber = Number(balanceDepositFormatted);
+  const allowanceDepositFormattedNumber = Number(allowanceDepositFormatted);
+
+  const balanceAvailable = balanceDepositFormattedNumber >= Number(value);
+  const tokenApproved = allowanceDepositFormattedNumber >= Number(value);
 
   return (
     <Popover
@@ -109,10 +130,23 @@ export default ({
             </Button>
           </div>
           <Button
-            className="font-normal bg-main-front py-1"
-            onClick={() => onClickAction([chainId, collateral, "deposit"])}
+            className={`font-normal bg-main-front py-1 disabled:bg-main-front-disabled ${
+              !tokenApproved ? "bg-sky-400" : ""
+            }`}
+            disabled={!balanceAvailable}
+            onClick={() =>
+              onClickAction([
+                chainId,
+                collateral,
+                "deposit",
+                undefined,
+                { tokenApproved },
+              ])
+            }
           >
-            CONFIRM DEPOSIT
+            {!balanceAvailable && "LOW BALANCE"}
+            {balanceAvailable &&
+              (tokenApproved ? "CONFIRM DEPOSIT" : "APPROVE TOKEN")}
           </Button>
         </div>
       </PopoverContent>

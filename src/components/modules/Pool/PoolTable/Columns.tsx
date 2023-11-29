@@ -22,7 +22,10 @@ export type ParamsOnClickAction = [
   chainIdRow: ChainId,
   collateral: string,
   buttonAction: ButtonAction,
-  indexRow?: number
+  indexRow?: number,
+  opts?: {
+    tokenApproved?: boolean;
+  }
 ];
 
 type Props = {
@@ -44,8 +47,12 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     chainIdRow,
     collateral,
     buttonAction,
+    ,
+    opts,
   ]: ParamsOnClickAction) => {
     const collateralLower = collateral.toLowerCase();
+    const addressCollateral =
+      CHAINDATA[chainIdRow]?.poolAddress?.[collateralLower];
     const addressPool = CHAINDATA[chainIdRow].poolAddress[collateralLower];
     const contractPool = new Contract(
       addressPool,
@@ -59,15 +66,25 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
       if (buttonAction === "deposit") {
         const valueDeposit = valueDepositRef.current;
         const valueDepositBigNumber = parseUnitsSafe(
-          valueDeposit.toString(),
+          valueDeposit,
           // TODO: use dict or something else here
           collateralLower.includes("usdc") ? 6 : 18
         );
-        tx = await contractPool.deposit(valueDepositBigNumber);
+
+        if (opts?.tokenApproved) {
+          tx = await contractPool.deposit(valueDepositBigNumber);
+        } else {
+          const contractERC20 = new Contract(
+            addressCollateral,
+            ABIS["erc20"],
+            library.getSigner()
+          );
+          tx = await contractERC20.approve(addressPool, valueDepositBigNumber);
+        }
       } else {
         const valueWithdraw = valueWitdrawRef.current;
         const valueWithdrawBigNumber = parseUnitsSafe(
-          valueWithdraw.toString(),
+          valueWithdraw,
           // TODO: use dict or something else here
           collateralLower.includes("usdc") ? 6 : 18
         );

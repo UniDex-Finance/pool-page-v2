@@ -8,6 +8,7 @@ export default {
         "main-back": "#101119",
         "main-card": "#16171f",
         "main-front": "#252630",
+        "main-front-disabled": "#1b1c23",
         "secondary-text": "#bbbcbe",
       },
     },
