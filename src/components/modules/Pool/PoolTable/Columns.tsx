@@ -52,8 +52,8 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
   ]: ParamsOnClickAction) => {
     const collateralLower = collateral.toLowerCase();
     const addressCollateral =
-      CHAINDATA[chainIdRow]?.poolAddress?.[collateralLower];
-    const addressPool = CHAINDATA[chainIdRow].poolAddress[collateralLower];
+      CHAINDATA[chainIdRow]?.collateral?.[collateralLower];
+    const addressPool = CHAINDATA[chainIdRow]?.poolAddress?.[collateralLower];
     const contractPool = new Contract(
       addressPool,
       ABIS["pool"],

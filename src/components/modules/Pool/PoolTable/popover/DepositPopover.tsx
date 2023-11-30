@@ -70,7 +70,9 @@ export default ({
   const allowanceDepositFormattedNumber = Number(allowanceDepositFormatted);
 
   const balanceAvailable = balanceDepositFormattedNumber >= Number(value);
-  const tokenApproved = allowanceDepositFormattedNumber >= Number(value);
+  const tokenApproved =
+    addressCollateral === ADDRESS_ZERO ||
+    allowanceDepositFormattedNumber >= Number(value);
 
   return (
     <Popover
