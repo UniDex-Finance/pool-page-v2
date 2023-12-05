@@ -11,6 +11,7 @@ import {
   NETWORK_ICON_SRC,
   NETWORK_NAMES_API,
 } from "../../../../constants/networks";
+import { ADDRESS_ZERO } from "../../../../constants/tokens";
 import { parseUnitsSafe } from "../../../../helpers";
 import { DepositPopover, WithdrawPopover } from "./popover";
 import { useAppState } from "../../../../hooks";
@@ -72,7 +73,10 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         );
 
         if (opts?.tokenApproved) {
-          tx = await contractPool.deposit(valueDepositBigNumber);
+          tx =
+            addressCollateral === ADDRESS_ZERO
+              ? await contractPool.deposit(0, { value: valueDepositBigNumber })
+              : await contractPool.deposit(valueDepositBigNumber);
         } else {
           const contractERC20 = new Contract(
             addressCollateral,
