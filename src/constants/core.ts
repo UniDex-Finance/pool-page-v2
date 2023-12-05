@@ -193,18 +193,21 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     },
     collateral: {
       ftm: ADDRESS_ZERO,
-
     },
   },
   10: {
     poolAddress: {
       dai: "0xCdDF71750E596b4C38785afFEc3bd4C9bff43f6F",
+      eth: "0x68A4cF26705B3cEaB49d1C99DE98F3Db28ee767E",
     },
     rewardsContract: {
       dai: "0x267c39Bbc612FD0dcEeaB8Ec6Ea65c67e2Bf8FAB",
+      eth: "0xFEc73187273A535B5773ae9C9Ade05DB1950491a",
+
     },
     collateral: {
       dai: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+      eth: ADDRESS_ZERO,
     },
   },
   8453: {
