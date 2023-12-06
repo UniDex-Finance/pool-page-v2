@@ -162,7 +162,7 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       stevmos: "0x21708707f03A19C3a4ea5E1a132B5cF96b86F294",
     },
     rewardsContract: {
-      stevmos: "0x42EbA10b9bf487baD672c9479810DbFE305721D3",
+      stevmos: "0x994fE8278Efc9Fe56098b8130392bb208Dc81ee0",
     },
     collateral: {
       stevmos: "0x2C68D1d6aB986Ff4640b51e1F14C716a076E44C4",
