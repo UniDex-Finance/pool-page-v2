@@ -32,6 +32,7 @@ export const CURRENCY_LOGOS = {
   crvusd: "/src/assets/logos/CRVUSD.png",
   mantle: "/src/assets/logos/MANTLE.jpg",
   stevmos: "/src/assets/logos/STEVMOS.webp",
+  fort: "/src/assets/logos/FORT.jpg",
 };
 
 export const ABIS: { [key: string]: string[] } = {
@@ -215,16 +216,19 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       eth: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",
       crvusd: "0xEfD0B28810dC3cdD88763f40DCc44462bb85Cf32",
       bswap: "0xe10f7BCFf83A0263c03Ba27795d11f4B1631Ef4e",
+      fort: "0x0E0576Dd3bF577a11aFE19b229fd7AF3185e3797",
     },
     rewardsContract: {
       eth: "0x9673B0E0F07e4a6da712F6847aE93C3F157DD509",
       crvusd: "0xDaa78E776D3788F9FBABDAc02aa6De45f7BC50C6",
       bswap: "0x3B245f36e39509B41471Ea7793c893f5d97eE69E",
+      fort: "0x99800E0f7f04Bd0F70C4df37f54a0E4bBB6d21AD",
     },
     collateral: {
       eth: ADDRESS_ZERO,
       crvusd: "0x417ac0e078398c154edfadd9ef675d30be60af93",
       bswap: "0x78a087d713Be963Bf307b18F2Ff8122EF9A63ae9",
+      fort: "0x7233062d88133b5402d39d62bfa23a1b6c8d0898"
     },
   },
   1088: {

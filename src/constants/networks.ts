@@ -43,6 +43,7 @@ import CRVUSD_LOGO from "../assets/logos/CRVUSD.png";
 import XDAI_LOGO from "../assets/logos/xdai.png";
 import TIA_LOGO from "../assets/logos/TIA.png";
 import INJ_LOGO from "../assets/logos/INJ.png";
+import FORT_LOGO from "../assets/logos/FORT.jpg";
 
 export const MAINNET_CHAIN_ID = 1;
 export const KOVAN_CHAIN_ID = 42;
@@ -401,6 +402,7 @@ export const CRYPTO_ICON_SRC = {
   XDAI: XDAI_LOGO,
   TIA: TIA_LOGO,
   INJ: INJ_LOGO,
+  FORT: FORT_LOGO,
 };
 
 export const NETWORK_URLS: { [chainId: ChainId]: string } = {
