@@ -28,10 +28,10 @@ export default () => {
   return (
     <Menu>
       <MenuHandler>
-        <Button disabled={!active || !chainId}>
+        <Button disabled={!active}>
           <div className="flex text-lg font-normal">
             {active && !chainId ? (
-              <div className="text-tertiary-text">Wrong Network</div>
+              <div className="text-tertiary-text">Unsupported Network</div>
             ) : (
               <>
                 <img
