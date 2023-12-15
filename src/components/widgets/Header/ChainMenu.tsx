@@ -12,6 +12,7 @@ import {
   CHAINDATA,
 } from "../../../constants";
 import { ChainId } from "../../../types";
+import { MAINNET_CHAIN_ID } from "../../../constants/networks";
 
 const CHAIN_FILTER_LIST: ChainId[] = [];
 Object.entries(CHAINDATA).forEach(([chainKey, chainData]) => {
@@ -21,23 +22,26 @@ Object.entries(CHAINDATA).forEach(([chainKey, chainData]) => {
 });
 
 export default () => {
-  const { chainId, switchNetwork } = useEthers();
+  const { chainId, active, switchNetwork } = useEthers();
+  const chainIdButton = chainId || MAINNET_CHAIN_ID;
 
   return (
     <Menu>
       <MenuHandler>
-        <Button>
+        <Button disabled={!active || !chainId}>
           <div className="flex text-lg font-normal">
-            {chainId && (
+            {active && !chainId ? (
+              <div className="text-tertiary-text">Wrong Network</div>
+            ) : (
               <>
                 <img
                   className="mr-3"
-                  src={NETWORK_ICON_SRC[chainId]}
-                  alt={NETWORK_DISPLAY_NAME[chainId]}
+                  src={NETWORK_ICON_SRC[chainIdButton]}
+                  alt={NETWORK_DISPLAY_NAME[chainIdButton]}
                   width={25}
                   height={25}
                 />
-                <div>{NETWORK_DISPLAY_NAME[chainId]}</div>
+                <div>{NETWORK_DISPLAY_NAME[chainIdButton]}</div>
               </>
             )}
           </div>

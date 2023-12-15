@@ -10,6 +10,7 @@ export default {
         "main-front": "#252630",
         "main-front-disabled": "#1b1c23",
         "secondary-text": "#bbbcbe",
+        "tertiary-text": "#6f7071"
       },
     },
   },

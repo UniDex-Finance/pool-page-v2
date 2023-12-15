@@ -103,7 +103,7 @@ export const NETWORKS_AVAILABLE: ChainId[] = [
   ZKEVM_CHAIN_ID,
   BASE_CHAIN_ID,
   SCROLL_CHAIN_ID,
-  EVMOS_CHAIN_ID
+  EVMOS_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
@@ -127,7 +127,7 @@ export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
   METIS_CHAIN_ID,
   BASE_CHAIN_ID,
   SCROLL_CHAIN_ID,
-  EVMOS_CHAIN_ID
+  EVMOS_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
@@ -141,7 +141,7 @@ export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
   BSC_CHAIN_ID,
   METIS_CHAIN_ID,
   SCROLL_CHAIN_ID,
-  EVMOS_CHAIN_ID
+  EVMOS_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
@@ -472,6 +472,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
   [OP_CHAIN_ID]:
     "https://sly-virulent-waterfall.optimism.quiknode.pro/e7187027dce1e6ffb4eef92ac5066a0b94ea28ef/",
+  [POLYGON_CHAIN_ID]: "https://polygon-rpc.com",
   [ZKSYNC_CHAIN_ID]: "https://mainnet.era.zksync.io",
   [FANTOM_CHAIN_ID]: "https://rpcapi.fantom.network",
   [METIS_CHAIN_ID]: "https://andromeda.metis.io/?owner=1088",

@@ -31,7 +31,7 @@ export default function WalletButton() {
       try {
         await activateWallet();
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
 
       return;
