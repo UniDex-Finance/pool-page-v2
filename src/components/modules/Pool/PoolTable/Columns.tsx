@@ -66,11 +66,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
       let tx: any;
       if (buttonAction === "deposit") {
         const valueDeposit = valueDepositRef.current;
-        const valueDepositBigNumber = parseUnitsSafe(
-          valueDeposit,
-          // TODO: use dict or something else here
-          collateralLower.includes("usdc") ? 6 : 18
-        );
+        const valueDepositBigNumber = parseUnitsSafe(valueDeposit, 18);
 
         if (opts?.tokenApproved) {
           tx =
@@ -87,11 +83,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         }
       } else {
         const valueWithdraw = valueWitdrawRef.current;
-        const valueWithdrawBigNumber = parseUnitsSafe(
-          valueWithdraw,
-          // TODO: use dict or something else here
-          collateralLower.includes("usdc") ? 6 : 18
-        );
+        const valueWithdrawBigNumber = parseUnitsSafe(valueWithdraw, 18);
         tx = await contractPool.withdraw(valueWithdrawBigNumber);
       }
 
