@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { PoolRow } from "../../../types";
- import { useAppState } from "../../../hooks";
+import { useAppState } from "../../../hooks";
 import { PoolDataRangeKey, Store } from "../../../types/core";
 import { CHAINDATA } from "../../../constants";
 import { NETWORK_NAMES_API } from "../../../constants";
@@ -15,8 +15,8 @@ export default () => {
   const [poolRows, setPoolRows] = useState<PoolRow[]>([]);
   const doNotUpdatePoolRowsRef = useRef(false);
 
-   const { state } = useAppState();
-   const poolData: Store["poolData"] | undefined = state?.poolData;
+  const { state } = useAppState();
+  const poolData: Store["poolData"] | undefined = state?.poolData;
   //const poolData: Store["poolData"] = poolDataTest;
 
   const updatePoolRowsAPR = (aprRange: PoolDataRangeKey) => {
@@ -49,7 +49,7 @@ export default () => {
   }, [poolData, poolRows.length]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col lg:items-center">
       <div className="min-w-[1350px] max-w-[1350px]">
         <div className="mb-8">
           <PoolTitle className="mb-8" />
