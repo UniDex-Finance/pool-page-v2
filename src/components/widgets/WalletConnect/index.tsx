@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useDynamicContext } from "@dynamic-labs/sdk-react";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 import { shortenAddress, useEthers, useLookupAddress } from "@usedapp/core";
 // import { Web3Provider } from '@ethersproject/providers';
 import { ethers } from "ethers";

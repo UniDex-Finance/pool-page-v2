@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { shortenIfAddress, useEthers } from "@usedapp/core";
-import { useDynamicContext } from "@dynamic-labs/sdk-react";
+import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
 
 import copyIcon from "../../assets/copy.svg";
 import etherscanIcon from "../../assets/etherscan.svg";

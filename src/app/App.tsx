@@ -1,4 +1,4 @@
-import { DynamicContextProvider } from "@dynamic-labs/sdk-react";
+import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Arbitrum,
