@@ -12,6 +12,7 @@ import {
 import { ChainId } from "../types";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 import { MagicWalletConnectors } from "@dynamic-labs/magic";
+import { ZeroDevSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 
 type DynamicContextProps = React.ComponentProps<typeof DynamicContextProvider>;
 
@@ -19,7 +20,7 @@ export default (): DynamicContextProps["settings"] => {
   return {
     environmentId: "63f5b880-69e0-4798-b20d-5005d5a1649e",
     initialAuthenticationMode: "connect-only",
-    walletConnectors: [EthereumWalletConnectors, MagicWalletConnectors],
+    walletConnectors: [EthereumWalletConnectors, MagicWalletConnectors, ZeroDevSmartWalletConnectors],
     evmNetworks: NETWORKS_AVAILABLE_SIMPLE.map(
       (chainId: ChainId): EvmNetwork => {
         const { decimals, name, symbol } = NATIVE_TOKEN_BY_CHAIN_ID[chainId];
