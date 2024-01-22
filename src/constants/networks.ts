@@ -414,19 +414,19 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
     "https://eth-kovan.alchemyapi.io/v2/kKt4rItTbSfgSw5yTtZlRmqwQXU890aF",
   [BSC_CHAIN_ID]: "https://bnb.sakurarpc.io",
   [POLYGON_CHAIN_ID]:
-    "https://polygon-mainnet.g.alchemy.com/v2/vgWq-MQPsICWFFAU1TYOZ3dpGXhYfpg8",
+    "https://lb.nodies.app/v1/d4fda5437eb44c82aed6b20fe472c8c9",
   [AVA_CHAIN_ID]: "https://api.avax.network/ext/bc/C/rpc",
   [FANTOM_CHAIN_ID]: "https://rpcapi.fantom.network",
   [XDAI_CHAIN_ID]: "https://rpc.gnosis.gateway.fm",
   [MOONBEAM_CHAIN_ID]: "https://rpc.testnet.moonbeam.network",
   [FUSE_CHAIN_ID]: "https://rpc.fuse.io",
   [ARBITRUM_CHAIN_ID]:
-    "https://red-cosmological-model.arbitrum-mainnet.quiknode.pro/d8d673e498044e324e1e9e0921a9dc95f78078d5/",
+    "https://lb.nodies.app/v1/b33051ceac4b4a75a4bbc5102dc86ea0",
   [MOON_RIVER_CHAIN_ID]: "https://rpc.moonriver.moonbeam.network",
   [BOBA_CHAIN_ID]: "https://mainnet.boba.network",
   [HARMONY_CHAIN_ID]: "https://api.harmony.one",
   [OP_CHAIN_ID]:
-    "https://sly-virulent-waterfall.optimism.quiknode.pro/e7187027dce1e6ffb4eef92ac5066a0b94ea28ef/",
+    "https://lb.nodies.app/v1/91092cbc290e46a3a99251b4f18fb8c6",
   [CRONOS_CHAIN_ID]: "https://evm-cronos.crypto.org",
   [AUORA_CHAIN_ID]: "https://mainnet.aurora.dev",
   [METIS_CHAIN_ID]: "https://andromeda.metis.io/?owner=1088",
@@ -435,7 +435,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [KAVA_CHAIN_ID]: "https://lcd.kava3.data.kava.io",
   [ZKSYNC_CHAIN_ID]: "https://mainnet.era.zksync.io",
   [BASE_CHAIN_ID]:
-    "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
+    "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
 };
@@ -445,26 +445,32 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
     "https://eth-mainnet.g.alchemy.com/v2/LnOWF7MPoOba1gqE1VVE4HwfzV3sZ7C1",
   [SEPOLIA_CHAIN_ID]:
     "wss://eth-mainnet.g.alchemy.com/v2/k4-7Agacy4KzCQ7xPvGGVVoMxsnB_sYy",
+  [KOVAN_CHAIN_ID]:
+    "https://eth-kovan.alchemyapi.io/v2/kKt4rItTbSfgSw5yTtZlRmqwQXU890aF",
   [BSC_CHAIN_ID]: "https://bnb.sakurarpc.io",
   [POLYGON_CHAIN_ID]:
-    "https://polygon-mainnet.g.alchemy.com/v2/vgWq-MQPsICWFFAU1TYOZ3dpGXhYfpg8",
+    "https://lb.nodies.app/v1/d4fda5437eb44c82aed6b20fe472c8c9",
   [AVA_CHAIN_ID]: "https://api.avax.network/ext/bc/C/rpc",
   [FANTOM_CHAIN_ID]: "https://rpcapi.fantom.network",
   [XDAI_CHAIN_ID]: "https://rpc.gnosis.gateway.fm",
+  [MOONBEAM_CHAIN_ID]: "https://rpc.testnet.moonbeam.network",
+  [FUSE_CHAIN_ID]: "https://rpc.fuse.io",
   [ARBITRUM_CHAIN_ID]:
-    "https://red-cosmological-model.arbitrum-mainnet.quiknode.pro/d8d673e498044e324e1e9e0921a9dc95f78078d5/",
+    "https://lb.nodies.app/v1/b33051ceac4b4a75a4bbc5102dc86ea0",
   [MOON_RIVER_CHAIN_ID]: "https://rpc.moonriver.moonbeam.network",
   [BOBA_CHAIN_ID]: "https://mainnet.boba.network",
   [HARMONY_CHAIN_ID]: "https://api.harmony.one",
   [OP_CHAIN_ID]:
-    "https://sly-virulent-waterfall.optimism.quiknode.pro/e7187027dce1e6ffb4eef92ac5066a0b94ea28ef",
+    "https://lb.nodies.app/v1/91092cbc290e46a3a99251b4f18fb8c6",
   [CRONOS_CHAIN_ID]: "https://evm-cronos.crypto.org",
   [AUORA_CHAIN_ID]: "https://mainnet.aurora.dev",
+  [METIS_CHAIN_ID]: "https://andromeda.metis.io/?owner=1088",
   [VELAS_CHAIN_ID]: "https://evmexplorer.velas.com/rpc",
-  [KAVA_CHAIN_ID]: "https://evm.kava.io",
+  [KUCOIN_CHAIN_ID]: "https://rpc-mainnet.kcc.network",
+  [KAVA_CHAIN_ID]: "https://lcd.kava3.data.kava.io",
   [ZKSYNC_CHAIN_ID]: "https://mainnet.era.zksync.io",
   [BASE_CHAIN_ID]:
-    "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
+    "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
 };
