@@ -33,6 +33,8 @@ export const CURRENCY_LOGOS = {
   mantle: "/src/assets/logos/MANTLE.jpg",
   stevmos: "/src/assets/logos/STEVMOS.webp",
   fort: "/src/assets/logos/FORT.jpg",
+  bnb: "/src/assets/logos/BNB.svg",
+  golden: "/src/assets/logos/golden.png",
 };
 
 export const ABIS: { [key: string]: string[] } = {
@@ -181,6 +183,20 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     },
     collateral: {
       metis: ADDRESS_ZERO,
+    },
+  },
+  56: {
+    poolAddress: {
+      bnb: "0x4bABA27338E80Ed571353F7e98d1cc4FBBcf46E4",
+      golden: "0x91902e2D0CD2bB93b17C0C51a4D180F11a7784be",
+    },
+    rewardsContract: {
+      bnb: "0xc797C9AA0e1B9Bbf7f832b94Fd93a994381Dc79E",
+      golden: "0x895d9130Dc56196Ab2c0c8787c8D80D5DE15E64f",
+    },
+    collateral: {
+      bnb: ADDRESS_ZERO,
+      golden: "0x7d4984490c4c68f8ead9dddca6d04c514ef77324",
     },
   },
 };
