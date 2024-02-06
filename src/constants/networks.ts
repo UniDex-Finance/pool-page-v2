@@ -142,6 +142,7 @@ export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
   METIS_CHAIN_ID,
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
+  BSC_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
@@ -412,7 +413,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
     "wss://eth-mainnet.g.alchemy.com/v2/k4-7Agacy4KzCQ7xPvGGVVoMxsnB_sYy",
   [KOVAN_CHAIN_ID]:
     "https://eth-kovan.alchemyapi.io/v2/kKt4rItTbSfgSw5yTtZlRmqwQXU890aF",
-  [BSC_CHAIN_ID]: "https://bnb.sakurarpc.io",
+  [BSC_CHAIN_ID]: "https://lb.nodies.app/v1/9af780ad7c9c42a0996c70d19a58c25f",
   [POLYGON_CHAIN_ID]:
     "https://lb.nodies.app/v1/d4fda5437eb44c82aed6b20fe472c8c9",
   [AVA_CHAIN_ID]: "https://api.avax.network/ext/bc/C/rpc",
@@ -447,7 +448,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
     "wss://eth-mainnet.g.alchemy.com/v2/k4-7Agacy4KzCQ7xPvGGVVoMxsnB_sYy",
   [KOVAN_CHAIN_ID]:
     "https://eth-kovan.alchemyapi.io/v2/kKt4rItTbSfgSw5yTtZlRmqwQXU890aF",
-  [BSC_CHAIN_ID]: "https://bnb.sakurarpc.io",
+  [BSC_CHAIN_ID]: "https://lb.nodies.app/v1/9af780ad7c9c42a0996c70d19a58c25f",
   [POLYGON_CHAIN_ID]:
     "https://lb.nodies.app/v1/d4fda5437eb44c82aed6b20fe472c8c9",
   [AVA_CHAIN_ID]: "https://api.avax.network/ext/bc/C/rpc",
@@ -483,7 +484,7 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
   [FANTOM_CHAIN_ID]: "https://rpcapi.fantom.network",
   [METIS_CHAIN_ID]: "https://andromeda.metis.io/?owner=1088",
   [AVA_CHAIN_ID]: "https://avalanche.public-rpc.com",
-  [BSC_CHAIN_ID]: "https://bnb.sakurarpc.io	",
+  [BSC_CHAIN_ID]: "https://lb.nodies.app/v1/9af780ad7c9c42a0996c70d19a58c25f	",
   [GNOSIS_CHAIN_ID]: "https://rpc.gnosis.gateway.fm",
   [BASE_CHAIN_ID]:
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
