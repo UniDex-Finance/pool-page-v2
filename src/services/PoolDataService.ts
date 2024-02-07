@@ -84,9 +84,6 @@ export default class {
 
     const response = await fetch(NAME_TO_URL_CALLBACK[name](callbackArg), {
       method,
-      headers: {
-        "Content-Type": "application/json",
-      },
       body:
         method === "POST"
           ? JSON.stringify({
