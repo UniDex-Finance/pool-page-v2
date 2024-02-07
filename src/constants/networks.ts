@@ -44,6 +44,9 @@ import XDAI_LOGO from "../assets/logos/xdai.png";
 import TIA_LOGO from "../assets/logos/TIA.png";
 import INJ_LOGO from "../assets/logos/INJ.png";
 import FORT_LOGO from "../assets/logos/FORT.jpg";
+import STEVMOS_ICON from "../assets/logos/stevmos.png";
+import BNB_ICON from "../assets/logos/BNB.svg";
+import GOLDEN_ICON from "../assets/logos/golden.png";
 
 export const MAINNET_CHAIN_ID = 1;
 export const KOVAN_CHAIN_ID = 42;
@@ -142,7 +145,7 @@ export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
   METIS_CHAIN_ID,
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
-  BSC_CHAIN_ID
+  BSC_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
@@ -404,6 +407,9 @@ export const CRYPTO_ICON_SRC = {
   TIA: TIA_LOGO,
   INJ: INJ_LOGO,
   FORT: FORT_LOGO,
+  STEVMOS: STEVMOS_ICON,
+  BNB: BNB_ICON,
+  GOLDEN: GOLDEN_ICON,
 };
 
 export const NETWORK_URLS: { [chainId: ChainId]: string } = {
@@ -426,8 +432,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [MOON_RIVER_CHAIN_ID]: "https://rpc.moonriver.moonbeam.network",
   [BOBA_CHAIN_ID]: "https://mainnet.boba.network",
   [HARMONY_CHAIN_ID]: "https://api.harmony.one",
-  [OP_CHAIN_ID]:
-    "https://lb.nodies.app/v1/91092cbc290e46a3a99251b4f18fb8c6",
+  [OP_CHAIN_ID]: "https://lb.nodies.app/v1/91092cbc290e46a3a99251b4f18fb8c6",
   [CRONOS_CHAIN_ID]: "https://evm-cronos.crypto.org",
   [AUORA_CHAIN_ID]: "https://mainnet.aurora.dev",
   [METIS_CHAIN_ID]: "https://andromeda.metis.io/?owner=1088",
@@ -435,8 +440,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [KUCOIN_CHAIN_ID]: "https://rpc-mainnet.kcc.network",
   [KAVA_CHAIN_ID]: "https://lcd.kava3.data.kava.io",
   [ZKSYNC_CHAIN_ID]: "https://mainnet.era.zksync.io",
-  [BASE_CHAIN_ID]:
-    "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
+  [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
 };
@@ -461,8 +465,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [MOON_RIVER_CHAIN_ID]: "https://rpc.moonriver.moonbeam.network",
   [BOBA_CHAIN_ID]: "https://mainnet.boba.network",
   [HARMONY_CHAIN_ID]: "https://api.harmony.one",
-  [OP_CHAIN_ID]:
-    "https://lb.nodies.app/v1/91092cbc290e46a3a99251b4f18fb8c6",
+  [OP_CHAIN_ID]: "https://lb.nodies.app/v1/91092cbc290e46a3a99251b4f18fb8c6",
   [CRONOS_CHAIN_ID]: "https://evm-cronos.crypto.org",
   [AUORA_CHAIN_ID]: "https://mainnet.aurora.dev",
   [METIS_CHAIN_ID]: "https://andromeda.metis.io/?owner=1088",
@@ -470,8 +473,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [KUCOIN_CHAIN_ID]: "https://rpc-mainnet.kcc.network",
   [KAVA_CHAIN_ID]: "https://lcd.kava3.data.kava.io",
   [ZKSYNC_CHAIN_ID]: "https://mainnet.era.zksync.io",
-  [BASE_CHAIN_ID]:
-    "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
+  [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
 };

@@ -17,7 +17,10 @@ import {
 import { ParamsOnClickAction } from "../Columns";
 import { ChainId } from "../../../../../types";
 import { CHAINDATA } from "../../../../../constants";
-import { ADDRESS_ZERO } from "../../../../../constants/tokens";
+import {
+  ADDRESS_ZERO,
+  CURRENCY_DETAILS,
+} from "../../../../../constants/tokens";
 import { roundAndFloor } from "../../../../../helpers";
 
 type Props = {
@@ -44,8 +47,11 @@ export default ({
   const disabled = chainId !== chainIdEthers;
 
   const collateralLower = collateral.toLowerCase();
+  const collateralUpper = collateral.toUpperCase();
   const addressCollateral = CHAINDATA[chainId]?.collateral?.[collateralLower];
   const addressPool = CHAINDATA[chainId]?.poolAddress?.[collateralLower];
+  const decimalsCollateral =
+    CURRENCY_DETAILS?.[chainId]?.[collateralUpper]?.decimals || 18;
 
   const balanceDeposit =
     addressCollateral === ADDRESS_ZERO
@@ -59,11 +65,11 @@ export default ({
 
   const balanceDepositFormatted = formatUnits(
     balanceDeposit || 0,
-    collateralLower.includes("usdc") ? 6 : 18
+    decimalsCollateral
   );
   const allowanceDepositFormatted = formatUnits(
     allowanceDeposit || 0,
-    collateralLower.includes("usdc") ? 6 : 18
+    decimalsCollateral
   );
 
   const balanceDepositFormattedNumber = Number(balanceDepositFormatted);

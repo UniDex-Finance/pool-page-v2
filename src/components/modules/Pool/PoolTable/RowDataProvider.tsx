@@ -8,7 +8,7 @@ import {
 } from "@usedapp/core";
 import { Address, ChainId, PoolRow } from "../../../../types";
 import { ABIS, CHAINDATA, NETWORK_NAMES_API } from "../../../../constants";
-import { ADDRESS_ZERO } from "../../../../constants/tokens";
+import { ADDRESS_ZERO, CURRENCY_DETAILS } from "../../../../constants/tokens";
 import { useAppState } from "../../../../hooks";
 import { formatUnits } from "../../../../helpers";
 
@@ -28,9 +28,12 @@ const usePoolTVL = ({
   doNotUpdatePoolRowsRef,
 }: PropsHook) => {
   const collateralRowLower = collateralRow.toLowerCase();
+  const collateralRowUpper = collateralRow.toUpperCase();
   const chainDataRow = CHAINDATA[chainIdRow];
   const addressCollateralRow = chainDataRow?.collateral?.[collateralRowLower];
   const addressPoolRow = chainDataRow?.poolAddress?.[collateralRowLower];
+  const decimalsCollateral =
+    CURRENCY_DETAILS[chainIdRow]?.[collateralRowUpper]?.decimals || 18;
   const pricesKeyRow = `${NETWORK_NAMES_API.defillama[chainIdRow]}:${addressCollateralRow}`;
 
   const { state } = useAppState();
@@ -49,10 +52,7 @@ const usePoolTVL = ({
         return;
       }
 
-      const tvlRowFormatted = formatUnits(
-        tvlRow || 0,
-        collateralRowLower.includes("usdc") ? 6 : 18
-      );
+      const tvlRowFormatted = formatUnits(tvlRow || 0, decimalsCollateral);
       const tvlRowFormattedNumber = Number(tvlRowFormatted);
       const priceCurrencyRow = prices[pricesKeyRow];
       const tvlRowFormattedNumberUSD =
