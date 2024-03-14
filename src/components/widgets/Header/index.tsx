@@ -22,12 +22,27 @@ const options = [
   {
     name: "Leverage Stats",
     value: "4",
-    url: "https://v1.unidex.exchange/#/stats",
+    url: "https://stats.unidex.exchange/",
   },
   {
     name: "Live Pnl",
     value: "5",
     url: "https://comp.unidex.exchange/#/fantom",
+  },
+  {
+    name: "Staking MOLTEN",
+    value: "6",
+    url: "https://staking.unidex.exchange",
+  },
+  {
+    name: "Bridge MOLTEN",
+    value: "7",
+    url: "https://bridge.unidex.exchange",
+  },
+  {
+    name: "Migrate UniDEX",
+    value: "8",
+    url: "https://migrate.unidex.exchange",
   },
 ];
 
@@ -118,11 +133,11 @@ export default function Header() {
 
   return (
     <Navbar
-      className="mx-auto py-4 lg:py-2 px-2 lg:px-2 sticky top-0 border-0 rounded-none border-none z-40 shadow-none bg-opacity-0 backdrop-saturate-500 bg-transparent"
+      className="sticky top-0 z-40 px-2 py-4 mx-auto bg-transparent bg-opacity-0 border-0 border-none rounded-none shadow-none lg:py-2 lg:px-2 backdrop-saturate-500"
       fullWidth
     >
-      <div className="bg-main-back mx-auto flex items-center justify-between text-white px-4 gap-x-4 flex-row">
-        <div className="flex gap-x-4 justify-center">
+      <div className="flex flex-row items-center justify-between px-4 mx-auto text-white bg-main-back gap-x-4">
+        <div className="flex justify-center gap-x-4">
           <div
             onClick={() => {
               setOpenNav(false);
@@ -147,10 +162,10 @@ export default function Header() {
           </div>
 
           <div
-            className="hidden lg:flex items-center ml-4"
+            className="items-center hidden ml-4 lg:flex"
             style={{ alignItems: "center" }}
           >
-            <div className="dropdown mr-6 mt-1">
+            <div className="mt-1 mr-6 dropdown">
               <Dropdown
                 selectedOverride={options[0]}
                 options={options}
