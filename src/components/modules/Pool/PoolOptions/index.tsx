@@ -50,7 +50,7 @@ export default ({
   const [tvlTotal, setTvlTotal] = useState(0);
   const [despositTotal, setDepositTotal] = useState(0);
   const [claimTotal, setClaimTotal] = useState(0);
-  const [aprRangeText, setAprRangeText] = useState<string>("7 Days");
+  const [aprRangeText, setAprRangeText] = useState<string>("30 Days");
 
   const { state } = useAppState();
   const prices = state?.prices;
