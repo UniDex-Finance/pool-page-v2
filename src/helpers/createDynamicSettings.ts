@@ -11,7 +11,6 @@ import {
 } from "../constants";
 import { ChainId } from "../types";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
-import { MagicWalletConnectors } from "@dynamic-labs/magic";
 // import { ZeroDevSmartWalletConnectors } from "@dynamic-labs/ethereum-aa";
 
 type DynamicContextProps = React.ComponentProps<typeof DynamicContextProvider>;
@@ -22,7 +21,6 @@ export default (): DynamicContextProps["settings"] => {
     initialAuthenticationMode: "connect-only",
     walletConnectors: [
       EthereumWalletConnectors,
-      MagicWalletConnectors /* ZeroDevSmartWalletConnectors */,
     ],
     evmNetworks: NETWORKS_AVAILABLE_SIMPLE.map(
       (chainId: ChainId): EvmNetwork => {
