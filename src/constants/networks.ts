@@ -452,7 +452,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mainnet.mode.network",
+  [MODE_CHAIN_ID]: "https://mode.drpc.org",
 };
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
@@ -486,7 +486,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mainnet.mode.network",
+  [MODE_CHAIN_ID]: "https://mode.drpc.org",
 };
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
@@ -503,7 +503,7 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mainnet.mode.network",
+  [MODE_CHAIN_ID]: "https://mode.drpc.org",
 };
 
 export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
