@@ -160,6 +160,17 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       eth: ADDRESS_ZERO,
     },
   },
+  34443: {
+    poolAddress: {
+      eth: "0x21708707f03A19C3a4ea5E1a132B5cF96b86F294",
+    },
+    rewardsContract: {
+      eth: "0x9673B0E0F07e4a6da712F6847aE93C3F157DD509",
+    },
+    collateral: {
+      eth: ADDRESS_ZERO,
+    },
+  },
   8453: {
     poolAddress: {
       eth: "0x9Ba3db52BC401F4EF8ba23e56268C3AdE0290837",

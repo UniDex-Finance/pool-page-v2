@@ -16,7 +16,8 @@ import { NETWORKS_URLS_LEVERAGE } from "../constants";
 import {
   BASE_CHAIN_ID,
   SCROLL_CHAIN_ID,
-  EVMOS_CHAIN_ID
+  EVMOS_CHAIN_ID,
+  MODE_CHAIN_ID
 } from "../constants/networks";
 
 export const BASE = {
@@ -77,6 +78,24 @@ export const EVMOS = {
   getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
 };
 
+export const MODE = {
+  chainId: 34443,
+  chainName: "mode",
+  isTestChain: false,
+  isLocalChain: false,
+  multicallAddress: "0xcA11bde05977b3631167028862bE2a173976CA11",
+  multicall2Address: "0xcA11bde05977b3631167028862bE2a173976CA11",
+  rpcUrl: "https://mainnet.mode.network",
+  nativeCurrency: {
+    name: "ETH",
+    symbol: "ETH",
+    address: "0x0000000000000000000000000000000000000000",
+    decimals: 18,
+  },
+  getExplorerAddressLink: (address: string) =>
+    `https://explorer.mode.network/${address}`,
+  getExplorerTransactionLink: (tx: string) => `https://explorer.mode.network/${tx}`,
+};
 const DYNAMIC_SETTINGS = createDynamicSettings();
 const USEDAPP_CONFIG: Config = {
   readOnlyUrls: {
@@ -85,13 +104,15 @@ const USEDAPP_CONFIG: Config = {
     [ArbitrumGoerli.chainId]:
       "https://arb-goerli.g.alchemy.com/v2/clalwfFmsbGLGqKV6gBYp-y5BdG_F2aQ",
     [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
+    [MODE_CHAIN_ID]: "https://mainnet.mode.network",
   },
   multicallAddresses: {
     [BASE_CHAIN_ID]: "0x8182b69C7048263E82781eC6885e4a696792AcE6",
     [SCROLL_CHAIN_ID]: "0x895d9130Dc56196Ab2c0c8787c8D80D5DE15E64f",
-    [EVMOS_CHAIN_ID]: "0x92D88c8E913739537726B6462505Fa6Da4ce234C"
+    [EVMOS_CHAIN_ID]: "0x92D88c8E913739537726B6462505Fa6Da4ce234C",
+    [MODE_CHAIN_ID]: "0xcA11bde05977b3631167028862bE2a173976CA11",
   },
-  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL, EVMOS],
+  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL, EVMOS, MODE],
 };
 
 const QUERY_CLIENT = new QueryClient();

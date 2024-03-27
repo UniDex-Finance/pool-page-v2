@@ -29,6 +29,7 @@ import {
   EVMOS_CHAIN_ID,
   AVALANCHE_CHAIN_ID,
   GNOSIS_CHAIN_ID,
+  MODE_CHAIN_ID
 } from "./networks";
 
 export const DISABLE_TOKENS: Map<TokenSymbol, boolean> = new Map<
@@ -222,6 +223,12 @@ export const NATIVE_TOKENS = [
     "EVMOS",
     "https://raw.githubusercontent.com/cosmos/chain-registry/master/stride/images/stevmos.png"
   ),
+  newNativeToken(
+    MODE_CHAIN_ID,
+    "Ethereum",
+    "ETH",
+    "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+  ),
 ];
 
 export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
@@ -249,6 +256,7 @@ export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
   [BASE_CHAIN_ID]: NATIVE_TOKENS[20],
   [SCROLL_CHAIN_ID]: NATIVE_TOKENS[21],
   [EVMOS_CHAIN_ID]: NATIVE_TOKENS[22],
+  [MODE_CHAIN_ID]: NATIVE_TOKENS[23],
 };
 
 export const USDC_ADDRESS_BY_CHAIN: { [chainId: ChainId]: Address } = {
@@ -514,6 +522,16 @@ export const CURRENCY_DETAILS: {
       address: "0x2C68D1d6aB986Ff4640b51e1F14C716a076E44C4",
       decimals: 18,
       llama: "evmos:0x2C68D1d6aB986Ff4640b51e1F14C716a076E44C4",
+    },
+  },
+  [MODE_CHAIN_ID]: {
+    ETH: {
+      name: "ETH",
+      value: "ETH",
+      img: CRYPTO_ICON_SRC.ETH,
+      address: "0x0000000000000000000000000000000000000000",
+      decimals: 18,
+      llama: "optimism:0x0000000000000000000000000000000000000000",
     },
   },
   [BSC_CHAIN_ID]: {

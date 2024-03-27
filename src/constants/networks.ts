@@ -23,6 +23,7 @@ import ZKSYNC_ICON from "../assets/icons_chain/zksync.svg";
 import BASE_ICON from "../assets/icons_chain/base.svg";
 import SCROLL_ICON from "../assets/icons_chain/scroll.svg";
 import EVMOS_ICON from "../assets/icons_chain/evmos.png";
+import MODE_ICON from "../assets/icons_chain/mode.svg";
 
 import USDC_LOGO from "../assets/logos/USDC.svg";
 import DAI_LOGO from "../assets/logos/DAI.svg";
@@ -77,6 +78,7 @@ export const ZKEVM_CHAIN_ID = 1101;
 export const BASE_CHAIN_ID = 8453;
 export const SCROLL_CHAIN_ID = 534352;
 export const EVMOS_CHAIN_ID = 9001;
+export const MODE_CHAIN_ID = 34443;
 
 export const DEFAULT_NETWORK = OP_CHAIN_ID;
 
@@ -107,6 +109,7 @@ export const NETWORKS_AVAILABLE: ChainId[] = [
   BASE_CHAIN_ID,
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
+  MODE_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
@@ -131,6 +134,7 @@ export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
   BASE_CHAIN_ID,
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
+  MODE_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
@@ -146,6 +150,7 @@ export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
   BSC_CHAIN_ID,
+  MODE_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
@@ -182,6 +187,7 @@ export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "Base",
   [SCROLL_CHAIN_ID]: "Scroll",
   [EVMOS_CHAIN_ID]: "Evmos",
+  [MODE_CHAIN_ID]: "Mode",
 };
 
 export const NETWORK_NAMES_API: {
@@ -318,6 +324,7 @@ export const NETWORK_NAMES_API: {
     [BASE_CHAIN_ID]: "base",
     [SCROLL_CHAIN_ID]: "scroll",
     [EVMOS_CHAIN_ID]: "evmos",
+    [MODE_CHAIN_ID]: "mode",
   },
   /** NOTE: some names may be guesses */
   unidexPool: {
@@ -346,6 +353,7 @@ export const NETWORK_NAMES_API: {
     [BASE_CHAIN_ID]: "base",
     [SCROLL_CHAIN_ID]: "scroll",
     [EVMOS_CHAIN_ID]: "evmos",
+    [MODE_CHAIN_ID]: "mode",
   },
 };
 
@@ -378,6 +386,7 @@ export const NETWORK_ICON_SRC: {
   [BASE_CHAIN_ID]: BASE_ICON,
   [SCROLL_CHAIN_ID]: SCROLL_ICON,
   [EVMOS_CHAIN_ID]: EVMOS_ICON,
+  [MODE_CHAIN_ID]: MODE_ICON,
 };
 
 export const CRYPTO_ICON_SRC = {
@@ -443,6 +452,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
+  [MODE_CHAIN_ID]: "https://mainnet.mode.network",
 };
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
@@ -476,6 +486,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
+  [MODE_CHAIN_ID]: "https://mainnet.mode.network",
 };
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
@@ -492,6 +503,7 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
+  [MODE_CHAIN_ID]: "https://mainnet.mode.network",
 };
 
 export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
@@ -520,6 +532,7 @@ export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://basescan.org/",
   [SCROLL_CHAIN_ID]: "https://scrollscan.com/",
   [EVMOS_CHAIN_ID]: "https://escan.live/",
+  [MODE_CHAIN_ID]: "https://explorer.mode.network/",
 };
 
 export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
@@ -548,4 +561,5 @@ export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "ETH",
   [SCROLL_CHAIN_ID]: "ETH",
   [EVMOS_CHAIN_ID]: "EVMOS",
+  [MODE_CHAIN_ID]: "ETH",
 };
