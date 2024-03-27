@@ -1,0 +1,1 @@
+export const ICONIC_SPRITE_CDN_URL = "https://iconic.dynamic-static-assets.com/icons/sprite.svg";
