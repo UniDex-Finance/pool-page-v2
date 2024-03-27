@@ -83,8 +83,8 @@ export const MODE = {
   chainName: "mode",
   isTestChain: false,
   isLocalChain: false,
-  multicallAddress: "0xcA11bde05977b3631167028862bE2a173976CA11",
-  multicall2Address: "0xcA11bde05977b3631167028862bE2a173976CA11",
+  multicallAddress: "0x32C5C4FB4421fAEe91DaCe992347ebc6641fA8c2",
+  multicall2Address: "0x32C5C4FB4421fAEe91DaCe992347ebc6641fA8c2",
   rpcUrl: "https://mainnet.mode.network",
   nativeCurrency: {
     name: "ETH",
@@ -96,6 +96,7 @@ export const MODE = {
     `https://explorer.mode.network/${address}`,
   getExplorerTransactionLink: (tx: string) => `https://explorer.mode.network/${tx}`,
 };
+
 const DYNAMIC_SETTINGS = createDynamicSettings();
 const USEDAPP_CONFIG: Config = {
   readOnlyUrls: {
