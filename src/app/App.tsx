@@ -83,8 +83,8 @@ export const MODE = {
   chainName: "mode",
   isTestChain: false,
   isLocalChain: false,
-  multicallAddress: "0x32C5C4FB4421fAEe91DaCe992347ebc6641fA8c2",
-  multicall2Address: "0x32C5C4FB4421fAEe91DaCe992347ebc6641fA8c2",
+  multicallAddress: "0x6b6Dcd8D8dcb03B615D2dbB8090edbea0A376aD1",
+  multicall2Address: "0x6b6Dcd8D8dcb03B615D2dbB8090edbea0A376aD1",
   rpcUrl: "https://mainnet.mode.network",
   nativeCurrency: {
     name: "ETH",
@@ -111,7 +111,7 @@ const USEDAPP_CONFIG: Config = {
     [BASE_CHAIN_ID]: "0x8182b69C7048263E82781eC6885e4a696792AcE6",
     [SCROLL_CHAIN_ID]: "0x895d9130Dc56196Ab2c0c8787c8D80D5DE15E64f",
     [EVMOS_CHAIN_ID]: "0x92D88c8E913739537726B6462505Fa6Da4ce234C",
-    [MODE_CHAIN_ID]: "0xcA11bde05977b3631167028862bE2a173976CA11",
+    [MODE_CHAIN_ID]: "0x6b6Dcd8D8dcb03B615D2dbB8090edbea0A376aD1",
   },
   networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL, EVMOS, MODE],
 };
