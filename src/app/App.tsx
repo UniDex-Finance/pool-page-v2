@@ -84,12 +84,10 @@ export const MODE = {
   isTestChain: false,
   isLocalChain: false,
   multicallAddress: "0x6b6Dcd8D8dcb03B615D2dbB8090edbea0A376aD1",
-  multicall2Address: "0x6b6Dcd8D8dcb03B615D2dbB8090edbea0A376aD1",
   rpcUrl: "https://mainnet.mode.network",
   nativeCurrency: {
-    name: "ETH",
-    symbol: "ETH",
-    address: "0x0000000000000000000000000000000000000000",
+    name: 'Ether',
+    symbol: 'ETH',
     decimals: 18,
   },
   getExplorerAddressLink: (address: string) =>
