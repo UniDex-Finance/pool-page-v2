@@ -96,7 +96,6 @@ export const NETWORKS_AVAILABLE: ChainId[] = [
   ARBITRUM_CHAIN_ID,
   MOON_RIVER_CHAIN_ID,
   BOBA_CHAIN_ID,
-  HARMONY_CHAIN_ID,
   KUCOIN_CHAIN_ID,
   OP_CHAIN_ID,
   CRONOS_CHAIN_ID,
@@ -125,7 +124,6 @@ export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
   XDAI_CHAIN_ID,
   MOON_RIVER_CHAIN_ID,
   BOBA_CHAIN_ID,
-  HARMONY_CHAIN_ID,
   CRONOS_CHAIN_ID,
   AUORA_CHAIN_ID,
   VELAS_CHAIN_ID,
@@ -159,6 +157,7 @@ export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
   BASE_CHAIN_ID,
   GNOSIS_CHAIN_ID,
   SCROLL_CHAIN_ID,
+  MODE_CHAIN_ID
 ];
 
 export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
@@ -176,18 +175,16 @@ export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
   [ARBITRUM_CHAIN_ID]: "Arbitrum",
   [MOON_RIVER_CHAIN_ID]: "Moonriver",
   [BOBA_CHAIN_ID]: "Boba",
-  [HARMONY_CHAIN_ID]: "Harmony",
   [OP_CHAIN_ID]: "Optimism",
   [CRONOS_CHAIN_ID]: "Cronos",
-  [AUORA_CHAIN_ID]: "Aurora",
+  [MODE_CHAIN_ID]: "Mode",
   [METIS_CHAIN_ID]: "Metis",
   [VELAS_CHAIN_ID]: "Velas",
   [KAVA_CHAIN_ID]: "Kava",
   [ZKSYNC_CHAIN_ID]: "zkSync",
   [BASE_CHAIN_ID]: "Base",
   [SCROLL_CHAIN_ID]: "Scroll",
-  [EVMOS_CHAIN_ID]: "Evmos",
-  [MODE_CHAIN_ID]: "Mode",
+  [EVMOS_CHAIN_ID]: "Evmos"
 };
 
 export const NETWORK_NAMES_API: {
@@ -452,7 +449,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mode.drpc.org",
+  [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
 };
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
@@ -486,7 +483,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mode.drpc.org",
+  [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
 };
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
@@ -503,7 +500,7 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mode.drpc.org",
+  [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
 };
 
 export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {

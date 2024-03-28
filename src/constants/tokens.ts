@@ -164,10 +164,10 @@ export const NATIVE_TOKENS = [
     "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
   ),
   newNativeToken(
-    HARMONY_CHAIN_ID,
-    "Harmony",
-    "ONE",
-    "https://swoop-exchange.s3-us-west-1.amazonaws.com/tokens/WONE.png"
+    MODE_CHAIN_ID,
+    "Ethereum",
+    "ETH",
+    "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
   ),
   newNativeToken(
     METIS_CHAIN_ID,
@@ -246,7 +246,7 @@ export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
   [MOON_RIVER_CHAIN_ID]: NATIVE_TOKENS[10],
   [BOBA_CHAIN_ID]: NATIVE_TOKENS[11],
   [OP_CHAIN_ID]: NATIVE_TOKENS[12],
-  [HARMONY_CHAIN_ID]: NATIVE_TOKENS[13],
+  [MODE_CHAIN_ID]: NATIVE_TOKENS[13],
   [METIS_CHAIN_ID]: NATIVE_TOKENS[14],
   [AUORA_CHAIN_ID]: NATIVE_TOKENS[15],
   [VELAS_CHAIN_ID]: NATIVE_TOKENS[16],
@@ -256,7 +256,6 @@ export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
   [BASE_CHAIN_ID]: NATIVE_TOKENS[20],
   [SCROLL_CHAIN_ID]: NATIVE_TOKENS[21],
   [EVMOS_CHAIN_ID]: NATIVE_TOKENS[22],
-  [MODE_CHAIN_ID]: NATIVE_TOKENS[23],
 };
 
 export const USDC_ADDRESS_BY_CHAIN: { [chainId: ChainId]: Address } = {
@@ -303,6 +302,7 @@ export const COINGECKO_NATIVE_TOKEN_IDS: { [chainId: ChainId]: string } = {
   [CRONOS_CHAIN_ID]: "crypto-com-chain",
   [KAVA_CHAIN_ID]: "kava",
   [ZKSYNC_CHAIN_ID]: "zksync",
+  [MODE_CHAIN_ID]: "mode",
 };
 
 export const DEFAULT_FROM_BY_CHAIN_ID = NATIVE_TOKEN_BY_CHAIN_ID;
@@ -401,10 +401,10 @@ export const NATIVE_WRAPPED_TOKEN_BY_CHAIN_ID: {
     "WETH",
     "Wrapped ETH"
   ),
-  [HARMONY_CHAIN_ID]: newMinimalToken(
-    "0xcf664087a5bb0237a0bad6742852ec6c8d69a27a",
-    "WONE",
-    "Wrapped ONE"
+  [MODE_CHAIN_ID]: newMinimalToken(
+    "0x4200000000000000000000000000000000000006",
+    "WETH",
+    "Wrapped ETH"
   ),
   [METIS_CHAIN_ID]: newMinimalToken(
     "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000",
@@ -531,7 +531,7 @@ export const CURRENCY_DETAILS: {
       img: CRYPTO_ICON_SRC.ETH,
       address: "0x0000000000000000000000000000000000000000",
       decimals: 18,
-      llama: "optimism:0x0000000000000000000000000000000000000000",
+      llama: "mode:0x0000000000000000000000000000000000000000",
     },
   },
   [BSC_CHAIN_ID]: {
@@ -548,13 +548,6 @@ export const CURRENCY_DETAILS: {
       value: "BUSD",
       img: CRYPTO_ICON_SRC.USDT,
       address: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-      decimals: 18,
-    },
-    BNB: {
-      name: "BNB",
-      value: "BNB",
-      img: CRYPTO_ICON_SRC.BNB,
-      address: "0x0000000000000000000000000000000000000000",
       decimals: 18,
     },
     GOLDEN: {

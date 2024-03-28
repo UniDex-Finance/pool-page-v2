@@ -14,8 +14,6 @@ import { MainLayout } from "../components/layouts";
 import { Main } from "../components/pages";
 import { NETWORKS_URLS_LEVERAGE } from "../constants";
 import {
-  BASE_CHAIN_ID,
-  SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
   MODE_CHAIN_ID
 } from "../constants/networks";
@@ -83,17 +81,22 @@ export const MODE = {
   chainName: "mode",
   isTestChain: false,
   isLocalChain: false,
-  multicallAddress: "0x5f4D0B555242803f2f3dBEDfFa5b8F187223FfB6",
-  rpcUrl: "https://mode.drpc.org",
+  multicallAddress: "0x56F229bD22FB6839859B0192A1628A221F8e2E5b",
+  multicall2Address: "0x56F229bD22FB6839859B0192A1628A221F8e2E5b",
+  rpcUrl: "https://mainnet.mode.network/",
   nativeCurrency: {
-    name: 'Ether',
-    symbol: 'ETH',
+    name: "Ether",
+    symbol: "ETH",
     address: "0x0000000000000000000000000000000000000000",
     decimals: 18,
   },
+  multicall2Addresses: {
+    [EVMOS_CHAIN_ID]: "0x92D88c8E913739537726B6462505Fa6Da4ce234C",
+    [MODE_CHAIN_ID]: "0x56F229bD22FB6839859B0192A1628A221F8e2E5b",
+  },
   getExplorerAddressLink: (address: string) =>
-    `https://explorer.mode.network/${address}`,
-  getExplorerTransactionLink: (tx: string) => `https://explorer.mode.network/${tx}`,
+    `https://scrollscan.com/${address}`,
+  getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
 };
 
 const DYNAMIC_SETTINGS = createDynamicSettings();
@@ -101,18 +104,10 @@ const USEDAPP_CONFIG: Config = {
   readOnlyUrls: {
     ...NETWORKS_URLS_LEVERAGE,
     [Arbitrum.chainId]: "https://arb1.arbitrum.io/rpc",
-    [ArbitrumGoerli.chainId]:
-      "https://arb-goerli.g.alchemy.com/v2/clalwfFmsbGLGqKV6gBYp-y5BdG_F2aQ",
     [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-    [MODE_CHAIN_ID]: "https://mode.drpc.org",
+    [MODE_CHAIN_ID]: "https://mainnet.mode.network/",
   },
-  multicallAddresses: {
-    [BASE_CHAIN_ID]: "0x8182b69C7048263E82781eC6885e4a696792AcE6",
-    [SCROLL_CHAIN_ID]: "0x895d9130Dc56196Ab2c0c8787c8D80D5DE15E64f",
-    [EVMOS_CHAIN_ID]: "0x92D88c8E913739537726B6462505Fa6Da4ce234C",
-    [MODE_CHAIN_ID]: "0x5f4D0B555242803f2f3dBEDfFa5b8F187223FfB6",
-  },
-  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, SCROLL, EVMOS, MODE],
+  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, MODE, EVMOS],
 };
 
 const QUERY_CLIENT = new QueryClient();

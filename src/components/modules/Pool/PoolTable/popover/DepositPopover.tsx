@@ -1,12 +1,9 @@
-import { useState } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { useState, useMemo, useEffect } from "react";
 import { formatUnits } from "ethers/lib/utils";
 import { NumericFormat } from "react-number-format";
-import {
-  useEtherBalance,
-  useEthers,
-  useTokenAllowance,
-  useTokenBalance,
-} from "@usedapp/core";
+import { useEthers, useTokenAllowance, useTokenBalance } from "@usedapp/core";
+import { ethers } from "ethers";
 import {
   Button,
   Input,
@@ -42,26 +39,43 @@ export default ({
 }: Props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const [balanceDeposit, setBalanceDeposit] = useState<ethers.BigNumber | undefined>();
 
-  const { chainId: chainIdEthers } = useEthers();
+  const { library, chainId: chainIdEthers, account: accountEthers } = useEthers();
   const disabled = chainId !== chainIdEthers;
 
   const collateralLower = collateral.toLowerCase();
   const collateralUpper = collateral.toUpperCase();
-  const addressCollateral = CHAINDATA[chainId]?.collateral?.[collateralLower];
-  const addressPool = CHAINDATA[chainId]?.poolAddress?.[collateralLower];
-  const decimalsCollateral =
-    CURRENCY_DETAILS?.[chainId]?.[collateralUpper]?.decimals || 18;
 
-  const balanceDeposit =
-    addressCollateral === ADDRESS_ZERO
-      ? useEtherBalance(account, { chainId })
-      : useTokenBalance(addressCollateral, account, { chainId });
-  const allowanceDeposit = useTokenAllowance(
-    addressCollateral,
-    account,
-    addressPool
+  const addressCollateral = useMemo(
+    () => CHAINDATA[chainIdEthers]?.collateral?.[collateralLower] || ADDRESS_ZERO,
+    [chainIdEthers, collateralLower]
   );
+  const addressPool = useMemo(
+    () => CHAINDATA[chainIdEthers]?.poolAddress?.[collateralLower] || ADDRESS_ZERO,
+    [chainIdEthers, collateralLower]
+  );
+  const decimalsCollateral =
+    CURRENCY_DETAILS?.[chainIdEthers]?.[collateralUpper]?.decimals || 18;
+
+  const tokenBalance = useTokenBalance(addressCollateral, accountEthers, { chainId: chainIdEthers });
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (addressCollateral === ADDRESS_ZERO && library && accountEthers) {
+        const balance = await library.getBalance(accountEthers);
+        setBalanceDeposit(balance);
+      } else if (addressCollateral !== ADDRESS_ZERO && tokenBalance) {
+        setBalanceDeposit(tokenBalance);
+      }
+    };
+
+    fetchBalance();
+  }, [addressCollateral, library, accountEthers, tokenBalance]);
+
+  const allowanceDeposit = useTokenAllowance(addressCollateral, accountEthers, addressPool);
+
+  console.log("balanceDeposit", balanceDeposit, "chainId", chainIdEthers, "account", account);
 
   const balanceDepositFormatted = formatUnits(
     balanceDeposit || 0,
@@ -75,7 +89,7 @@ export default ({
   const balanceDepositFormattedNumber = Number(balanceDepositFormatted);
   const allowanceDepositFormattedNumber = Number(allowanceDepositFormatted);
 
-  const balanceAvailable = balanceDepositFormattedNumber >= Number(value);
+  const balanceAvailable = !isNaN(balanceDepositFormattedNumber) && balanceDepositFormattedNumber >= Number(value);
   const tokenApproved =
     addressCollateral === ADDRESS_ZERO ||
     allowanceDepositFormattedNumber >= Number(value);
@@ -98,7 +112,7 @@ export default ({
         </Button>
       </PopoverHandler>
       <PopoverContent>
-        <div className="flex flex-col justify-center bg-main-back p-4 rounded-lg">
+        <div className="flex flex-col justify-center p-4 rounded-lg bg-main-back">
           <NumericFormat
             className="text-white !bg-main-front mb-2"
             crossOrigin={undefined}
@@ -113,7 +127,7 @@ export default ({
               setValue(valueNew);
             }}
           />
-          <div className="flex justify-between items-center text-white mb-1">
+          <div className="flex items-center justify-between mb-1 text-white">
             <div>
               <span>Available: </span>
               <span className="font-bold">
@@ -124,7 +138,7 @@ export default ({
               </span>
             </div>
             <Button
-              className="font-normal bg-main-front py-1 px-2"
+              className="px-2 py-1 font-normal bg-main-front"
               onClick={() => {
                 const maxRoundedNumber = roundAndFloor(
                   balanceDepositFormattedNumber,
