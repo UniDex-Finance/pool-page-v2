@@ -47,16 +47,38 @@ export default ({
   const collateralLower = collateral.toLowerCase();
   const collateralUpper = collateral.toUpperCase();
 
-  const addressCollateral = useMemo(
-    () => CHAINDATA[chainIdEthers]?.collateral?.[collateralLower] || ADDRESS_ZERO,
-    [chainIdEthers, collateralLower]
-  );
-  const addressPool = useMemo(
-    () => CHAINDATA[chainIdEthers]?.poolAddress?.[collateralLower] || ADDRESS_ZERO,
-    [chainIdEthers, collateralLower]
-  );
-  const decimalsCollateral =
-    CURRENCY_DETAILS?.[chainIdEthers]?.[collateralUpper]?.decimals || 18;
+  const addressCollateral = useMemo(() => {
+    if (chainIdEthers !== undefined) {
+      const collateralData = CHAINDATA[chainIdEthers]?.collateral;
+      if (collateralData && typeof collateralData === 'object') {
+        return (collateralData as Record<string, string>)[collateralLower] || ADDRESS_ZERO;
+      }
+    }
+    return ADDRESS_ZERO;
+  }, [chainIdEthers, collateralLower]);
+  
+  const addressPool = useMemo(() => {
+    if (chainIdEthers !== undefined) {
+      const poolAddressData = CHAINDATA[chainIdEthers]?.poolAddress;
+      if (poolAddressData && typeof poolAddressData === 'object') {
+        return (poolAddressData as Record<string, string>)[collateralLower] || ADDRESS_ZERO;
+      }
+    }
+    return ADDRESS_ZERO;
+  }, [chainIdEthers, collateralLower]);
+  
+  const decimalsCollateral = useMemo(() => {
+    if (chainIdEthers !== undefined) {
+      const currencyDetailsData = CURRENCY_DETAILS[chainIdEthers];
+      if (currencyDetailsData && typeof currencyDetailsData === 'object') {
+        const collateralData = currencyDetailsData[collateralUpper];
+        if (collateralData && typeof collateralData === 'object') {
+          return collateralData.decimals || 18;
+        }
+      }
+    }
+    return 18;
+  }, [chainIdEthers, collateralUpper]);
 
   const tokenBalance = useTokenBalance(addressCollateral, accountEthers, { chainId: chainIdEthers });
 
@@ -93,7 +115,7 @@ export default ({
   const tokenApproved =
     addressCollateral === ADDRESS_ZERO ||
     allowanceDepositFormattedNumber >= Number(value);
-
+    
   return (
     <Popover
       placement="bottom"
