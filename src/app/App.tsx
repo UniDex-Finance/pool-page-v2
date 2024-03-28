@@ -2,7 +2,6 @@ import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Arbitrum,
-  ArbitrumGoerli,
   Config,
   DAppProvider,
   DEFAULT_SUPPORTED_CHAINS,
