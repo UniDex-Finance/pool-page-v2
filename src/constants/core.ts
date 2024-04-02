@@ -96,6 +96,17 @@ export const ABIS: { [key: string]: string[] } = {
 };
 
 export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
+  360: {
+    poolAddress: {
+      usdc: "0x21708707f03A19C3a4ea5E1a132B5cF96b86F294",
+    },
+    rewardsContract: {
+      usdc: "0x42EbA10b9bf487baD672c9479810DbFE305721D3",
+    },
+    collateral: {
+      usdc: "0x135B641E61CFC9a068b82E02fF0f051f6e5D4721",
+    },
+  },
   42161: {
     poolAddress: {
       eth: "0xdAF7D157F5c6E0F1d7917Ca02a7C185cEF81e6d0",

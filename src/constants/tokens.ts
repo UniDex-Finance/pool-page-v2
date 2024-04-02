@@ -29,7 +29,8 @@ import {
   EVMOS_CHAIN_ID,
   AVALANCHE_CHAIN_ID,
   GNOSIS_CHAIN_ID,
-  MODE_CHAIN_ID
+  MODE_CHAIN_ID,
+  MOLTEN_CHAIN_ID
 } from "./networks";
 
 export const DISABLE_TOKENS: Map<TokenSymbol, boolean> = new Map<
@@ -229,6 +230,12 @@ export const NATIVE_TOKENS = [
     "ETH",
     "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
   ),
+  newNativeToken(
+    MOLTEN_CHAIN_ID,
+    "Molten",
+    "MOLTEN",
+    "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+  ),
 ];
 
 export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
@@ -256,6 +263,7 @@ export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
   [BASE_CHAIN_ID]: NATIVE_TOKENS[20],
   [SCROLL_CHAIN_ID]: NATIVE_TOKENS[21],
   [EVMOS_CHAIN_ID]: NATIVE_TOKENS[22],
+  [MOLTEN_CHAIN_ID]: NATIVE_TOKENS[23],
 };
 
 export const USDC_ADDRESS_BY_CHAIN: { [chainId: ChainId]: Address } = {
@@ -303,6 +311,7 @@ export const COINGECKO_NATIVE_TOKEN_IDS: { [chainId: ChainId]: string } = {
   [KAVA_CHAIN_ID]: "kava",
   [ZKSYNC_CHAIN_ID]: "zksync",
   [MODE_CHAIN_ID]: "mode",
+  [MOLTEN_CHAIN_ID]: "mode",
 };
 
 export const DEFAULT_FROM_BY_CHAIN_ID = NATIVE_TOKEN_BY_CHAIN_ID;
@@ -436,6 +445,11 @@ export const NATIVE_WRAPPED_TOKEN_BY_CHAIN_ID: {
     "WETH",
     "Wrapped ETH"
   ),
+  [MOLTEN_CHAIN_ID]: newMinimalToken(
+    "0x5AEa5775959fBC2557Cc8789bC1bf90A239D9a91",
+    "WETH",
+    "Wrapped ETH"
+  ),
 };
 
 export const USD_PEG_TOKEN: { [chainStr: string]: string } = {
@@ -492,6 +506,16 @@ export const CURRENCY_DETAILS: {
       address: "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1",
       decimals: 18,
       llama: "optimism:0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1",
+    },
+  },
+  [MOLTEN_CHAIN_ID]: {
+    USDC: {
+      name: "USDC",
+      value: "USDC",
+      img: CRYPTO_ICON_SRC.USDC,
+      address: "0x135B641E61CFC9a068b82E02fF0f051f6e5D4721",
+      decimals: 6,
+      llama: "arbitrum:0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8",
     },
   },
   [SCROLL_CHAIN_ID]: {

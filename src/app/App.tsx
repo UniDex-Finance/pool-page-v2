@@ -14,7 +14,8 @@ import { Main } from "../components/pages";
 import { NETWORKS_URLS_LEVERAGE } from "../constants";
 import {
   EVMOS_CHAIN_ID,
-  MODE_CHAIN_ID
+  MODE_CHAIN_ID,
+  MOLTEN_CHAIN_ID
 } from "../constants/networks";
 
 export const BASE = {
@@ -75,6 +76,25 @@ export const EVMOS = {
   getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
 };
 
+export const MOLTEN = {
+  chainId: 360,
+  chainName: "molten",
+  isTestChain: false,
+  isLocalChain: false,
+  multicallAddress: "0xcb77E59c1996e9D21979189b85cE0D658CF34310",
+  multicall2Address: "0xcb77E59c1996e9D21979189b85cE0D658CF34310",
+  rpcUrl: "https://molten.calderachain.xyz/http",
+  nativeCurrency: {
+    name: "MOLTEN",
+    symbol: "MOLTEN",
+    address: "0x0000000000000000000000000000000000000000",
+    decimals: 18,
+  },
+  getExplorerAddressLink: (address: string) =>
+    `https://scrollscan.com/${address}`,
+  getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
+};
+
 export const MODE = {
   chainId: 34443,
   chainName: "mode",
@@ -89,10 +109,6 @@ export const MODE = {
     address: "0x0000000000000000000000000000000000000000",
     decimals: 18,
   },
-  multicall2Addresses: {
-    [EVMOS_CHAIN_ID]: "0x92D88c8E913739537726B6462505Fa6Da4ce234C",
-    [MODE_CHAIN_ID]: "0x56F229bD22FB6839859B0192A1628A221F8e2E5b",
-  },
   getExplorerAddressLink: (address: string) =>
     `https://scrollscan.com/${address}`,
   getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
@@ -105,8 +121,9 @@ const USEDAPP_CONFIG: Config = {
     [Arbitrum.chainId]: "https://arb1.arbitrum.io/rpc",
     [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
     [MODE_CHAIN_ID]: "https://mainnet.mode.network/",
+    [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
   },
-  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, MODE, EVMOS],
+  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, MODE, EVMOS, MOLTEN],
 };
 
 const QUERY_CLIENT = new QueryClient();

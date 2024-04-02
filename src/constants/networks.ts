@@ -24,6 +24,7 @@ import BASE_ICON from "../assets/icons_chain/base.svg";
 import SCROLL_ICON from "../assets/icons_chain/scroll.svg";
 import EVMOS_ICON from "../assets/icons_chain/evmos.png";
 import MODE_ICON from "../assets/icons_chain/mode.svg";
+import MOLTEN_ICON from "../assets/icons_chain/molten.svg";
 
 import USDC_LOGO from "../assets/logos/USDC.svg";
 import DAI_LOGO from "../assets/logos/DAI.svg";
@@ -79,6 +80,7 @@ export const BASE_CHAIN_ID = 8453;
 export const SCROLL_CHAIN_ID = 534352;
 export const EVMOS_CHAIN_ID = 9001;
 export const MODE_CHAIN_ID = 34443;
+export const MOLTEN_CHAIN_ID = 360;
 
 export const DEFAULT_NETWORK = OP_CHAIN_ID;
 
@@ -109,6 +111,7 @@ export const NETWORKS_AVAILABLE: ChainId[] = [
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
   MODE_CHAIN_ID,
+  MOLTEN_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
@@ -133,6 +136,7 @@ export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
   MODE_CHAIN_ID,
+  MOLTEN_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
@@ -148,7 +152,8 @@ export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
   BSC_CHAIN_ID,
-  MODE_CHAIN_ID
+  MODE_CHAIN_ID,
+  MOLTEN_CHAIN_ID
 ];
 
 export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
@@ -157,7 +162,8 @@ export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
   BASE_CHAIN_ID,
   GNOSIS_CHAIN_ID,
   SCROLL_CHAIN_ID,
-  MODE_CHAIN_ID
+  MODE_CHAIN_ID,
+  MOLTEN_CHAIN_ID
 ];
 
 export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
@@ -184,7 +190,8 @@ export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
   [ZKSYNC_CHAIN_ID]: "zkSync",
   [BASE_CHAIN_ID]: "Base",
   [SCROLL_CHAIN_ID]: "Scroll",
-  [EVMOS_CHAIN_ID]: "Evmos"
+  [EVMOS_CHAIN_ID]: "Evmos",
+  [MOLTEN_CHAIN_ID]: "Molten",
 };
 
 export const NETWORK_NAMES_API: {
@@ -351,6 +358,7 @@ export const NETWORK_NAMES_API: {
     [SCROLL_CHAIN_ID]: "scroll",
     [EVMOS_CHAIN_ID]: "evmos",
     [MODE_CHAIN_ID]: "mode",
+    [MOLTEN_CHAIN_ID]: "molten",
   },
 };
 
@@ -384,6 +392,7 @@ export const NETWORK_ICON_SRC: {
   [SCROLL_CHAIN_ID]: SCROLL_ICON,
   [EVMOS_CHAIN_ID]: EVMOS_ICON,
   [MODE_CHAIN_ID]: MODE_ICON,
+  [MOLTEN_CHAIN_ID]: MOLTEN_ICON,
 };
 
 export const CRYPTO_ICON_SRC = {
@@ -450,6 +459,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
   [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
+  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http"
 };
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
@@ -484,6 +494,8 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
   [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
+  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http"
+
 };
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
@@ -501,6 +513,8 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
   [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
+  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http"
+
 };
 
 export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
@@ -530,6 +544,7 @@ export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
   [SCROLL_CHAIN_ID]: "https://scrollscan.com/",
   [EVMOS_CHAIN_ID]: "https://escan.live/",
   [MODE_CHAIN_ID]: "https://explorer.mode.network/",
+  [MOLTEN_CHAIN_ID]: "https://molten.calderaexplorer.xyz",
 };
 
 export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
@@ -559,4 +574,5 @@ export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
   [SCROLL_CHAIN_ID]: "ETH",
   [EVMOS_CHAIN_ID]: "EVMOS",
   [MODE_CHAIN_ID]: "ETH",
+  [MOLTEN_CHAIN_ID]: "MOLTEN",
 };
