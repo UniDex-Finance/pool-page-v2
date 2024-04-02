@@ -81,7 +81,7 @@ export const MOLTEN = {
   chainName: "molten",
   isTestChain: false,
   isLocalChain: false,
-  multicallAddress: "0xcb77E59c1996e9D21979189b85cE0D658CF34310",
+  multicallAddress: "0x283067d91e85812245783f11c3727e156cf18f82",
   multicall2Address: "0x283067d91e85812245783f11c3727e156cf18f82",
   rpcUrl: "https://molten.calderachain.xyz/http",
   nativeCurrency: {

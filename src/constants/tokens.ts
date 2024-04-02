@@ -287,6 +287,7 @@ export const USDC_ADDRESS_BY_CHAIN: { [chainId: ChainId]: Address } = {
   [CRONOS_CHAIN_ID]: "0xc21223249CA28397B4B6541dfFaEcC539BfF0c59",
   [KAVA_CHAIN_ID]: "0xfA9343C3897324496A05fC75abeD6bAC29f8A40f",
   [ZKSYNC_CHAIN_ID]: "0x3355df6d4c9c3035724fd0e3914de96a5a83aaf4",
+  [MOLTEN_CHAIN_ID]: "0x135B641E61CFC9a068b82E02fF0f051f6e5D4721",
 };
 
 export const COINGECKO_NATIVE_TOKEN_IDS: { [chainId: ChainId]: string } = {
@@ -515,7 +516,7 @@ export const CURRENCY_DETAILS: {
       img: CRYPTO_ICON_SRC.USDC,
       address: "0x135B641E61CFC9a068b82E02fF0f051f6e5D4721",
       decimals: 6,
-      llama: "arbitrum:0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8",
+      llama: "era:0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
     },
   },
   [SCROLL_CHAIN_ID]: {

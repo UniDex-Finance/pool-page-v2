@@ -86,18 +86,25 @@ export default ({
     const fetchBalance = async () => {
       if (addressCollateral === ADDRESS_ZERO && library && accountEthers) {
         const balance = await library.getBalance(accountEthers);
+        console.log("Fetched ETH balance:", balance);
         setBalanceDeposit(balance);
       } else if (addressCollateral !== ADDRESS_ZERO && tokenBalance) {
+        console.log("Fetched token balance:", tokenBalance);
         setBalanceDeposit(tokenBalance);
+      } else {
+        console.log("No balance fetched");
+        setBalanceDeposit(undefined);
       }
     };
-
+  
+    console.log("addressCollateral:", addressCollateral);
+    console.log("accountEthers:", accountEthers);
+    console.log("tokenBalance:", tokenBalance);
+  
     fetchBalance();
   }, [addressCollateral, library, accountEthers, tokenBalance]);
 
   const allowanceDeposit = useTokenAllowance(addressCollateral, accountEthers, addressPool);
-
-  console.log("balanceDeposit", balanceDeposit, "chainId", chainIdEthers, "account", account);
 
   const balanceDepositFormatted = formatUnits(
     balanceDeposit || 0,
@@ -107,15 +114,17 @@ export default ({
     allowanceDeposit || 0,
     decimalsCollateral
   );
-
-  const balanceDepositFormattedNumber = Number(balanceDepositFormatted);
-  const allowanceDepositFormattedNumber = Number(allowanceDepositFormatted);
-
-  const balanceAvailable = !isNaN(balanceDepositFormattedNumber) && balanceDepositFormattedNumber >= Number(value);
+  
+  const balanceDepositFormattedNumber = parseFloat(balanceDepositFormatted);
+  const allowanceDepositFormattedNumber = parseFloat(allowanceDepositFormatted);
+  
+  const balanceAvailable = !isNaN(balanceDepositFormattedNumber) && balanceDepositFormattedNumber >= parseFloat(value);
   const tokenApproved =
     addressCollateral === ADDRESS_ZERO ||
-    allowanceDepositFormattedNumber >= Number(value);
-    
+    allowanceDepositFormattedNumber >= parseFloat(value);
+  
+  console.log("balanceDeposit", balanceDeposit, "chainId", chainIdEthers, "account", account, balanceAvailable, balanceDepositFormattedNumber);
+  
   return (
     <Popover
       placement="bottom"
@@ -153,21 +162,27 @@ export default ({
             <div>
               <span>Available: </span>
               <span className="font-bold">
-                {balanceDepositFormattedNumber.toFixed(
-                  balanceDepositFormattedNumber >= 1 ? 2 : 5
-                )}{" "}
-                {collateral}
+                {!isNaN(balanceDepositFormattedNumber) ? (
+                  <>
+                    {balanceDepositFormattedNumber.toFixed(decimalsCollateral)}{" "}
+                    {collateral}
+                  </>
+                ) : (
+                  "---"
+                )}
               </span>
             </div>
             <Button
               className="px-2 py-1 font-normal bg-main-front"
               onClick={() => {
-                const maxRoundedNumber = roundAndFloor(
-                  balanceDepositFormattedNumber,
-                  balanceDepositFormattedNumber >= 1 ? 3 : 8
-                );
-                valueRef.current = maxRoundedNumber;
-                setValue(maxRoundedNumber);
+                if (!isNaN(balanceDepositFormattedNumber)) {
+                  const maxRoundedNumber = roundAndFloor(
+                    balanceDepositFormattedNumber,
+                    decimalsCollateral
+                  );
+                  valueRef.current = maxRoundedNumber.toString();
+                  setValue(maxRoundedNumber.toString());
+                }
               }}
             >
               MAX
