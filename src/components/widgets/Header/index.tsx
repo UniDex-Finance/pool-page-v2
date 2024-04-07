@@ -15,33 +15,28 @@ const options = [
   },
   { name: "Swaps Aggregator", value: "2", url: "https://app.unidex.exchange/" },
   {
-    name: "Liquidity Pools",
-    value: "3",
-    url: "https://v1.unidex.exchange/#/pool",
-  },
-  {
     name: "Leverage Stats",
-    value: "4",
+    value: "3",
     url: "https://stats.unidex.exchange/",
   },
   {
     name: "Live Pnl",
-    value: "5",
+    value: "4",
     url: "https://comp.unidex.exchange/#/fantom",
   },
   {
     name: "Staking MOLTEN",
-    value: "6",
+    value: "5",
     url: "https://staking.unidex.exchange",
   },
   {
     name: "Bridge MOLTEN",
-    value: "7",
+    value: "6",
     url: "https://bridge.unidex.exchange",
   },
   {
     name: "Migrate UniDEX",
-    value: "8",
+    value: "7",
     url: "https://migrate.unidex.exchange",
   },
 ];
