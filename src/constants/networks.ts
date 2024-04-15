@@ -111,7 +111,7 @@ export const NETWORKS_AVAILABLE: ChainId[] = [
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
   MODE_CHAIN_ID,
-  MOLTEN_CHAIN_ID
+  MOLTEN_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
@@ -136,7 +136,7 @@ export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
   SCROLL_CHAIN_ID,
   EVMOS_CHAIN_ID,
   MODE_CHAIN_ID,
-  MOLTEN_CHAIN_ID
+  MOLTEN_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
@@ -153,7 +153,7 @@ export const NETWORKS_AVAILABLE_LEVERAGE: ChainId[] = [
   EVMOS_CHAIN_ID,
   BSC_CHAIN_ID,
   MODE_CHAIN_ID,
-  MOLTEN_CHAIN_ID
+  MOLTEN_CHAIN_ID,
 ];
 
 export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
@@ -163,7 +163,7 @@ export const NETWORKS_AVAILABLE_LIMIT: ChainId[] = [
   GNOSIS_CHAIN_ID,
   SCROLL_CHAIN_ID,
   MODE_CHAIN_ID,
-  MOLTEN_CHAIN_ID
+  MOLTEN_CHAIN_ID,
 ];
 
 export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
@@ -222,6 +222,7 @@ export const NETWORK_NAMES_API: {
     [VELAS_CHAIN_ID]: "velas",
     [KAVA_CHAIN_ID]: "kava",
     [ZKSYNC_CHAIN_ID]: "zksync",
+    [MOLTEN_CHAIN_ID]: "molten",
   },
   coingecko: {
     [MAINNET_CHAIN_ID]: "ethereum",
@@ -246,6 +247,7 @@ export const NETWORK_NAMES_API: {
     [VELAS_CHAIN_ID]: "velas",
     [KAVA_CHAIN_ID]: "kava",
     [ZKSYNC_CHAIN_ID]: "zksync",
+    [MOLTEN_CHAIN_ID]: "molten",
   },
   debank: {
     [MAINNET_CHAIN_ID]: "eth",
@@ -270,6 +272,7 @@ export const NETWORK_NAMES_API: {
     [VELAS_CHAIN_ID]: "",
     [KAVA_CHAIN_ID]: "kava",
     [ZKSYNC_CHAIN_ID]: "zksync",
+    [MOLTEN_CHAIN_ID]: "molten",
   },
   owlracle: {
     [MAINNET_CHAIN_ID]: "eth",
@@ -292,6 +295,7 @@ export const NETWORK_NAMES_API: {
     [AUORA_CHAIN_ID]: "aurora",
     [METIS_CHAIN_ID]: "metis",
     [VELAS_CHAIN_ID]: "",
+    [MOLTEN_CHAIN_ID]: "molten",
   },
   gasless: {
     [MAINNET_CHAIN_ID]: "mainnet",
@@ -301,6 +305,7 @@ export const NETWORK_NAMES_API: {
     [XDAI_CHAIN_ID]: "xdai",
     [ARBITRUM_CHAIN_ID]: "arbitrum",
     [OP_CHAIN_ID]: "optimism",
+    [MOLTEN_CHAIN_ID]: "molten",
   },
   defillama: {
     [MAINNET_CHAIN_ID]: "ethereum",
@@ -329,6 +334,7 @@ export const NETWORK_NAMES_API: {
     [SCROLL_CHAIN_ID]: "scroll",
     [EVMOS_CHAIN_ID]: "evmos",
     [MODE_CHAIN_ID]: "mode",
+    [MOLTEN_CHAIN_ID]: "molten",
   },
   /** NOTE: some names may be guesses */
   unidexPool: {
@@ -458,8 +464,9 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
-  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http"
+  [MODE_CHAIN_ID]:
+    "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
+  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
 };
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
@@ -493,9 +500,9 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [BASE_CHAIN_ID]: "https://lb.nodies.app/v1/7434c7c488a742aeaec6c61ba456ffef",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
-  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http"
-
+  [MODE_CHAIN_ID]:
+    "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
+  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
 };
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
@@ -512,9 +519,9 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
     "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
-  [MODE_CHAIN_ID]: "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
-  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http"
-
+  [MODE_CHAIN_ID]:
+    "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
+  [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
 };
 
 export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {

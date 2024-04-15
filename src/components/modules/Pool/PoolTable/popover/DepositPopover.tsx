@@ -35,7 +35,6 @@ export default ({
   valueRef,
   onClickAction,
   doNotUpdatePoolRowsRef,
-  account,
 }: Props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -86,20 +85,13 @@ export default ({
     const fetchBalance = async () => {
       if (addressCollateral === ADDRESS_ZERO && library && accountEthers) {
         const balance = await library.getBalance(accountEthers);
-        console.log("Fetched ETH balance:", balance);
         setBalanceDeposit(balance);
       } else if (addressCollateral !== ADDRESS_ZERO && tokenBalance) {
-        console.log("Fetched token balance:", tokenBalance);
         setBalanceDeposit(tokenBalance);
       } else {
-        console.log("No balance fetched");
         setBalanceDeposit(undefined);
       }
     };
-  
-    console.log("addressCollateral:", addressCollateral);
-    console.log("accountEthers:", accountEthers);
-    console.log("tokenBalance:", tokenBalance);
   
     fetchBalance();
   }, [addressCollateral, library, accountEthers, tokenBalance]);
@@ -122,8 +114,6 @@ export default ({
   const tokenApproved =
     addressCollateral === ADDRESS_ZERO ||
     allowanceDepositFormattedNumber >= parseFloat(value);
-  
-  console.log("balanceDeposit", balanceDeposit, "chainId", chainIdEthers, "account", account, balanceAvailable, balanceDepositFormattedNumber);
   
   return (
     <Popover

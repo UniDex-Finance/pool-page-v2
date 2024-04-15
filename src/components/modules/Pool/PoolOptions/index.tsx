@@ -18,6 +18,8 @@ import { useAppState } from "../../../../hooks";
 import { createPoolRows } from "../../../../helpers";
 import { PoolDataRangeKey } from "../../../../types/core";
 import arrowSelectorWhiteIcon from "../../../../assets/arrow-selector-white.svg";
+import { MOLTEN_CHAIN_ID } from "../../../../constants/networks";
+import { MOLTEN_PRICES_KEY_ALT } from "../../../../constants/core";
 
 const POOL_RANGE_TO_TEXT: { [key in PoolDataRangeKey]: string } = {
   "1DayData": "1 Day",
@@ -96,9 +98,12 @@ export default ({
     let claimTotalNew = 0;
     poolRows.forEach((p) => {
       const collateralRowLower = p.collateral.toLowerCase();
-      const pricesKeyRow = `${NETWORK_NAMES_API.defillama[p.chainId]}:${
-        CHAINDATA[p.chainId]?.collateral?.[collateralRowLower]
-      }`;
+      const pricesKeyRow =
+        p.chainId === MOLTEN_CHAIN_ID
+          ? MOLTEN_PRICES_KEY_ALT[collateralRowLower]
+          : `${NETWORK_NAMES_API.defillama[p.chainId]}:${
+              CHAINDATA[p.chainId]?.collateral?.[collateralRowLower]
+            }`;
 
       const priceMultiplier = prices[pricesKeyRow]?.price || 0;
       claimTotalNew += p.amountClaim * priceMultiplier;

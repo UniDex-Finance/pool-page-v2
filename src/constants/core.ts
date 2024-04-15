@@ -1,3 +1,5 @@
+import { NETWORK_NAMES_API } from ".";
+import { ARBITRUM_CHAIN_ID } from "./networks";
 import { ADDRESS_ZERO } from "./tokens";
 
 export const CURRENCY_LOGOS = {
@@ -146,11 +148,9 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
   250: {
     poolAddress: {
       ftm: "0xBec7d4561037e657830F78b87e780AeE1d09Fc7B",
-
     },
     rewardsContract: {
       ftm: "0xb29b4A6589b489E44644f661648A7706B9360059",
-
     },
     collateral: {
       ftm: ADDRESS_ZERO,
@@ -164,7 +164,6 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
     rewardsContract: {
       dai: "0x267c39Bbc612FD0dcEeaB8Ec6Ea65c67e2Bf8FAB",
       eth: "0xFEc73187273A535B5773ae9C9Ade05DB1950491a",
-
     },
     collateral: {
       dai: "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
@@ -221,4 +220,10 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       golden: "0x7d4984490c4c68f8ead9dddca6d04c514ef77324",
     },
   },
+};
+
+export const MOLTEN_PRICES_KEY_ALT: {
+  [collateral: string]: string;
+} = {
+  usdc: `${NETWORK_NAMES_API.defillama[ARBITRUM_CHAIN_ID]}:${CHAINDATA[ARBITRUM_CHAIN_ID].collateral.usdc}`,
 };

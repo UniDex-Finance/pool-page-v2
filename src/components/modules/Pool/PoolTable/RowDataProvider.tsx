@@ -11,6 +11,8 @@ import { ABIS, CHAINDATA, NETWORK_NAMES_API } from "../../../../constants";
 import { ADDRESS_ZERO, CURRENCY_DETAILS } from "../../../../constants/tokens";
 import { useAppState } from "../../../../hooks";
 import { formatUnits } from "../../../../helpers";
+import { MOLTEN_CHAIN_ID } from "../../../../constants/networks";
+import { MOLTEN_PRICES_KEY_ALT } from "../../../../constants/core";
 
 type PropsHook = {
   chainIdRow: ChainId;
@@ -34,7 +36,10 @@ const usePoolTVL = ({
   const addressPoolRow = chainDataRow?.poolAddress?.[collateralRowLower];
   const decimalsCollateral =
     CURRENCY_DETAILS[chainIdRow]?.[collateralRowUpper]?.decimals || 18;
-  const pricesKeyRow = `${NETWORK_NAMES_API.defillama[chainIdRow]}:${addressCollateralRow}`;
+  const pricesKeyRow =
+    chainIdRow === MOLTEN_CHAIN_ID
+      ? MOLTEN_PRICES_KEY_ALT[collateralRowLower]
+      : `${NETWORK_NAMES_API.defillama[chainIdRow]}:${addressCollateralRow}`;
 
   const { state } = useAppState();
   const prices = state?.prices;

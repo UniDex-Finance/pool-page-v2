@@ -35,7 +35,7 @@ type Props = {
 };
 
 export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
-  const { library: libraryEthers, chainId, account } = useEthers();
+  const { library: libraryEthers, chainId } = useEthers();
   const { state } = useAppState();
   const library = libraryEthers as any;
   const poolData: Store["poolData"] | undefined = state?.poolData;
@@ -279,7 +279,6 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
           valueRef={valueDepositRef}
           onClickAction={onClickActionWrapper}
           doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
-          account={account}
         />
       ),
     }),
