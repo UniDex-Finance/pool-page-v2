@@ -559,30 +559,6 @@ export const CURRENCY_DETAILS: {
       llama: "mode:0x0000000000000000000000000000000000000000",
     },
   },
-  [BSC_CHAIN_ID]: {
-    USDT: {
-      name: "USDT",
-      value: "USDT",
-      img: CRYPTO_ICON_SRC.USDT,
-      address: "0x55d398326f99059fF775485246999027B3197955",
-      decimals: 18,
-      llama: "bsc:0x55d398326f99059fF775485246999027B3197955",
-    },
-    BUSD: {
-      name: "BUSD",
-      value: "BUSD",
-      img: CRYPTO_ICON_SRC.USDT,
-      address: "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-      decimals: 18,
-    },
-    GOLDEN: {
-      name: "BNB",
-      value: "BNB",
-      img: CRYPTO_ICON_SRC.GOLDEN,
-      address: "0x7d4984490c4c68f8ead9dddca6d04c514ef77324",
-      decimals: 9,
-    },
-  },
   [GNOSIS_CHAIN_ID]: {
     XDAI: {
       name: "XDAI",
