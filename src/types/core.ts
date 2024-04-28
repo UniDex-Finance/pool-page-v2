@@ -30,6 +30,7 @@ export type Store = {
       [address: Address]: {
         [key in PoolDataRangeKey]: {
           APR: string;
+          RewardAPR: string;
           Fees: number;
           PnL: number;
           TotalReturn: number;

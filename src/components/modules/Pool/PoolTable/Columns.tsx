@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // import { useEffect, useRef, useState } from "react";
 import { useRef } from "react";
 import { toast } from "react-toastify";
@@ -177,7 +178,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     }),
     columnHelper.accessor("collateral", {
       id: "collateral",
-      header: "COLLATERAL",
+      header: "TOKEN",
       cell: (info) => {
         const chainIdRow = Number(info.row.getValue("chainId"));
         const collateralRowLower = info.getValue().toLowerCase();
@@ -209,7 +210,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     }),
     columnHelper.accessor("tvl", {
       id: "tvl",
-      header: "TVL",
+      header: "POOL TVL",
       cell: (info) => {
         return (
           <div>
@@ -222,7 +223,17 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     // TODO: update value pf and use `apr` accessor instead
     columnHelper.accessor("apr", {
       id: "apr",
-      header: "APR",
+      header: "PNL APR",
+      cell: (info) => (
+        <div>
+          <span>{info.getValue()}</span>
+          <span>%</span>
+        </div>
+      ),
+    }),
+    columnHelper.accessor("rewardapr", {
+      id: "rewardapr",
+      header: "REWARD APR",
       cell: (info) => (
         <div>
           <span>{info.getValue()}</span>
@@ -249,7 +260,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     }),
     columnHelper.accessor("amountClaim", {
       id: "amountClaim",
-      header: "CLAIMABLE REWARDS",
+      header: "CLAIMABLE FEES",
       cell: (info) => {
         const chainIdRow = Number(info.row.getValue("chainId"));
         const isChainIdRowMatch = chainIdRow === chainId;

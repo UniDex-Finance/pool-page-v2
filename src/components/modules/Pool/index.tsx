@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useEffect, useRef, useState } from "react";
 import { PoolRow } from "../../../types";
 import { useAppState } from "../../../hooks";
@@ -23,24 +24,28 @@ export default () => {
     if (!(poolRows.length && poolData && Object.keys(poolData).length)) {
       return;
     }
-
+  
     const poolRowsNew = poolRows.map((p) => {
       const poolRowDataKey = NETWORK_NAMES_API.unidexPool[p.chainId];
-      const poolRowAddress =
-        CHAINDATA[p.chainId].poolAddress[p.collateral.toLowerCase()];
-
-      const poolRowData: Store["poolData"][string][string] | undefined =
-        poolData?.[poolRowDataKey]?.[poolRowAddress];
-
+      const poolRowAddress = CHAINDATA[p.chainId].poolAddress[p.collateral.toLowerCase()];
+      const poolRowData: Store["poolData"][string][string] | undefined = poolData?.[poolRowDataKey]?.[poolRowAddress];
+  
       if (poolRowData) {
-        const aprRow = parseFloat(poolRowData[aprRange].APR);
-        const pNew: PoolRow = { ...p, apr: aprRow };
+        const apr = parseFloat(poolRowData[aprRange].APR);
+        const rewardapr = parseFloat(poolRowData[aprRange].RewardAPR);
+  
+        const pNew: PoolRow = {
+          ...p,
+          apr,
+          rewardapr,
+        };
+  
         return pNew;
       }
-
+  
       return p;
     });
-
+  
     setPoolRows(poolRowsNew);
   };
 

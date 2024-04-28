@@ -7,6 +7,7 @@ const EMPTY_ROW: PoolRow = {
   collateral: "",
   tvl: 0,
   apr: 0,
+  rewardapr: 0,
   amountDeposit: 0,
   amountClaim: 0,
 };

@@ -5,6 +5,7 @@ export type PoolRow = {
   collateral: string;
   tvl: number;
   apr: number;
+  rewardapr: number;
   amountDeposit: number;
   amountClaim: number;
 };
