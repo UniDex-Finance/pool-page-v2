@@ -61,11 +61,11 @@ export default ({
           className="text-[15px] font-normal bg-main-front w-[122px] py-1 px-5"
           disabled={disabled}
         >
-          {disabled ? "----" : "WITHDRAW"}
+          {disabled ? "-" : "WITHDRAW"}
         </Button>
       </PopoverHandler>
       <PopoverContent>
-        <div className="flex flex-col justify-center bg-main-back p-4 rounded-lg">
+        <div className="flex flex-col justify-center p-4 rounded-lg bg-main-back">
           <NumericFormat
             className="text-white !bg-main-front mb-2"
             crossOrigin={undefined}
@@ -77,12 +77,12 @@ export default ({
               valueRef.current = values.floatValue?.toString() || "";
             }}
           />
-          <div className="text-white mb-1">
+          <div className="mb-1 text-white">
             <span>Min withdraw time: </span>
             <span className="font-bold">{minDepositTimeHours} hr</span>
           </div>
           <Button
-            className="font-normal bg-main-front py-1"
+            className="py-1 font-normal bg-main-front"
             onClick={() => onClickAction([chainId, collateral, "withdraw"])}
           >
             CONFIRM WITHDRAW

@@ -129,7 +129,7 @@ export default ({
           className="text-[15px] font-normal bg-main-front w-[103px] py-1 px-5"
           disabled={disabled}
         >
-          {disabled ? "----" : "DEPOSIT"}
+          {disabled ? "-" : "DEPOSIT"}
         </Button>
       </PopoverHandler>
       <PopoverContent>

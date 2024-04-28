@@ -269,7 +269,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
         return (
           <div>
             <span className="mr-2">
-              {!isChainIdRowMatch && "----"}
+              {!isChainIdRowMatch && "-"}
               {isChainIdRowMatch &&
                 (infoValue === 0 || infoValue >= 1
                   ? infoValue.toFixed(2)
@@ -308,7 +308,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
     }),
     columnHelper.display({
       id: "actionClaim",
-      header: "CLAIM REWARDS",
+      header: "HARVEST FEES",
       cell: (info) => {
         const indexRow = info.row.index;
         const chainIdRow = Number(info.row.getValue("chainId"));
@@ -316,7 +316,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
 
         return (
           <Button
-            className="text-[15px] font-normal bg-main-front w-[161px] py-1 px-5"
+            className="text-[15px] font-normal bg-main-front w-[120px] py-1 px-5"
             disabled={disabledRow}
             onClick={() =>
               onClickActionWrapper([
@@ -327,7 +327,7 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
               ])
             }
           >
-            {disabledRow ? "----" : "CLAIM REWARDS"}
+            {disabledRow ? "-" : "CLAIM"}
           </Button>
         );
       },

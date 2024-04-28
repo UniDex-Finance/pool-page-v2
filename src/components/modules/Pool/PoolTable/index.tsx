@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useEffect } from "react";
 // import { useEthers } from "@usedapp/core";
 import {
@@ -11,7 +12,7 @@ import { PoolRow } from "../../../../types";
 import Columns from "./Columns";
 import RowDataProvider from "./RowDataProvider";
 
-const JUSTIFY_CENTER_INDICIES = [0, 6, 7, 8];
+const JUSTIFY_CENTER_INDICIES = [0, 7, 8, 9];
 
 type Props = {
   poolRows: PoolRow[];
@@ -88,31 +89,35 @@ export default ({ poolRows, setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
           ))}
         </thead>
         <tbody className="text-[17px] font-semibold">
-          {table.getRowModel().rows.map((row, indexRow) => (
-            <tr key={row.id}>
-              <RowDataProvider
-                chainIdRow={row.getValue("chainId")}
-                collateralRow={row.getValue("collateral")}
-                setPoolRows={setPoolRows}
-                index={indexRow}
-                doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
-              />
-              {row.getVisibleCells().map((cell, indexCell) => (
-                <td key={cell.id}>
-                  <div
-                    className={`flex py-2.5 px-4 ${
-                      JUSTIFY_CENTER_INDICIES.includes(indexCell)
-                        ? "justify-center"
-                        : "justify-start"
-                    }`}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </div>
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+  {table.getRowModel().rows.map((row, indexRow) => (
+    <tr key={row.id}>
+      <RowDataProvider
+        chainIdRow={row.getValue("chainId")}
+        collateralRow={row.getValue("collateral")}
+        setPoolRows={setPoolRows}
+        index={indexRow}
+        doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
+      />
+      {row.getVisibleCells().map((cell, indexCell) => (
+        <td key={cell.id}>
+<div
+  className={`flex py-2.5 px-4 ${
+    JUSTIFY_CENTER_INDICIES.includes(indexCell)
+      ? "justify-center"
+      : "justify-start"
+  } ${
+    cell.column.id === "rewardApr" && cell.getValue() > 0
+      ? "text-gold"
+      : ""
+  }`}
+>
+  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+</div>
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
       </table>
     </Card>
   );
