@@ -15,7 +15,8 @@ import { NETWORKS_URLS_LEVERAGE } from "../constants";
 import {
   EVMOS_CHAIN_ID,
   MODE_CHAIN_ID,
-  MOLTEN_CHAIN_ID
+  MOLTEN_CHAIN_ID,
+  MERLIN_CHAIN_ID,
 } from "../constants/networks";
 
 export const BASE = {
@@ -95,6 +96,24 @@ export const MOLTEN = {
   getExplorerTransactionLink: (tx: string) => `https://scrollscan.com/${tx}`,
 };
 
+export const MERLIN = {
+  chainId: 4200,
+  chainName: "merlin",
+  isTestChain: false,
+  isLocalChain: false,
+  multicallAddress: "0x8C447f4D34748307de1F91ECfb6566F54d563B2A",
+  multicall2Address: "0x8C447f4D34748307de1F91ECfb6566F54d563B2A",
+  rpcUrl: "https://rpc.merlinchain.io",
+  nativeCurrency: {
+    name: "Bitcoin",
+    symbol: "BTC",
+    address: "0x0000000000000000000000000000000000000000",
+    decimals: 18,
+  },
+  getExplorerAddressLink: (address: string) =>
+    `https://scan.merlinchain.io/${address}`,
+  getExplorerTransactionLink: (tx: string) => `https://scan.merlinchain.io/${tx}`,
+};
 export const MODE = {
   chainId: 34443,
   chainName: "mode",
@@ -122,8 +141,9 @@ const USEDAPP_CONFIG: Config = {
     [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
     [MODE_CHAIN_ID]: "https://mainnet.mode.network/",
     [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
+    [MERLIN_CHAIN_ID]: "https://rpc.merlinchain.io",
   },
-  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, MODE, EVMOS, MOLTEN],
+  networks: [...DEFAULT_SUPPORTED_CHAINS, BASE, MODE, EVMOS, MOLTEN, MERLIN],
 };
 
 const QUERY_CLIENT = new QueryClient();

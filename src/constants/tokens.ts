@@ -30,7 +30,8 @@ import {
   AVALANCHE_CHAIN_ID,
   GNOSIS_CHAIN_ID,
   MODE_CHAIN_ID,
-  MOLTEN_CHAIN_ID
+  MOLTEN_CHAIN_ID,
+  MERLIN_CHAIN_ID,
 } from "./networks";
 
 export const DISABLE_TOKENS: Map<TokenSymbol, boolean> = new Map<
@@ -236,6 +237,12 @@ export const NATIVE_TOKENS = [
     "MOLTEN",
     "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
   ),
+  newNativeToken(
+    MERLIN_CHAIN_ID,
+    "BTC",
+    "Bitcoin",
+    "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0x9d70a3ee07b8f1d666e6b7a8e6f5f9e4f0f5b4c9/logo.png"
+  ),
 ];
 
 export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
@@ -264,6 +271,7 @@ export const NATIVE_TOKEN_BY_CHAIN_ID: { [chainId: number]: TokenData } = {
   [SCROLL_CHAIN_ID]: NATIVE_TOKENS[21],
   [EVMOS_CHAIN_ID]: NATIVE_TOKENS[22],
   [MOLTEN_CHAIN_ID]: NATIVE_TOKENS[23],
+  [MERLIN_CHAIN_ID]: NATIVE_TOKENS[24],
 };
 
 export const USDC_ADDRESS_BY_CHAIN: { [chainId: ChainId]: Address } = {
@@ -313,6 +321,7 @@ export const COINGECKO_NATIVE_TOKEN_IDS: { [chainId: ChainId]: string } = {
   [ZKSYNC_CHAIN_ID]: "zksync",
   [MODE_CHAIN_ID]: "mode",
   [MOLTEN_CHAIN_ID]: "mode",
+  [MERLIN_CHAIN_ID]: "merlin",
 };
 
 export const DEFAULT_FROM_BY_CHAIN_ID = NATIVE_TOKEN_BY_CHAIN_ID;
@@ -451,6 +460,11 @@ export const NATIVE_WRAPPED_TOKEN_BY_CHAIN_ID: {
     "WETH",
     "Wrapped ETH"
   ),
+  [MERLIN_CHAIN_ID]: newMinimalToken(
+    "0x9d70a3ee07b8f1d666e6b7a8e6f5f9e4f0f5b4c9",
+    "BTC",
+    "Bitcoin"
+  ),
 };
 
 export const USD_PEG_TOKEN: { [chainStr: string]: string } = {
@@ -517,6 +531,16 @@ export const CURRENCY_DETAILS: {
       address: "0x135B641E61CFC9a068b82E02fF0f051f6e5D4721",
       decimals: 6,
       llama: "era:0x3355df6D4c9C3035724Fd0e3914dE96A5a83aaf4",
+    },
+  },
+  [MERLIN_CHAIN_ID]: {
+    MERLIN: {
+      name: "MERLIN",
+      value: "MERLIN",
+      img: CRYPTO_ICON_SRC.WBTC,
+      address: "0x0000000000000000000000000000000000000000",
+      decimals: 18,
+      llama: "merlin:0x0000000000000000000000000000000000000000",
     },
   },
   [SCROLL_CHAIN_ID]: {

@@ -25,6 +25,7 @@ import SCROLL_ICON from "../assets/icons_chain/scroll.svg";
 import EVMOS_ICON from "../assets/icons_chain/evmos.png";
 import MODE_ICON from "../assets/icons_chain/mode.svg";
 import MOLTEN_ICON from "../assets/icons_chain/molten.svg";
+import MERLIN_ICON from "../assets/icons_chain/merlin.png";
 
 import USDC_LOGO from "../assets/logos/USDC.svg";
 import DAI_LOGO from "../assets/logos/DAI.svg";
@@ -81,6 +82,7 @@ export const SCROLL_CHAIN_ID = 534352;
 export const EVMOS_CHAIN_ID = 9001;
 export const MODE_CHAIN_ID = 34443;
 export const MOLTEN_CHAIN_ID = 360;
+export const MERLIN_CHAIN_ID = 4200;
 
 export const DEFAULT_NETWORK = OP_CHAIN_ID;
 
@@ -112,6 +114,7 @@ export const NETWORKS_AVAILABLE: ChainId[] = [
   EVMOS_CHAIN_ID,
   MODE_CHAIN_ID,
   MOLTEN_CHAIN_ID,
+
 ];
 
 export const NETWORKS_AVAILABLE_SIMPLE: ChainId[] = [
@@ -192,6 +195,7 @@ export const NETWORK_DISPLAY_NAME: { [chainId: ChainId]: string } = {
   [SCROLL_CHAIN_ID]: "Scroll",
   [EVMOS_CHAIN_ID]: "Evmos",
   [MOLTEN_CHAIN_ID]: "Molten",
+  [MERLIN_CHAIN_ID]: "Merlin",
 };
 
 export const NETWORK_NAMES_API: {
@@ -248,6 +252,7 @@ export const NETWORK_NAMES_API: {
     [KAVA_CHAIN_ID]: "kava",
     [ZKSYNC_CHAIN_ID]: "zksync",
     [MOLTEN_CHAIN_ID]: "molten",
+    [MERLIN_CHAIN_ID]: "merlin",
   },
   debank: {
     [MAINNET_CHAIN_ID]: "eth",
@@ -335,6 +340,7 @@ export const NETWORK_NAMES_API: {
     [EVMOS_CHAIN_ID]: "evmos",
     [MODE_CHAIN_ID]: "mode",
     [MOLTEN_CHAIN_ID]: "molten",
+    [MERLIN_CHAIN_ID]: "merlin",
   },
   /** NOTE: some names may be guesses */
   unidexPool: {
@@ -365,6 +371,7 @@ export const NETWORK_NAMES_API: {
     [EVMOS_CHAIN_ID]: "evmos",
     [MODE_CHAIN_ID]: "mode",
     [MOLTEN_CHAIN_ID]: "molten",
+    [MERLIN_CHAIN_ID]: "merlin",
   },
 };
 
@@ -399,6 +406,7 @@ export const NETWORK_ICON_SRC: {
   [EVMOS_CHAIN_ID]: EVMOS_ICON,
   [MODE_CHAIN_ID]: MODE_ICON,
   [MOLTEN_CHAIN_ID]: MOLTEN_ICON,
+  [MERLIN_CHAIN_ID]: MERLIN_ICON,
 };
 
 export const CRYPTO_ICON_SRC = {
@@ -467,6 +475,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
   [MODE_CHAIN_ID]:
     "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
   [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
+  [MERLIN_CHAIN_ID]: "https://rpc.merlinchain.io",
 };
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
@@ -503,6 +512,8 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [MODE_CHAIN_ID]:
     "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
   [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
+  [MERLIN_CHAIN_ID]: "https://rpc.merlinchain.io",
+
 };
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
@@ -522,6 +533,8 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
   [MODE_CHAIN_ID]:
     "https://mode-mainnet.blastapi.io/e1bf927b-39ad-47cf-98ff-b2b3c33ea5d4",
   [MOLTEN_CHAIN_ID]: "https://molten.calderachain.xyz/http",
+  [MERLIN_CHAIN_ID]: "https://rpc.merlinchain.io",
+
 };
 
 export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
@@ -552,6 +565,7 @@ export const BLOCK_EXPLORER: { [chainId: ChainId]: string } = {
   [EVMOS_CHAIN_ID]: "https://escan.live/",
   [MODE_CHAIN_ID]: "https://explorer.mode.network/",
   [MOLTEN_CHAIN_ID]: "https://molten.calderaexplorer.xyz",
+  [MERLIN_CHAIN_ID]: "https://scan.merlinchain.io",
 };
 
 export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
@@ -582,4 +596,5 @@ export const CHAIN_SYMBOL: { [chainId: ChainId]: string } = {
   [EVMOS_CHAIN_ID]: "EVMOS",
   [MODE_CHAIN_ID]: "ETH",
   [MOLTEN_CHAIN_ID]: "MOLTEN",
+  [MERLIN_CHAIN_ID]: "MERLIN",
 };
