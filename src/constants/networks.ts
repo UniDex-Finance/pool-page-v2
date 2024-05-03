@@ -471,7 +471,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
 
 export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
   [MAINNET_CHAIN_ID]:
-    "https://eth-mainnet.g.alchemy.com/v2/LnOWF7MPoOba1gqE1VVE4HwfzV3sZ7C1",
+    "https://rpc.ankr.com/eth/757fd7b22f376e3de558f4314e5ec7acfed5b77c6ec675900d6ca9a97708f9ee",
   [SEPOLIA_CHAIN_ID]:
     "wss://eth-mainnet.g.alchemy.com/v2/k4-7Agacy4KzCQ7xPvGGVVoMxsnB_sYy",
   [KOVAN_CHAIN_ID]:
@@ -507,7 +507,7 @@ export const NETWORK_URLS_SIMPLE: { [chainId: ChainId]: string } = {
 
 export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
   [OP_CHAIN_ID]:
-    "https://sly-virulent-waterfall.optimism.quiknode.pro/e7187027dce1e6ffb4eef92ac5066a0b94ea28ef/",
+    "https://rpc.ankr.com/optimism/757fd7b22f376e3de558f4314e5ec7acfed5b77c6ec675900d6ca9a97708f9ee",
   [POLYGON_CHAIN_ID]: "https://polygon-rpc.com",
   [ZKSYNC_CHAIN_ID]: "https://mainnet.era.zksync.io",
   [FANTOM_CHAIN_ID]: "https://rpcapi.fantom.network",
@@ -516,7 +516,7 @@ export const NETWORKS_URLS_LEVERAGE: { [chainId: ChainId]: string } = {
   [BSC_CHAIN_ID]: "https://lb.nodies.app/v1/9af780ad7c9c42a0996c70d19a58c25f	",
   [GNOSIS_CHAIN_ID]: "https://rpc.gnosis.gateway.fm",
   [BASE_CHAIN_ID]:
-    "https://thrumming-fabled-card.base-mainnet.quiknode.pro/1c955f4a7b1fc1789d1469edc2f0ea074cec09ac/",
+    "https://rpc.ankr.com/base/757fd7b22f376e3de558f4314e5ec7acfed5b77c6ec675900d6ca9a97708f9ee",
   [SCROLL_CHAIN_ID]: "https://rpc.scroll.io/",
   [EVMOS_CHAIN_ID]: "https://lb.nodies.app/v1/c5884321d7ef4c35be44cccc4236e1c3",
   [MODE_CHAIN_ID]:
