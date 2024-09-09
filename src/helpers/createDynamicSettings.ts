@@ -17,7 +17,7 @@ type DynamicContextProps = React.ComponentProps<typeof DynamicContextProvider>;
 
 export default (): DynamicContextProps["settings"] => {
   return {
-    environmentId: "63f5b880-69e0-4798-b20d-5005d5a1649e",
+    environmentId: "308246e6-b10e-4895-b94d-4b018dcf4d63",
     initialAuthenticationMode: "connect-only",
     walletConnectors: [
       EthereumWalletConnectors,
