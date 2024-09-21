@@ -50,7 +50,7 @@ export default () => {
   };
 
   useEffect(() => {
-    updatePoolRowsAPR("30DayData");
+    updatePoolRowsAPR("1DayData");
   }, [poolData, poolRows.length]);
 
   return (
