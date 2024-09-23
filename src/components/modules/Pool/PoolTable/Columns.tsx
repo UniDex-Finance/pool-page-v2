@@ -221,26 +221,6 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
       },
     }),
     // TODO: update value pf and use `apr` accessor instead
-    columnHelper.accessor("apr", {
-      id: "apr",
-      header: "PNL APR",
-      cell: (info) => (
-        <div>
-          <span>{info.getValue()}</span>
-          <span>%</span>
-        </div>
-      ),
-    }),
-    columnHelper.accessor("rewardapr", {
-      id: "rewardapr",
-      header: "REWARD APR",
-      cell: (info) => (
-        <div>
-          <span>{info.getValue()}</span>
-          <span>%</span>
-        </div>
-      ),
-    }),
     columnHelper.accessor("amountDeposit", {
       id: "amountDeposit",
       header: "DEPOSITED",
@@ -279,19 +259,6 @@ export default ({ setPoolRows, doNotUpdatePoolRowsRef }: Props) => {
           </div>
         );
       },
-    }),
-    columnHelper.display({
-      id: "actionDeposit",
-      header: "DEPOSIT",
-      cell: (info) => (
-        <DepositPopover
-          chainId={info.row.getValue("chainId")}
-          collateral={info.row.getValue("collateral")}
-          valueRef={valueDepositRef}
-          onClickAction={onClickActionWrapper}
-          doNotUpdatePoolRowsRef={doNotUpdatePoolRowsRef}
-        />
-      ),
     }),
     columnHelper.display({
       id: "actionWithdraw",
