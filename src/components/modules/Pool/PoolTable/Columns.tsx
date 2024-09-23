@@ -14,7 +14,7 @@ import {
 } from "../../../../constants/networks";
 import { ADDRESS_ZERO } from "../../../../constants/tokens";
 import { parseUnitsSafe } from "../../../../helpers";
-import { DepositPopover, WithdrawPopover } from "./popover";
+import {  WithdrawPopover } from "./popover";
 import { useAppState } from "../../../../hooks";
 import { Store } from "../../../../types/core";
 // import { PoolDataService } from "../../../../services";
