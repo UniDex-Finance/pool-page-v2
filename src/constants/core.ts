@@ -123,15 +123,15 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
   42161: {
     poolAddress: {
       eth: "0xdAF7D157F5c6E0F1d7917Ca02a7C185cEF81e6d0",
-      usdc: "0xFBF8CdEbB6A005017b0B6B606e4b0FD1A0Fb679A",
+      usdc: "0x09e122453a079bc2be621769ae7799e53da0054e",
     },
     rewardsContract: {
       eth: "0xf2669628818384fa40c3E68e4e5995f4D882F811",
-      usdc: "0x9D833B246E2Df32F55cf88c10a8bEEdDEE5A7Cb7",
+      usdc: "0xa40dCF6C15419d418337E177dAE6a54f1FA65569",
     },
     collateral: {
       eth: ADDRESS_ZERO,
-      usdc: "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      usdc: "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8",
     },
   },
   324: {
