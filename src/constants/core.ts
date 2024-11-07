@@ -109,15 +109,15 @@ export const CHAINDATA: { [key: number]: { [key: string]: any } } = {
       usdc: "0x135B641E61CFC9a068b82E02fF0f051f6e5D4721",
     },
   },
-  4200: {
+  56: {
     poolAddress: {
-      btc: "0x615B1fcf461249b12342726819CB6Da23413CB48",
+      busd: "0xa8D4bd632f394CED42BD439Bc34F09198072e519",
     },
     rewardsContract: {
-      btc: "0x21708707f03A19C3a4ea5E1a132B5cF96b86F294",
+      btbusdc: "0x56FBF54565A579dD389A7b1c1A55D54feFE077f0",
     },
     collateral: {
-      btc: ADDRESS_ZERO,
+      busd: "0xe9e7cea3dedca5984780bafc599bd69add087d56",
     },
   },
   42161: {

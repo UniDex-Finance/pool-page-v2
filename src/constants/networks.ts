@@ -448,7 +448,7 @@ export const NETWORK_URLS: { [chainId: ChainId]: string } = {
     "wss://eth-mainnet.g.alchemy.com/v2/k4-7Agacy4KzCQ7xPvGGVVoMxsnB_sYy",
   [KOVAN_CHAIN_ID]:
     "https://eth-kovan.alchemyapi.io/v2/kKt4rItTbSfgSw5yTtZlRmqwQXU890aF",
-  [BSC_CHAIN_ID]: "https://lb.nodies.app/v1/9af780ad7c9c42a0996c70d19a58c25f",
+  [BSC_CHAIN_ID]: "https://bsc-dataseed1.binance.org/",
   [POLYGON_CHAIN_ID]:
     "https://lb.nodies.app/v1/d4fda5437eb44c82aed6b20fe472c8c9",
   [AVA_CHAIN_ID]: "https://api.avax.network/ext/bc/C/rpc",
