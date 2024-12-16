@@ -58,7 +58,7 @@ const optionsInfo = [
     value: "4",
     url: "https://dune.com/shogun/unidex-exchange-analytics",
   },
-  { name: "Discord", value: "4", url: "https:/discord.gg/unidex" },
+  { name: "Discord", value: "4", url: "https://discord.gg/W2TByeuD7R" },
   { name: "Telegram", value: "4", url: "https://t.me/unidexfinance" },
   { name: "Twitter", value: "4", url: "https://twitter.com/unidexfinance" },
   { name: "Mirror", value: "4", url: "https://mirror.xyz/unidexexchange.eth" },
